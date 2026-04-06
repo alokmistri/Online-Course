@@ -72,30 +72,27 @@
         <input id="email" type="email" placeholder="Enter your Gmail" required
           class="w-full bg-gray-800 p-2 rounded text-sm">
 
-        <input type="file" id="screenshot" accept="image/*"
-          class="w-full bg-gray-800 p-2 rounded text-sm">
+        
 
-        <!-- Preview -->
-        <img id="preview" class="hidden mx-auto w-32 rounded border border-gray-700">
-
-        <p class="text-xs text-gray-400 text-center">
-          Upload screenshot (preview shown below) → then click WhatsApp and ATTACH the image manually in chat
-        </p>
+        <!-- Premium Alert Box -->
+        <div class="bg-yellow-500/10 border border-yellow-500 text-yellow-400 text-xs p-3 rounded-lg text-center animate-pulse">
+          ⚠️ After clicking WhatsApp, confirm your payment and send details in chat
+        </div>
 
       </div>
 
       <!-- Buttons -->
       <div class="space-y-3">
 
-        <button onclick="copyUPI()" class="bg-gray-800 w-full py-2 rounded hover:bg-gray-700">
-          Copy UPI ID
+        <button onclick="copyUPI()" class="bg-gray-800 w-full py-2 rounded hover:bg-gray-700 transition">
+          📋 Copy UPI ID
         </button>
 
-        <button onclick="sendWhatsApp()" class="bg-green-600 w-full py-2 rounded hover:bg-green-700">
+        <button onclick="sendWhatsApp()" class="bg-green-600 w-full py-2 rounded hover:bg-green-700 transition">
           📲 Send on WhatsApp
         </button>
 
-        <button onclick="redirectHome()" class="bg-orange-500 w-full py-2 rounded hover:bg-orange-600">
+        <button onclick="redirectHome()" class="bg-orange-500 w-full py-2 rounded hover:bg-orange-600 transition">
           Done
         </button>
 
@@ -104,6 +101,15 @@
     </div>
 
   </section>
+
+  <!-- Success Popup -->
+  <div id="popup" class="fixed inset-0 hidden items-center justify-center bg-black/70 z-50">
+    <div class="bg-gray-900 p-6 rounded-xl text-center border border-gray-700">
+      <h2 class="text-lg font-bold mb-2">✅ Opening WhatsApp</h2>
+      <p class="text-sm text-gray-400">Send your payment confirmation in WhatsApp chat</p>
+      <button onclick="closePopup()" class="mt-4 bg-orange-500 px-4 py-2 rounded">OK</button>
+    </div>
+  </div>
 
   <!-- Script -->
   <script>
@@ -116,25 +122,18 @@
       window.location.href = "index.html";
     }
 
-    // Image Preview
-    document.getElementById('screenshot').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      const preview = document.getElementById('preview');
+    function closePopup() {
+      document.getElementById('popup').classList.add('hidden');
+    }
 
-      if (file) {
-        preview.src = URL.createObjectURL(file);
-        preview.classList.remove('hidden');
-      }
-    });
+    
 
-    // Copy UPI
     function copyUPI() {
       const upi = "yourupi@bank";
       navigator.clipboard.writeText(upi);
       alert("UPI ID copied: " + upi);
     }
 
-    // WhatsApp Dynamic
     function sendWhatsApp() {
       const email = document.getElementById('email').value;
       const course = document.getElementById('courseName').innerText;
@@ -144,10 +143,14 @@
         return;
       }
 
+      document.getElementById('popup').classList.remove('hidden');
+
       const msg = `Hi, I completed payment for ${course}. My Gmail: ${email}`;
       const url = `https://wa.me/917439034248?text=${encodeURIComponent(msg)}`;
 
-      window.open(url, '_blank');
+      setTimeout(() => {
+        window.open(url, '_blank');
+      }, 800);
     }
 
   </script>
