@@ -1,278 +1,281 @@
-
 <!DOCTYPE html>
-<html lang="en" id="html">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SkillForge Academy - Job Ready Courses</title>
+  <title>SkillForge Academy - Ultra Cinematic</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="text-white font-sans min-h-screen bg-cover bg-center bg-no-repeat bg-fixed" 
-      style="background-image: url('background.jpg');">
+<body class="text-white font-sans min-h-screen overflow-x-hidden">
 
-  <!-- Dark Overlay -->
-  <div class="fixed inset-0 bg-black/60 -z-10"></div>
+  <!-- VIDEO BACKGROUND -->
+  <video autoplay muted loop playsinline class="fixed inset-0 w-full h-full object-cover -z-20">
+    <source src="bg-video.mp4" type="video/mp4">
+  </video>
 
-  <!-- Top Bar (Urgency) -->
-  <div class="bg-red-600 text-center py-2 text-sm font-bold animate-pulse">
-    🔥 Limited Time Offer | Enroll Now & Learn Anytime Anywhere With Lifetime Access 🔥
+  <!-- DARK OVERLAY -->
+  <div class="fixed inset-0 bg-black/70 -z-10"></div>
+
+  <!-- NAVBAR -->
+  <nav class="flex justify-between items-center px-6 py-4 backdrop-blur-md border-b border-white/10">
+    <h1 class="text-xl font-bold text-orange-400">SkillForge</h1>
+    <a href="#courses" class="hover:text-orange-400 transition">Courses</a>
+  </nav>
+
+  <!-- MARQUEE -->
+  <div class="bg-orange-500 text-black py-2 text-center font-semibold overflow-hidden">
+    <marquee>Learn Anytime Anywhere with Lifetime Access 🚀</marquee>
   </div>
 
-  <!-- Hero Section -->
-  <section class="text-center py-16 px-4 bg-gradient-to-r from-black via-gray-900 to-black">
-
-    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-      Get Job Ready in <span class="text-orange-500">30 Days</span>
-    </h1>
-
-    <p class="mt-6 text-gray-300 max-w-xl mx-auto">
-      Learn Computer Fundamentals & Basic , Advanced Excel + MIS , Tally+GST(Licensed Version) , Power BI(Basic to Advanced) , SAP 4 HANA , SAP FICO with Practical Training + 100% Job Assistance
-    </p>
-
-    <div class="mt-6 flex flex-col md:flex-row justify-center gap-4">
-      <a href="mailto:a.mistri2004@gmail.com">
-        <button class="bg-green-500 px-6 py-3 rounded-xl font-semibold text-white w-full md:w-auto">
-          📲 Enroll on Email
-        </button>
+  <!-- AD / OFFER SECTION -->
+  <section class="max-w-6xl mx-auto px-4 py-10">
+    <div class="bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 shadow-xl">
+      
+      <a href="#courses" class="w-full md:w-1/3 block">
+        <div class="relative w-full h-48 md:h-full rounded-xl overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('offer.jpg');"></div>
+        </div>
       </a>
 
-      <button class="bg-orange-500 px-6 py-3 rounded-xl font-semibold text-white w-full md:w-auto">
-        🎓 View Courses
-      </button>
-    </div>
+      <div class="text-center md:text-left">
+        <h2 class="text-2xl md:text-3xl font-bold">🔥 Special Offer</h2>
+        <p class="mt-2 text-sm md:text-base">Enroll today and get exclusive discount + lifetime access to all updates</p>
+        <a href="#courses" class="mt-4 inline-block bg-black text-white px-6 py-2 rounded-lg font-semibold hover:scale-105 transition">
+          Grab Offer
+        </a>
+      </div>
 
-    <p class="mt-4 text-sm text-gray-400">⭐ 500+ Students Trained | ⭐ Trusted Training Platform</p>
-
-  </section>
-
-  <!-- Features -->
-  <section class="py-10 px-4 bg-gray-900 text-center">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      <div>📘 Theory + Practical</div>
-      <div>👨‍🏫 Expert Mentor</div>
-      <div>🌐 Learn Anytime</div>
-      <div>♾️ Lifetime Access</div>
     </div>
   </section>
 
-  <!-- Courses Section -->
-  <section id="courses" class="px-4 py-14">
-    <h2 class="text-3xl font-bold text-center mb-10">Choose Your Course</h2>
+  <!-- HERO -->
+  
+  
+  <section class="h-screen flex flex-col justify-center items-center text-center px-4">
+
+    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight animate-pulse">
+      Learn Skills. <br>
+      <span class="text-orange-400">Earn Money.</span>
+    </h1>
+
+    <p class="mt-6 text-gray-300 max-w-xl">
+      Real Skills. Real Income. Learn Tally, Excel, SAP & Power BI with practical training.
+    </p>
+
+    <div class="mt-8 flex flex-col md:flex-row gap-4">
+      <a href="#courses" class="bg-orange-500 px-6 py-3 rounded-xl font-bold hover:scale-110 transition shadow-lg">
+        🚀 Start Learning
+      </a>
+
+      <a href="mailto:a.mistri2004@gmail.com" class="border border-white/30 px-6 py-3 rounded-xl backdrop-blur hover:bg-white/10 transition">
+        📧 Contact
+      </a>
+    </div>
+
+  </section>
+
+  <!-- COURSES -->
+
+  <!-- SCROLL ANIMATION STYLE -->
+  <style>
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <section id="courses" class="px-4 py-20 max-w-6xl mx-auto">
+
+    <h2 class="text-3xl font-bold text-center mb-12">Our Courses</h2>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 fade-in">
+
+      <!-- CARD -->
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl text-center hover:scale-105 hover:shadow-2xl transition duration-300">
+        <h3 class="text-xl font-bold">MS Basic</h3>
+        <p class="text-orange-400 text-2xl mt-2">₹499</p>
+        <a href="ms-basic.html" class="mt-4 inline-block bg-green-500 px-5 py-2 rounded-lg w-full hover:bg-green-600 transition">
+          View Details
+        </a>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl text-center hover:scale-105 hover:shadow-2xl transition">
+        <h3 class="text-xl font-bold">Tally + GST</h3>
+        <p class="text-orange-400 text-2xl mt-2">₹1499</p>
+        <a href="tally.html" class="mt-4 inline-block bg-green-500 px-5 py-2 rounded-lg w-full hover:bg-green-600 transition">View Details</a>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl text-center hover:scale-105 hover:shadow-2xl transition">
+        <h3 class="text-xl font-bold">Advanced Excel</h3>
+        <p class="text-orange-400 text-2xl mt-2">₹999</p>
+        <a href="excel.html" class="mt-4 inline-block bg-green-500 px-5 py-2 rounded-lg w-full hover:bg-green-600 transition">View Details</a>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl text-center hover:scale-105 hover:shadow-2xl transition">
+        <h3 class="text-xl font-bold">Power BI</h3>
+        <p class="text-orange-400 text-2xl mt-2">₹1999</p>
+        <a href="powerbi.html" class="mt-4 inline-block bg-green-500 px-5 py-2 rounded-lg w-full hover:bg-green-600 transition">View Details</a>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl text-center hover:scale-105 hover:shadow-2xl transition">
+        <h3 class="text-xl font-bold">SAP 4 HANA</h3>
+        <p class="text-orange-400 text-2xl mt-2">₹2599</p>
+        <a href="saf4hana.html" class="mt-4 inline-block bg-green-500 px-5 py-2 rounded-lg w-full hover:bg-green-600 transition">View Details</a>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl text-center hover:scale-105 hover:shadow-2xl transition">
+        <h3 class="text-xl font-bold">SAP FICO</h3>
+        <p class="text-orange-400 text-2xl mt-2">₹2599</p>
+        <a href="sapfico.html" class="mt-4 inline-block bg-green-500 px-5 py-2 rounded-lg w-full hover:bg-green-600 transition">View Details</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MULTI ADS SECTION -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+
+    <h2 class="text-2xl font-bold text-center mb-10">🔥 Exclusive Offers</h2>
 
     <div class="grid md:grid-cols-3 gap-6">
 
-     
-      <div class="bg-gray-800 p-6 rounded-2xl border border-orange-500 text-center scale-105">
-        <h3 class="text-xl font-bold">MS-Basic</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹499</p>
-        <a href="ms-basic.html">
-        <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a>
-      </div>
-
-      <div class="bg-gray-800 p-6 rounded-2xl border border-orange-500 text-center scale-105">
-        <h3 class="text-xl font-bold">Tally + GST</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹1499</p>
-        <p class="text-xs text-gray-400">🔥 Most Popular</p>
-        <a href="tally.html"> 
-       <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a> 
-      </div>
-
-      <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 text-center">
-        <h3 class="text-xl font-bold">Advanced Excel</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹999</p>
-        <a href="excel.html">
-        <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a>
-      </div>
-
-       <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 text-center">
-        <h3 class="text-xl font-bold">Power BI</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹1999</p>
-        <a href="powerbi.html">
-        <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a>
-      </div>
-
-       <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 text-center">
-       <h3 class="text-xl font-bold">SAP 4 HANA</h3>
-       <p class="text-3xl text-orange-500 font-bold mt-2">₹2599</p>
-       <a href="saf4hana.html" 
-       class="mt-4 inline-block bg-green-500 px-5 py-2 rounded-lg w-full text-white">
-      Check Details
+      <!-- Ad 1 -->
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 hover:scale-105 transition">
+        <a href="#courses" class="block mb-3">
+        <div class="w-full h-40 rounded-lg bg-cover bg-center" style="background-image: url('ad1.jpg');"></div>
       </a>
-    </div>
+        <h3 class="font-semibold">Flat 50% OFF</h3>
+        <p class="text-sm text-gray-300">Limited time discount on all courses</p>
+      </div>
 
-       <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 text-center">
-        <h3 class="text-xl font-bold">SAP FICO</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹2599</p>
-        <a href="sapfico.html">
-        <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a>
+      <!-- Ad 2 -->
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 hover:scale-105 transition">
+        <a href="#courses" class="block mb-3">
+        <div class="w-full h-40 rounded-lg bg-cover bg-center" style="background-image: url('ad2.jpg');"></div>
+      </a>
+        <h3 class="font-semibold">Combo Offer</h3>
+        <p class="text-sm text-gray-300">Buy 2 courses & get 1 free</p>
+      </div>
+
+      <!-- Ad 3 -->
+      <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 hover:scale-105 transition">
+        <a href="#courses" class="block mb-3">
+        <div class="w-full h-40 rounded-lg bg-cover bg-center" style="background-image: url('ad3.jpg');"></div>
+      </a>
+        <h3 class="font-semibold">Free Demo Class</h3>
+        <p class="text-sm text-gray-300">Try before you enroll</p>
       </div>
 
     </div>
+
   </section>
 
-  <!-- Social Proof -->
-  <section class="bg-gray-900 py-12 text-center">
-    <h2 class="text-2xl font-bold mb-6">What Students Say</h2>
-    <p class="text-gray-400 max-w-xl mx-auto">
-      ⭐ "Got job after Tally course" <br>
-      ⭐ "Best institute for practical learning" <br>
-      ⭐ "Highly recommended for beginners"
-    </p>
-  </section>
-
-  <!-- Final CTA -->
-  <section class="text-center py-14 px-4 bg-gradient-to-r from-orange-600 to-red-600">
-    <h2 class="text-3xl font-bold">Start Your Career Today 🚀</h2>
-    <p class="mt-3">Limited Seats Available - Don't Miss Out</p>
-
-    <a href="mailto:a.mistri2004@gmail.com">
-      <button class="mt-6 bg-black text-white px-8 py-3 rounded-xl font-bold">
-        📲 Enroll Now on Email
-      </button>
-    </a>
-  </section>
-
-  <!-- Footer -->
-  <footer class="text-center p-4 text-gray-500 text-sm">
-    © 2026 SkillForge Academy
-  </footer>
-
-
-   <!DOCTYPE html>
-<html lang="en" id="html">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SkillForge Academy - Job Ready Courses</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gray-950 text-white font-sans">
-
-  <!-- Top Bar (Urgency) -->
-  <div class="bg-red-600 text-center py-2 text-sm font-bold animate-pulse">
-    🔥 Limited Time Offer | Enroll Now & Learn Anytime Anywhere With Lifetime Access 🔥
+  <!-- SIDE FLOATING AD -->
+  <div class="fixed bottom-6 right-4 bg-orange-500 p-4 rounded-xl shadow-xl w-64 hidden md:block">
+    <h4 class="font-bold text-black">🔥 Limited Offer</h4>
+    <p class="text-sm text-black">Enroll now & get bonus content</p>
+    <a href="#courses" class="block mt-2 bg-black text-white text-center py-1 rounded">Join Now</a>
   </div>
 
-  <!-- Hero Section -->
-  <section class="text-center py-16 px-4 bg-gradient-to-r from-black via-gray-900 to-black">
+  
+  
 
-    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-      Get Job Ready in <span class="text-orange-500">30 Days</span>
-    </h1>
-
-    <p class="mt-6 text-gray-300 max-w-xl mx-auto">
-      Learn Computer Fundamentals & Basic , Advanced Excel + MIS , Tally+GST(Licensed Version) , Power BI(Basic to Advanced) , SAP 4 HANA , SAP FICO with Practical Training + 100% Job Assistance
-    </p>
-
-    <div class="mt-6 flex flex-col md:flex-row justify-center gap-4">
-      <a href="mailto:a.mistri2004@gmail.com">
-        <button class="bg-green-500 px-6 py-3 rounded-xl font-semibold text-white w-full md:w-auto">
-          📲 Enroll on Email
-        </button>
-      </a>
-
-      <button class="bg-orange-500 px-6 py-3 rounded-xl font-semibold text-white w-full md:w-auto">
-        🎓 View Courses
-      </button>
-    </div>
-
-    <p class="mt-4 text-sm text-gray-400">⭐ 500+ Students Trained | ⭐ Trusted Training Platform</p>
-
-  </section>
-
-  <!-- Features -->
-  <section class="py-10 px-4 bg-gray-900 text-center">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      <div>📘 Theory + Practical</div>
-      <div>👨‍🏫 Expert Mentor</div>
-      <div>🌐 Learn Anytime</div>
-      <div>♾️ Lifetime Access</div>
-    </div>
-  </section>
-
-  <!-- Courses Section -->
-  <section id="courses" class="px-4 py-14">
-    <h2 class="text-3xl font-bold text-center mb-10">Choose Your Course</h2>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-     
-      <div class="bg-gray-800 p-6 rounded-2xl border border-orange-500 text-center scale-105">
-        <h3 class="text-xl font-bold">MS-Basic</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹499</p>
-        <a href="ms-basic.html">
-        <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a>
-      </div>
-
-      <div class="bg-gray-800 p-6 rounded-2xl border border-orange-500 text-center scale-105">
-        <h3 class="text-xl font-bold">Tally + GST</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹1499</p>
-        <p class="text-xs text-gray-400">🔥 Most Popular</p>
-        <a href="tally.html"> 
-       <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a> 
-      </div>
-
-      <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 text-center">
-        <h3 class="text-xl font-bold">Advanced Excel</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹999</p>
-        <a href="excel.html">
-        <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a>
-      </div>
-
-       <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 text-center">
-        <h3 class="text-xl font-bold">Power BI</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹1999</p>
-        <a href="powerbi.html">
-        <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a>
-      </div>
-
-       <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 text-center">
-       <h3 class="text-xl font-bold">SAP 4 HANA</h3>
-       <p class="text-3xl text-orange-500 font-bold mt-2">₹2599</p>
-       <a href="saf4hana.html" 
-       class="mt-4 inline-block bg-green-500 px-5 py-2 rounded-lg w-full text-white">
-      Check Details
-      </a>
-    </div>
-
-       <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 text-center">
-        <h3 class="text-xl font-bold">SAP FICO</h3>
-        <p class="text-3xl text-orange-500 font-bold mt-2">₹2599</p>
-        <a href="sapfico.html">
-        <button class="mt-4 bg-green-500 px-5 py-2 rounded-lg w-full">Check Details</button></a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Social Proof -->
-  <section class="bg-gray-900 py-12 text-center">
-    <h2 class="text-2xl font-bold mb-6">What Students Say</h2>
-    <p class="text-gray-400 max-w-xl mx-auto">
-      ⭐ "Got job after Tally course" <br>
-      ⭐ "Best institute for practical learning" <br>
-      ⭐ "Highly recommended for beginners"
-    </p>
-  </section>
-
-  <!-- Final CTA -->
-  <section class="text-center py-14 px-4 bg-gradient-to-r from-orange-600 to-red-600">
-    <h2 class="text-3xl font-bold">Start Your Career Today 🚀</h2>
-    <p class="mt-3">Limited Seats Available - Don't Miss Out</p>
-
-    <a href="mailto:a.mistri2004@gmail.com">
-      <button class="mt-6 bg-black text-white px-8 py-3 rounded-xl font-bold">
-        📲 Enroll Now on Email
-      </button>
-    </a>
-  </section>
-
-  <!-- Footer -->
-  <footer class="text-center p-4 text-gray-500 text-sm">
-    © 2026 SkillForge Academy
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-gray-400 text-sm border-t border-white/10">
+    © 2026 SkillForge Academy | Ultra Cinematic UI
   </footer>
 
 
-   
+
+  <!-- SCROLL SCRIPT -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+
+
+  <!-- COUNTDOWN TIMER -->
+  <div class="fixed top-16 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-2 rounded-full text-sm shadow-lg z-50">
+    ⏳ Offer Ends In: <span id="timer">10:00</span>
+  </div>
+
+  <!-- POPUP OFFER -->
+  <div id="offerPopup" class="fixed inset-0 hidden items-center justify-center bg-black/70 z-50">
+    <div class="bg-white text-black p-6 rounded-xl text-center max-w-sm">
+      <h2 class="text-xl font-bold mb-2">🔥 Limited Offer</h2>
+      <p class="text-sm mb-4">Enroll now & get special discount</p>
+      <a href="#courses" class="bg-orange-500 text-white px-4 py-2 rounded">Grab Now</a>
+      <button onclick="closeOffer()" class="block mt-3 text-sm text-gray-500">Close</button>
+    </div>
+  </div>
+
+  <!-- WHATSAPP FLOAT BUTTON -->
+  <a href="https://wa.me/917439034248" target="_blank"
+     class="fixed bottom-6 left-4 bg-green-500 w-14 h-14 flex items-center justify-center rounded-full shadow-lg text-xl">
+     💬
+  </a>
+
+  <!-- AD CAROUSEL -->
+  <section class="max-w-4xl mx-auto px-4 py-10">
+    <div class="relative overflow-hidden rounded-xl">
+      <div id="carousel" class="flex transition-all duration-700">
+        <a href="#courses" class="w-full flex-shrink-0">
+          <div class="w-full h-56 bg-cover bg-center" style="background-image: url('ad1.jpg');"></div>
+        </a>
+        <a href="#courses" class="w-full flex-shrink-0">
+          <div class="w-full h-56 bg-cover bg-center" style="background-image: url('ad2.jpg');"></div>
+        </a>
+        <a href="#courses" class="w-full flex-shrink-0">
+          <div class="w-full h-56 bg-cover bg-center" style="background-image: url('ad3.jpg');"></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNNEL SCRIPTS -->
+  <script>
+
+    // Countdown Timer
+    let time = 600;
+    setInterval(() => {
+      let min = Math.floor(time / 60);
+      let sec = time % 60;
+      document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0'+sec : sec}`;
+      if(time > 0) time--;
+    }, 1000);
+
+    // Popup after 3 sec
+    setTimeout(() => {
+      document.getElementById('offerPopup').classList.remove('hidden');
+    }, 3000);
+
+    function closeOffer() {
+      document.getElementById('offerPopup').classList.add('hidden');
+    }
+
+    // Carousel
+    let index = 0;
+    const carousel = document.getElementById('carousel');
+    setInterval(() => {
+      index = (index + 1) % 3;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }, 3000);
+
+  </script>
+
+</body>
+</html>
