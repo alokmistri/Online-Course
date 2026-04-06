@@ -2,26 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MS Basic Course</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-950 text-white font-sans">
 
-  <!-- Back -->
-  <a href="index.html" class="text-orange-500 p-4 inline-block">← Back</a>
+  <!-- Back Button -->
+  <a href="index.html" class="text-orange-500 p-4 inline-block text-sm md:text-base">
+    ← Back to Home
+  </a>
 
-  <!-- Title -->
-  <section class="text-center py-10">
-    <h1 class="text-4xl font-bold">MS Basic Course</h1>
-    <p class="text-orange-500 text-2xl mt-2 font-bold">₹499</p>
+  <!-- Hero Section -->
+  <section class="text-center py-8 md:py-12 px-4">
+    <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">MS Basic Course</h1>
+    <p class="text-orange-500 text-xl md:text-2xl mt-2 font-bold">₹499</p>
   </section>
 
   <!-- Topics -->
-  <section class="max-w-3xl mx-auto px-6 py-6">
-    <h2 class="text-2xl font-bold mb-4">Course Topics</h2>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-6">
+    <h2 class="text-xl md:text-2xl font-bold mb-4">Course Topics</h2>
 
-    <ul class="space-y-2 text-gray-300">
+    <ul class="space-y-2 text-gray-300 text-sm md:text-base">
       <li>✔ MS Word (Typing, Formatting)</li>
       <li>✔ MS Excel Basics</li>
       <li>✔ PowerPoint</li>
@@ -31,37 +34,37 @@
   </section>
 
   <!-- Enroll Button -->
-  <section class="text-center py-6">
-    <button onclick="showPayment()" 
-      class="bg-green-500 px-8 py-3 rounded-xl font-bold hover:bg-green-600">
+  <section class="text-center py-6 px-4">
+    <button onclick="showPayment()"
+      class="bg-green-500 w-full sm:w-auto px-6 md:px-8 py-3 rounded-xl font-bold text-sm md:text-base hover:bg-green-600 transition">
       Enroll Now
     </button>
   </section>
 
-  <!-- Payment Section (Hidden Initially) -->
-  <section id="payment" class="hidden max-w-3xl mx-auto px-6 py-10 text-center">
+  <!-- Payment Section -->
+  <section id="payment" class="hidden max-w-4xl mx-auto px-4 sm:px-6 py-10 text-center">
 
-    <h2 class="text-2xl font-bold mb-6 text-orange-400">Complete Your Payment</h2>
+    <h2 class="text-xl md:text-2xl font-bold mb-6 text-orange-400">Complete Your Payment</h2>
 
     <!-- QR Code -->
     <div class="mb-6">
-      <p class="mb-2 text-gray-400">Scan & Pay</p>
-      <img src="qr.png" alt="QR Code" class="mx-auto w-48 rounded-lg">
+      <p class="mb-2 text-gray-400 text-sm md:text-base">Scan & Pay</p>
+      <img src="qr.png" alt="QR Code" class="mx-auto w-32 sm:w-40 md:w-48 rounded-lg">
     </div>
 
     <!-- Bank Details -->
-    <div class="bg-gray-800 p-6 rounded-xl text-left">
-      <h3 class="text-xl font-bold mb-3">Bank Details</h3>
+    <div class="bg-gray-800 p-4 md:p-6 rounded-xl text-left text-sm md:text-base">
+      <h3 class="text-lg md:text-xl font-bold mb-3">Bank Details</h3>
 
-      <p>🏦 Account Name: Alok Mistri</p>
-      <p>🏦 Bank Name: Bank Of India</p>
+      <p>🏦 Account Name: Your Name</p>
+      <p>🏦 Bank Name: Your Bank</p>
       <p>🔢 Account No: 1234567890</p>
       <p>🔑 IFSC Code: ABCD0123456</p>
     </div>
 
-    <!-- Confirmation -->
-    <p class="mt-6 text-sm text-gray-400">
-      After payment, send screenshot to email:<br>
+    <!-- Instruction -->
+    <p class="mt-6 text-xs md:text-sm text-gray-400">
+      After payment, send screenshot to:<br>
       <b>a.mistri2004@gmail.com</b>
     </p>
 
