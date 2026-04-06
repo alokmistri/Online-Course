@@ -7,27 +7,28 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-br from-gray-950 via-black to-gray-900 text-white font-sans">
+<body class="bg-gray-950 text-white font-sans">
 
-  <!-- Back Button -->
-  <a href="index.html" class="text-orange-400 p-4 inline-block text-sm md:text-base hover:underline">
-    ← Back to Home
-  </a>
+  <!-- Header -->
+  <div class="flex justify-between items-center p-4 border-b border-gray-800">
+    <a href="index.html" class="text-orange-400 text-sm">← Back</a>
+    <h1 class="text-lg font-semibold">SkillForge Academy</h1>
+  </div>
 
   <!-- Hero -->
   <section class="text-center py-10 px-4">
-    <h1 class="text-3xl md:text-5xl font-extrabold">MS Basic Course</h1>
-    <p class="text-orange-400 text-2xl mt-2 font-bold">₹499</p>
-    <p class="text-gray-400 mt-2">Learn essential computer skills & get job ready</p>
+    <h1 class="text-3xl md:text-4xl font-bold">MS Basic Course</h1>
+    <p class="text-orange-400 text-xl mt-2 font-semibold">₹499</p>
+    <p class="text-gray-400 mt-2 text-sm">Beginner-friendly computer course</p>
   </section>
 
-  <!-- Topics Card -->
-  <section class="max-w-4xl mx-auto px-4 py-6">
-    <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-xl">
-      <h2 class="text-xl md:text-2xl font-bold mb-4 text-orange-400">Course Topics</h2>
+  <!-- Topics -->
+  <section class="max-w-3xl mx-auto px-4">
+    <div class="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <h2 class="text-lg font-semibold mb-3">Course Topics</h2>
 
-      <ul class="space-y-2 text-gray-300">
-        <li>✔ MS Word (Typing, Formatting)</li>
+      <ul class="space-y-2 text-gray-300 text-sm">
+        <li>✔ MS Word</li>
         <li>✔ MS Excel Basics</li>
         <li>✔ PowerPoint</li>
         <li>✔ Internet & Email</li>
@@ -37,59 +38,54 @@
   </section>
 
   <!-- Enroll Button -->
-  <section class="text-center py-6 px-4">
+  <div class="text-center py-6">
     <button onclick="showPayment()"
-      class="bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-3 rounded-xl font-bold shadow-lg hover:scale-105 transition">
+      class="bg-green-500 px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition">
       Enroll Now
     </button>
-  </section>
+  </div>
 
   <!-- Payment Section -->
-  <section id="payment" class="hidden max-w-4xl mx-auto px-4 py-10 text-center">
+  <section id="payment" class="hidden max-w-3xl mx-auto px-4 pb-10">
 
-    <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-xl">
+    <div class="bg-gray-900 border border-gray-800 rounded-xl p-5">
 
-      <h2 class="text-2xl font-bold mb-6 text-orange-400">Complete Your Payment</h2>
+      <h2 class="text-lg font-semibold mb-4">Complete Payment</h2>
 
       <!-- QR -->
-      <div class="mb-6">
-        <img src="qr.png" class="mx-auto w-40 md:w-52 rounded-xl shadow-lg">
-        <p class="text-gray-400 mt-2">Scan & Pay</p>
+      <div class="text-center mb-5">
+        <img src="qr.png" class="mx-auto w-40 rounded-lg">
+        <p class="text-gray-400 text-sm mt-2">Scan & Pay</p>
       </div>
 
       <!-- Bank Details -->
-      <div class="text-left text-sm md:text-base bg-black/40 p-4 rounded-xl">
-        <p>🏦 Account Name: Your Name</p>
-        <p>🏦 Bank Name: Your Bank</p>
-        <p>🔢 Account No: 1234567890</p>
-        <p>🔑 IFSC: ABCD0123456</p>
+      <div class="text-sm text-gray-300 space-y-1 mb-5">
+        <p>Account Name: Your Name</p>
+        <p>Bank: Your Bank</p>
+        <p>Account No: 1234567890</p>
+        <p>IFSC: ABCD0123456</p>
       </div>
 
-      <!-- Upload Section -->
-      <div class="mt-6">
-        <h3 class="text-lg font-bold mb-2">Upload Payment Screenshot</h3>
+      <!-- Gmail Input Only -->
+      <div class="space-y-3">
 
-        <form action="https://formsubmit.co/a.mistri2004@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <input type="email" name="user_email" placeholder="Enter your Gmail" required
+          class="w-full bg-gray-800 p-2 rounded text-sm">
 
-          <input type="file" name="attachment" required
-            class="w-full bg-gray-800 p-2 rounded-lg">
-
-          <input type="hidden" name="_subject" value="New Course Payment Screenshot">
-          <input type="hidden" name="_captcha" value="false">
-
-          <button type="submit" class="bg-blue-500 px-6 py-2 rounded-lg w-full hover:bg-blue-600">
-            Submit Screenshot
-          </button>
-        </form>
       </div>
 
-      <!-- Redirect Button -->
-      <button onclick="redirectHome()"
-        class="mt-6 bg-orange-500 px-6 py-2 rounded-lg hover:bg-orange-600">
-        Payment Done → Go to Home
+      <!-- WhatsApp -->
+      <button onclick="sendWhatsApp()" class="bg-green-600 w-full py-2 rounded mt-3 hover:bg-green-700">
+        Share on WhatsApp
+      </button>
+
+      <!-- Redirect -->
+      <button onclick="redirectHome()" class="bg-orange-500 w-full py-2 rounded mt-3 hover:bg-orange-600">
+        Done
       </button>
 
     </div>
+
   </section>
 
   <!-- Script -->
@@ -100,6 +96,20 @@
 
     function redirectHome() {
       window.location.href = "index.html";
+    }
+
+    function sendWhatsApp() {
+      const email = document.querySelector('input[name="user_email"]').value;
+
+      if (!email) {
+        alert("Enter your Gmail first");
+        return;
+      }
+
+      const msg = `Hi, I completed payment for MS Basic Course. My Gmail: ${email}`;
+      const url = `https://wa.me/917439034248?text=${encodeURIComponent(msg)}`;
+
+      window.open(url, '_blank');
     }
   </script>
 
