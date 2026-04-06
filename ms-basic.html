@@ -7,73 +7,99 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-950 text-white font-sans">
+<body class="bg-gradient-to-br from-gray-950 via-black to-gray-900 text-white font-sans">
 
   <!-- Back Button -->
-  <a href="index.html" class="text-orange-500 p-4 inline-block text-sm md:text-base">
+  <a href="index.html" class="text-orange-400 p-4 inline-block text-sm md:text-base hover:underline">
     ← Back to Home
   </a>
 
-  <!-- Hero Section -->
-  <section class="text-center py-8 md:py-12 px-4">
-    <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">MS Basic Course</h1>
-    <p class="text-orange-500 text-xl md:text-2xl mt-2 font-bold">₹499</p>
+  <!-- Hero -->
+  <section class="text-center py-10 px-4">
+    <h1 class="text-3xl md:text-5xl font-extrabold">MS Basic Course</h1>
+    <p class="text-orange-400 text-2xl mt-2 font-bold">₹499</p>
+    <p class="text-gray-400 mt-2">Learn essential computer skills & get job ready</p>
   </section>
 
-  <!-- Topics -->
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-6">
-    <h2 class="text-xl md:text-2xl font-bold mb-4">Course Topics</h2>
+  <!-- Topics Card -->
+  <section class="max-w-4xl mx-auto px-4 py-6">
+    <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-xl">
+      <h2 class="text-xl md:text-2xl font-bold mb-4 text-orange-400">Course Topics</h2>
 
-    <ul class="space-y-2 text-gray-300 text-sm md:text-base">
-      <li>✔ MS Word (Typing, Formatting)</li>
-      <li>✔ MS Excel Basics</li>
-      <li>✔ PowerPoint</li>
-      <li>✔ Internet & Email</li>
-      <li>✔ Typing Practice</li>
-    </ul>
+      <ul class="space-y-2 text-gray-300">
+        <li>✔ MS Word (Typing, Formatting)</li>
+        <li>✔ MS Excel Basics</li>
+        <li>✔ PowerPoint</li>
+        <li>✔ Internet & Email</li>
+        <li>✔ Typing Practice</li>
+      </ul>
+    </div>
   </section>
 
   <!-- Enroll Button -->
   <section class="text-center py-6 px-4">
     <button onclick="showPayment()"
-      class="bg-green-500 w-full sm:w-auto px-6 md:px-8 py-3 rounded-xl font-bold text-sm md:text-base hover:bg-green-600 transition">
+      class="bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-3 rounded-xl font-bold shadow-lg hover:scale-105 transition">
       Enroll Now
     </button>
   </section>
 
   <!-- Payment Section -->
-  <section id="payment" class="hidden max-w-4xl mx-auto px-4 sm:px-6 py-10 text-center">
+  <section id="payment" class="hidden max-w-4xl mx-auto px-4 py-10 text-center">
 
-    <h2 class="text-xl md:text-2xl font-bold mb-6 text-orange-400">Complete Your Payment</h2>
+    <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-xl">
 
-    <!-- QR Code -->
-    <div class="mb-6">
-      <p class="mb-2 text-gray-400 text-sm md:text-base">Scan & Pay</p>
-      <img src="qr.png" alt="QR Code" class="mx-auto w-32 sm:w-40 md:w-48 rounded-lg">
+      <h2 class="text-2xl font-bold mb-6 text-orange-400">Complete Your Payment</h2>
+
+      <!-- QR -->
+      <div class="mb-6">
+        <img src="qr.png" class="mx-auto w-40 md:w-52 rounded-xl shadow-lg">
+        <p class="text-gray-400 mt-2">Scan & Pay</p>
+      </div>
+
+      <!-- Bank Details -->
+      <div class="text-left text-sm md:text-base bg-black/40 p-4 rounded-xl">
+        <p>🏦 Account Name: Your Name</p>
+        <p>🏦 Bank Name: Your Bank</p>
+        <p>🔢 Account No: 1234567890</p>
+        <p>🔑 IFSC: ABCD0123456</p>
+      </div>
+
+      <!-- Upload Section -->
+      <div class="mt-6">
+        <h3 class="text-lg font-bold mb-2">Upload Payment Screenshot</h3>
+
+        <form action="https://formsubmit.co/a.mistri2004@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-4">
+
+          <input type="file" name="attachment" required
+            class="w-full bg-gray-800 p-2 rounded-lg">
+
+          <input type="hidden" name="_subject" value="New Course Payment Screenshot">
+          <input type="hidden" name="_captcha" value="false">
+
+          <button type="submit" class="bg-blue-500 px-6 py-2 rounded-lg w-full hover:bg-blue-600">
+            Submit Screenshot
+          </button>
+        </form>
+      </div>
+
+      <!-- Redirect Button -->
+      <button onclick="redirectHome()"
+        class="mt-6 bg-orange-500 px-6 py-2 rounded-lg hover:bg-orange-600">
+        Payment Done → Go to Home
+      </button>
+
     </div>
-
-    <!-- Bank Details -->
-    <div class="bg-gray-800 p-4 md:p-6 rounded-xl text-left text-sm md:text-base">
-      <h3 class="text-lg md:text-xl font-bold mb-3">Bank Details</h3>
-
-      <p>🏦 Account Name: Your Name</p>
-      <p>🏦 Bank Name: Your Bank</p>
-      <p>🔢 Account No: 1234567890</p>
-      <p>🔑 IFSC Code: ABCD0123456</p>
-    </div>
-
-    <!-- Instruction -->
-    <p class="mt-6 text-xs md:text-sm text-gray-400">
-      After payment, send screenshot to:<br>
-      <b>a.mistri2004@gmail.com</b>
-    </p>
-
   </section>
 
   <!-- Script -->
   <script>
     function showPayment() {
       document.getElementById('payment').classList.remove('hidden');
+    }
+
+    function redirectHome() {
+      window.location.href = "index.html";
     }
   </script>
 
