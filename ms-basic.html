@@ -17,7 +17,7 @@
 
   <!-- Hero -->
   <section class="text-center py-10 px-4">
-    <h1 class="text-3xl md:text-4xl font-bold">MS Basic Course</h1>
+    <h1 id="courseName" class="text-3xl md:text-4xl font-bold">MS Basic Course</h1>
     <p class="text-orange-400 text-xl mt-2 font-semibold">₹499</p>
     <p class="text-gray-400 mt-2 text-sm">Beginner-friendly computer course</p>
   </section>
@@ -40,7 +40,7 @@
   <!-- Enroll Button -->
   <div class="text-center py-6">
     <button onclick="showPayment()"
-      class="bg-green-500 px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition">
+      class="bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-3 rounded-lg font-semibold shadow hover:scale-105 transition">
       Enroll Now
     </button>
   </div>
@@ -48,41 +48,58 @@
   <!-- Payment Section -->
   <section id="payment" class="hidden max-w-3xl mx-auto px-4 pb-10">
 
-    <div class="bg-gray-900 border border-gray-800 rounded-xl p-5">
+    <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-4">
 
-      <h2 class="text-lg font-semibold mb-4">Complete Payment</h2>
+      <h2 class="text-lg font-semibold">Complete Payment</h2>
 
       <!-- QR -->
-      <div class="text-center mb-5">
-        <img src="qr.png" class="mx-auto w-40 rounded-lg">
+      <div class="text-center">
+        <img src="qr.png" class="mx-auto w-40 rounded-lg shadow">
         <p class="text-gray-400 text-sm mt-2">Scan & Pay</p>
       </div>
 
       <!-- Bank Details -->
-      <div class="text-sm text-gray-300 space-y-1 mb-5">
-        <p>Account Name: Your Name</p>
-        <p>Bank: Your Bank</p>
-        <p>Account No: 1234567890</p>
-        <p>IFSC: ABCD0123456</p>
+      <div class="text-sm text-gray-300 space-y-1">
+        <p>Account Name: Alok Mistri</p>
+        <p>Bank: Bank Of India</p>
+        <p>Account No: 410610510000064</p>
+        <p>IFSC: BKID0004106</p>
       </div>
 
-      <!-- Gmail Input Only -->
+      <!-- Inputs -->
       <div class="space-y-3">
 
-        <input type="email" name="user_email" placeholder="Enter your Gmail" required
+        <input id="email" type="email" placeholder="Enter your Gmail" required
           class="w-full bg-gray-800 p-2 rounded text-sm">
+
+        <input type="file" id="screenshot" accept="image/*"
+          class="w-full bg-gray-800 p-2 rounded text-sm">
+
+        <!-- Preview -->
+        <img id="preview" class="hidden mx-auto w-32 rounded border border-gray-700">
+
+        <p class="text-xs text-gray-400 text-center">
+          Upload screenshot (preview shown below) → then send on WhatsApp
+        </p>
 
       </div>
 
-      <!-- WhatsApp -->
-      <button onclick="sendWhatsApp()" class="bg-green-600 w-full py-2 rounded mt-3 hover:bg-green-700">
-        Share on WhatsApp
-      </button>
+      <!-- Buttons -->
+      <div class="space-y-3">
 
-      <!-- Redirect -->
-      <button onclick="redirectHome()" class="bg-orange-500 w-full py-2 rounded mt-3 hover:bg-orange-600">
-        Done
-      </button>
+        <button onclick="copyUPI()" class="bg-gray-800 w-full py-2 rounded hover:bg-gray-700">
+          Copy UPI ID
+        </button>
+
+        <button onclick="sendWhatsApp()" class="bg-green-600 w-full py-2 rounded hover:bg-green-700">
+          📲 Send on WhatsApp
+        </button>
+
+        <button onclick="redirectHome()" class="bg-orange-500 w-full py-2 rounded hover:bg-orange-600">
+          Done
+        </button>
+
+      </div>
 
     </div>
 
@@ -90,6 +107,7 @@
 
   <!-- Script -->
   <script>
+
     function showPayment() {
       document.getElementById('payment').classList.remove('hidden');
     }
@@ -98,19 +116,40 @@
       window.location.href = "index.html";
     }
 
+    // Image Preview
+    document.getElementById('screenshot').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      const preview = document.getElementById('preview');
+
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.classList.remove('hidden');
+      }
+    });
+
+    // Copy UPI
+    function copyUPI() {
+      const upi = "alokmistri69-2@oksbi";
+      navigator.clipboard.writeText(upi);
+      alert("UPI ID copied: " + upi);
+    }
+
+    // WhatsApp Dynamic
     function sendWhatsApp() {
-      const email = document.querySelector('input[name="user_email"]').value;
+      const email = document.getElementById('email').value;
+      const course = document.getElementById('courseName').innerText;
 
       if (!email) {
         alert("Enter your Gmail first");
         return;
       }
 
-      const msg = `Hi, I completed payment for MS Basic Course. My Gmail: ${email}`;
+      const msg = `Hi, I completed payment for ${course}. My Gmail: ${email}`;
       const url = `https://wa.me/917439034248?text=${encodeURIComponent(msg)}`;
 
       window.open(url, '_blank');
     }
+
   </script>
 
 </body>
