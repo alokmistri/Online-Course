@@ -21,62 +21,72 @@
     <p class="text-gray-400 mt-2">Pay & send details on WhatsApp</p>
   </section>
 
-  <!-- Payment Box -->
-  <div class="max-w-md mx-auto bg-gray-900 p-6 rounded-xl space-y-4 border border-gray-800">
+  <!-- PAYMENT BOX -->
+  <div class="max-w-md mx-auto bg-gray-900 p-6 rounded-xl space-y-5 border border-gray-800">
 
     <!-- QR -->
     <div class="text-center">
-      <img src="qr.png" class="mx-auto w-40 rounded-lg">
+      <img src="qr.png" class="mx-auto w-40 rounded-lg shadow-lg">
       <p class="text-sm text-gray-400 mt-2">Scan & Pay</p>
     </div>
-  <!-- UPI PAYMENT SECTION -->
-  <section class="max-w-4xl mx-auto px-4 py-10">
-    <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-center">
 
-      <h2 class="text-2xl font-bold mb-4">💳 Pay via UPI</h2>
-
-      <p class="text-gray-400 text-sm mb-3">Use the UPI ID below to complete your payment</p>
-
-      <!-- UPI BOX -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 bg-black/40 border border-white/20 rounded-xl px-4 py-3">
-        <span id="upiText" class="text-green-400 font-semibold break-all">alokmistri69@oksbi</span>
-        <button onclick="copyUPI()" class="bg-green-500 px-4 py-1 rounded-lg text-sm font-semibold hover:scale-105 transition">
-          📋 Copy
-        </button>
-      </div>
-
-      <!-- SUCCESS MESSAGE -->
-      <p id="copyMsg" class="text-green-400 text-sm mt-3 hidden">✅ UPI ID Copied!</p>
-
-    </div>
-  </section>
-    <!-- Bank Details -->
+    <!-- BANK DETAILS -->
     <div class="text-sm space-y-1 text-gray-300">
       <p>Account Name: Alok Mistri</p>
       <p>Bank: Bank Of India</p>
       <p>Account No: 410610510000064</p>
       <p>IFSC: BKID0004106</p>
     </div>
-     <!-- URGENCY SECTION -->
-  <div class="text-center py-6">
-    <p class="text-red-400 font-semibold animate-pulse">
-      ⚠️ Pls Share Your Screenshot Of Payment On - Whatsapp Manually!
-    </p>
-  </div>
 
-    <!-- Gmail Input -->
+    <!-- URGENCY -->
+    <div class="text-center">
+      <p class="text-red-400 font-semibold animate-pulse">
+        ⚠️ Share your payment screenshot on WhatsApp!
+      </p>
+    </div>
+
+    <!-- EMAIL INPUT -->
     <input id="email" type="email" placeholder="Enter your Gmail"
-      class="w-full p-2 rounded bg-gray-800 text-sm">
+      class="w-full p-2 rounded bg-gray-800 text-sm outline-none focus:ring-2 focus:ring-green-500">
 
-    <!-- WhatsApp Button -->
+    <!-- WHATSAPP BUTTON -->
     <button onclick="sendWhatsApp()"
-      class="bg-green-600 w-full py-2 rounded hover:bg-green-700">
+      class="bg-green-600 w-full py-2 rounded hover:bg-green-700 transition font-semibold">
       📲 Send on WhatsApp
     </button>
 
   </div>
 
-  <!-- Script -->
+  <!-- UPI SECTION -->
+  <section class="max-w-md mx-auto px-4 py-8">
+    <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-center">
+
+      <h2 class="text-2xl font-bold mb-4">💳 Pay via UPI</h2>
+      <p class="text-gray-400 text-sm mb-3">Use the UPI ID below to complete your payment</p>
+
+      <!-- UPI BOX -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 bg-black/40 border border-white/20 rounded-xl px-4 py-3">
+        
+        <span id="upiText" class="text-green-400 font-semibold break-all">
+          alokmistri69@oksbi
+        </span>
+
+        <button onclick="copyUPI()"
+          class="bg-green-500 px-4 py-1 rounded-lg text-sm font-semibold hover:scale-105 transition cursor-pointer">
+          📋 Copy
+        </button>
+
+      </div>
+
+      <!-- SUCCESS MESSAGE -->
+      <p id="copyMsg" class="text-green-400 text-sm mt-3 hidden">
+        ✅ UPI ID Copied!
+      </p>
+
+    </div>
+  </section>
+
+  <!-- SCRIPT -->
   <script>
     function sendWhatsApp() {
       const email = document.getElementById('email').value;
@@ -90,6 +100,45 @@
       const url = `https://wa.me/917439034248?text=${encodeURIComponent(msg)}`;
 
       window.open(url, '_blank');
+    }
+
+    function copyUPI() {
+      const upiText = document.getElementById("upiText").innerText;
+
+      // Modern method (HTTPS / localhost)
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(upiText)
+          .then(() => showMessage())
+          .catch(() => fallbackCopy(upiText));
+      } else {
+        // Fallback (works everywhere)
+        fallbackCopy(upiText);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      showMessage();
+    }
+
+    function showMessage() {
+      const msg = document.getElementById("copyMsg");
+      msg.classList.remove("hidden");
+
+      // Mobile vibration feedback 🔥
+      if (navigator.vibrate) {
+        navigator.vibrate(100);
+      }
+
+      // Auto hide
+      setTimeout(() => {
+        msg.classList.add("hidden");
+      }, 2000);
     }
   </script>
 
