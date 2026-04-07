@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enroll Now</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-950 text-white font-sans">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center p-4 border-b border-gray-800">
+    <a href="ms-basic.html" class="text-orange-400 text-sm">← Back</a>
+    <h1 class="text-lg font-semibold">SkillForge Academy</h1>
+  </div>
+
+  <!-- Title -->
+  <section class="text-center py-10">
+    <h1 class="text-3xl font-bold">Complete Your Enrollment</h1>
+    <p class="text-gray-400 mt-2">Pay & send details on WhatsApp</p>
+  </section>
+
+  <!-- Payment Box -->
+  <div class="max-w-md mx-auto bg-gray-900 p-6 rounded-xl space-y-4 border border-gray-800">
+
+    <!-- QR -->
+    <div class="text-center">
+      <img src="qr.png" class="mx-auto w-40 rounded-lg">
+      <p class="text-sm text-gray-400 mt-2">Scan & Pay</p>
+    </div>
+
+    <!-- Bank Details -->
+    <div class="text-sm space-y-1 text-gray-300">
+      <p>Account Name: Alok Mistri</p>
+      <p>Bank: Bank Of India</p>
+      <p>Account No: 410610510000064</p>
+      <p>IFSC: BKID0004106</p>
+    </div>
+
+    <!-- Gmail Input -->
+    <input id="email" type="email" placeholder="Enter your Gmail"
+      class="w-full p-2 rounded bg-gray-800 text-sm">
+
+    <!-- WhatsApp Button -->
+    <button onclick="sendWhatsApp()"
+      class="bg-green-600 w-full py-2 rounded hover:bg-green-700">
+      📲 Send on WhatsApp
+    </button>
+
+  </div>
+
+  <!-- Script -->
+  <script>
+    function sendWhatsApp() {
+      const email = document.getElementById('email').value;
+
+      if (!email) {
+        alert("Enter your Gmail first");
+        return;
+      }
+
+      const msg = `Hi, I completed payment for MS Basic Course. My Gmail: ${email}`;
+      const url = `https://wa.me/917439034248?text=${encodeURIComponent(msg)}`;
+
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>
