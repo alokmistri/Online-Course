@@ -1,464 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Excel</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grab Offer</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+.glow {
+  box-shadow: 0 0 20px rgba(255,115,0,0.6);
+}
+</style>
+
 </head>
 
-<body class="text-white font-sans min-h-screen bg-cover bg-center bg-no-repeat" style="background-image:url('backgroundbasic.jpg')">
+<body class="bg-gray-950 text-white">
 
-  <!-- Dark Overlay -->
-  <div class="fixed inset-0 bg-black/70 -z-10"></div>
+<!-- HEADER -->
+<nav class="flex justify-between px-6 py-4 border-b border-white/10">
+  <h1 class="text-xl font-bold text-orange-400">CoreSkill Academy</h1>
+  <span class="text-red-400 animate-pulse">🔥 Offer Live</span>
+</nav>
 
-  <!-- HEADER -->
-  <div class="flex justify-between items-center p-4 border-b border-gray-800 backdrop-blur">
-    <a href="index.html" class="text-orange-400 text-sm">← Back</a>
-    <h1 class="text-lg font-semibold">Learn Without Limits</h1>
-  </div>
+<!-- TITLE -->
+<section class="text-center py-12">
+  <h2 class="text-4xl font-bold mb-3">🎯 Special Course Offers</h2>
+  <p class="text-white/70">Limited Time Discounted Courses</p>
+</section>
 
-  <!-- HERO -->
-  <section class="text-center py-12 px-4">
-    <h1 class="text-4xl md:text-5xl font-extrabold">
-      Master Computer Skills 🚀
-    </h1>
-    <p class="text-orange-400 text-2xl mt-3 font-bold">ADVANCED EXCEL - ₹999</p>
+<!-- COURSE GRID -->
+<section class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
 
-    <div class="mt-4 text-sm text-gray-400">
-      ⚡ Beginner Friendly | 🎓 Job Ready | ⏳ Lifetime Access
+  <!-- CARD 1 -->
+  <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden hover:scale-105 transition">
+
+    <!-- IMAGE -->
+    <img src="excel.jpg" class="w-full h-40 object-cover">
+
+    <!-- CONTENT -->
+    <div class="p-4">
+      <h3 class="font-bold text-lg">MS Excel Full Course</h3>
+      <p class="text-sm text-gray-400">Basic to Advanced</p>
+
+      <!-- PRICE -->
+      <div class="flex justify-between items-center mt-3">
+        <div>
+          <span class="text-gray-400 line-through text-sm">₹1999</span>
+          <span class="text-green-400 font-bold text-lg ml-2">₹499</span>
+        </div>
+
+        <a href="excel.html" class="bg-orange-500 px-3 py-1 rounded text-sm glow">
+          View
+        </a>
+      </div>
     </div>
-  </section>
-
-  <!-- HIGHLIGHT BADGES -->
-  <div class="flex justify-center gap-4 flex-wrap px-4">
-    <span class="bg-orange-500/20 px-4 py-1 rounded-full text-sm">💻 Practical Training</span>
-    <span class="bg-green-500/20 px-4 py-1 rounded-full text-sm">📜 Professional Teacher</span>
-    <span class="bg-blue-500/20 px-4 py-1 rounded-full text-sm">📈 Learn Anytime Anywhere</span>
   </div>
 
-  
-  <!-- PROCESS / STEP FLOW (INFOGRAPHIC STYLE) -->
-  <style>
-    .fade-step {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-    .fade-step.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-  <section class="max-w-5xl mx-auto px-4 py-12">
-    <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-orange-400">What You Learn From This Course</h2>
+  <!-- CARD 2 -->
+  <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden hover:scale-105 transition">
 
-    <div class="relative">
-      <!-- dotted center line -->
-      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 border-l-2 border-dashed border-white/30"></div>
+    <img src="sap.jpg" class="w-full h-40 object-cover">
 
-      <!-- TOPIC 1 -->
-       <div class="flex md:items-center mb-10  fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-teal-400 to-teal-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">💡</div>
-            <h3 class="font-bold text-lg">Basics & Interface</h3>
-            <p class="text-sm text-white/90">Excel Structure , Cell Properties , Autofill (Value & Text) , Autofill Date , Advanced Autofill Tools , Flash Fill in Excel
-            </p>
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC 01</div>
-        </div>
-      </div>
+    <div class="p-4">
+      <h3 class="font-bold text-lg">SAP Course</h3>
+      <p class="text-sm text-gray-400">S/4 HANA Training</p>
 
-      <!-- TOPIC 2 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Cell Referencing & Operators</h3>
-            <p class="text-sm text-white/90">Cell Reference , Operators Based Equation
-            </p>
-          </div>
+      <div class="flex justify-between items-center mt-3">
+        <div>
+          <span class="text-gray-400 line-through text-sm">₹2999</span>
+          <span class="text-green-400 font-bold text-lg ml-2">₹799</span>
         </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-02</div>
-        </div>
-      </div>
-      <!-- TOPIC 3 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">Math Functions</h3>
-            <p class="text-sm text-white/90">Math's Function
-            </p>
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-03</div>
-        </div>
-      </div>
 
-     <!-- TOPIC 4 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Text Functions (Complete)</h3>
-            <p class="text-sm text-white/90">(UPPER, LOWER, PROPER, TRIM)
-              (RIGHT, LEFT)
-              (FIND & SEARCH)
-              (Nested LEFT (Solutions & Tasks))
-              (FIND + LEFT Nesting)
-              (MID Function)
-              (MID (Tasks & Solutions))
-              (CONCATENATE)
-              (CONCATENATE (Tasks & Solutions))
-              (CONCAT & TEXTJOIN (Updated))
-              (REPLACE)
-              (REPLACE (Tasks & Solutions))
-              (SUBSTITUTE)             
-              (LEN, REPT, EXACT, SEARCH)
-            </p>
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-04</div>
-        </div>
+        <a href="sap.html" class="bg-orange-500 px-3 py-1 rounded text-sm glow">
+          View
+        </a>
       </div>
-
-       <!-- TOPIC 5 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">Data Tools</h3>
-            <p class="text-sm text-white/90">NUMBERVALUE Function , 
-              Text to Columns
-            </p>
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-05</div>
-        </div>
-      </div
-        <!-- TOPIC 6 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Protection & Security</h3>
-            <p class="text-sm text-white/90">Workbook Protection
-              Sheet Protection , 
-              Hide Formulas & Unlock Cells ,
-              Password Protect File
-            </p> , 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-06</div>
-        </div>
-      </div>
-       <!-- TOPIC 7 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">Logical Functions</h3>
-            <p class="text-sm text-white/90">IF Function (Logical Test) , 
-              IF with Equation & Tasks , 
-              Nested IF , 
-              IFS Function , 
-              Advanced IF , 
-              Advanced IF (Part 2) , 
-              AND / OR Functions , 
-              AND, OR with IF (Nested) , 
-              Advanced AND / OR , 
-              XOR Function
-            </p>
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-07</div>
-        </div>
-      </div
-         <!-- TOPIC 8 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Pivot Tables & Data Analysis</h3>
-            <p class="text-sm text-white/90">Pivot Table Introduction , 
-              Field Management , 
-              Value Field & Reports , 
-              Slicer & Duplicate Pivot , 
-              Grouping (Date & Values) , 
-              Calculated Field , 
-              Power Pivot
-            </p> , 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-08</div>
-        </div>
-      </div>
-       <!-- TOPIC 9 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">What-If Analysis</h3>
-            <p class="text-sm text-white/90">Goal Seek , 
-              Scenario Manager , 
-              PMT Function (EMI Calculator) , 
-              Data Table (Loan Table) , 
-              PDURATION Function
-            </p> 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-09</div>
-        </div>
-      </div
-          <!-- TOPIC 10 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Printing & Layout</h3>
-            <p class="text-sm text-white/90">Print Options (Part 1) , 
-              Print Options (Part 2)
-            </p> , 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-10</div>
-        </div>
-      </div>
-         <!-- TOPIC 11 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">Drawing & Sharing</h3>
-            <p class="text-sm text-white/90">Draw Tab
-              Share Workbook
-            </p> 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-11</div>
-        </div>
-      </div>
-      <!-- TOPIC 12 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Charts & Visualization</h3>
-            <p class="text-sm text-white/90">Chart Preparation , 
-              Advanced Charts , 
-              Customize Charts , 
-              Power Map , 
-              Quick Analysis & Recommendations
-            </p> , 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-12</div>
-        </div>
-      </div>
-      <!-- TOPIC 13 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">Filtering & Sorting</h3>
-            <p class="text-sm text-white/90">Filter Options , 
-              Date & Color Filters , 
-              Advanced Filter , 
-              Sorting & Custom Sort
-            </p> 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-13</div>
-        </div>
-      </div>
-       <!-- TOPIC 14 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Data Management Tools</h3>
-            <p class="text-sm text-white/90">Group, Ungroup & Subtotal
-            </p> , 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-14</div>
-        </div>
-      </div>
-      <!-- TOPIC 15 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">Conditional Formatting</h3>
-            <p class="text-sm text-white/90">Conditional Formatting , 
-              Types of Rules , 
-              Apply Rules , 
-              Create New Rules , 
-              Manage Rules
-            </p> 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-15</div>
-        </div>
-      </div>
-      <!-- TOPIC 16 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Data Validation</h3>
-            <p class="text-sm text-white/90">Data Validation , 
-              Input Message & Error Alert
-            </p> , 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-16</div>
-        </div>
-      </div>
-      <!-- TOPIC 17 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">Advanced Functions</h3>
-            <p class="text-sm text-white/90">Advanced Math Functions , 
-              Advanced Math Functions (Part 2) , 
-              Wildcard Usage
-            </p> 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-17</div>
-        </div>
-      </div>
-      <!-- TOPIC 18 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Name & Linking</h3>
-            <p class="text-sm text-white/90">Define Name , 
-              Hyperlink
-            </p> , 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-18</div>
-        </div>
-      </div>
-       
-       <!-- TOPIC 19 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">Lookup Functions (Advanced)</h3>
-            <p class="text-sm text-white/90">VLOOKUP
-              VLOOKUP with IFERROR , 
-              Nested VLOOKUP with IF , 
-              HLOOKUP , 
-              MATCH Function , 
-              INDEX + MATCH (Nested) , 
-              VLOOKUP Array , 
-              Column Function Trick , 
-              VLOOKUP TRUE , 
-              Advanced VLOOKUP
-            </p> 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-19</div>
-        </div>
-      </div>
-      <!-- TOPIC 20 -->
-      <div class="flex md:items-center mb-10 md:flex-row-reverse fade-step">
-        <div class="md:w-1/2 md:pl-10">
-          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">⏱️</div>
-            <h3 class="font-bold text-lg">Date & Time</h3>
-            <p class="text-sm text-white/90">Date & Time Settings , 
-              Date & Time Format , 
-              Date & Time Functions , 
-              DATEDIF Function , 
-              NETWORKDAYS Function
-            </p> , 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center justify-end pr-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-20</div>
-        </div>
-      </div>
-      <!-- TOPIC 21 -->
-      <div class="flex md:items-center mb-10 fade-step">
-        <div class="md:w-1/2 md:pr-10">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-full p-5 md:p-6 shadow-2xl relative">
-            <div class="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg">🤝</div>
-            <h3 class="font-bold text-lg">Macros & Automation</h3>
-            <p class="text-sm text-white/90">Macro Recording (Part 1) , 
-              Macro Recording (Part 2) , 
-              Macro Recording (Part 3) , 
-              Ways to Run Macros
-            </p> 
-          </div>
-        </div>
-        <div class="hidden md:flex md:w-1/2 items-center pl-10">
-          <div class="text-3xl font-bold text-white/70">TOPIC-21</div>
-        </div>
-      </div>
-      
-
-  <!-- URGENCY SECTION -->
-  <div class="text-center py-6">
-    <p class="text-red-400 font-semibold animate-pulse">
-      ⚠️ Limited Seats Available - Enroll Now!
-    </p>
+    </div>
   </div>
 
-  <!-- CTA BUTTON -->
-  <div class="text-center pb-12">
-    <a href="enroll.html"
-       class="bg-gradient-to-r from-green-500 to-emerald-600 px-10 py-4 rounded-xl font-bold text-lg shadow-lg hover:scale-110 hover:shadow-green-500/50 transition inline-block">
-       🚀 Enroll Now
-    </a>
+  <!-- CARD 3 (YOUR STYLE) -->
+  <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden hover:scale-105 transition">
+
+    <img src="tally.jpg" class="w-full h-40 object-cover">
+
+    <div class="p-4">
+      <h3 class="font-bold text-lg">Tally + GST</h3>
+      <p class="text-sm text-gray-400">Accounting Course</p>
+
+      <div class="flex justify-between items-center mt-3">
+        <div>
+          <span class="text-gray-400 line-through text-sm">₹1999</span>
+          <span class="text-green-400 font-bold text-lg ml-2">₹499</span>
+        </div>
+
+        <a href="tally.html" class="bg-orange-500 px-3 py-1 rounded text-sm glow">
+          View
+        </a>
+      </div>
+    </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="text-center text-gray-500 text-sm py-6 border-t border-gray-800">
-    © 2026 CoreSkill Academy
-  </footer>
+</section>
 
-
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll('.fade-step').forEach(el => observer.observe(el));
-</script>
+<!-- FOOTER -->
+<footer class="text-center py-6 text-white/50 text-sm mt-10">
+  © 2026 CoreSkill Academy
+</footer>
 
 </body>
 </html>
