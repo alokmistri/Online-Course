@@ -3,63 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grab Offer</title>
+<title>CoreSkill Academy</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-.glow {
-  box-shadow: 0 0 20px rgba(255,115,0,0.6);
+.circle {
+  position: absolute;
+  border-radius: 9999px;
+  border: 3px solid #2563eb;
 }
 </style>
-
 </head>
 
-<body class="bg-gray-950 text-white">
+<body class="bg-gray-100 text-gray-800">
 
-<!-- HEADER -->
-<nav class="flex justify-between px-6 py-4 border-b border-white/10">
-  <h1 class="text-xl font-bold text-orange-400">CoreSkill Academy</h1>
-  <span class="text-red-400 animate-pulse">🔥 Offer Live</span>
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center px-6 py-4 bg-white shadow">
+  <h1 class="text-xl font-bold text-blue-600">CoreSkill Academy</h1>
+  <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Contact</a>
 </nav>
 
-<!-- TITLE -->
-<section class="text-center py-12">
-  <h2 class="text-4xl font-bold mb-3">🎯 Special Course Offers</h2>
-  <p class="text-white/70">Limited Time Discounted Courses</p>
-</section>
+<!-- HERO -->
+<section class="relative grid md:grid-cols-2 items-center px-6 py-20 bg-gradient-to-r from-blue-100 to-white overflow-hidden">
 
-<!-- COURSE GRID -->
-<section class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+  <!-- LEFT -->
+  <div>
+    <p class="text-blue-500 font-semibold mb-2">ONLINE E-LEARNING COURSE</p>
 
-  <!-- CARD 1 -->
-  <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden hover:scale-105 transition">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+      Online Education <br>
+      Feels Like Real Classroom
+    </h2>
+
+    <div class="flex gap-4 mb-6 text-sm">
+      <span>✔ Professional Courses</span>
+      <span>✔ Job-ready Skills</span>
+      <span>✔ Learn Anytime Anywhere</span>
+    </div>
+
+    <div class="flex gap-4">
+      <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded-lg">
+        Get Started
+      </a>
+      <a href="#courses" class="bg-gray-200 px-6 py-3 rounded-lg">
+        Our Courses
+      </a>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="relative mt-10 md:mt-0 flex justify-center">
+
+    <!-- CIRCLE -->
+    <div class="circle w-72 h-72 md:w-96 md:h-96"></div>
 
     <!-- IMAGE -->
-    <img src="excel.jpg" class="w-full h-40 object-cover">
+    <img src="student.png" class="relative w-72 md:w-96 z-10">
 
-    <!-- CONTENT -->
-    <div class="p-4">
-      <h3 class="font-bold text-lg">MS Excel Full Course</h3>
-      <p class="text-sm text-gray-400">Basic to Advanced</p>
-
-      <!-- PRICE -->
-      <div class="flex justify-between items-center mt-3">
-        <div>
-          <span class="text-gray-400 line-through text-sm">₹1999</span>
-          <span class="text-green-400 font-bold text-lg ml-2">₹499</span>
-        </div>
-
-        <a href="enroll.html" class="bg-orange-500 px-3 py-1 rounded text-sm glow">
-          Enroll
-        </a>
-      </div>
+    <!-- BADGE 1 -->
+    <div class="absolute bottom-10 left-0 bg-white shadow px-4 py-2 rounded-xl">
+      <span class="font-bold text-blue-600">5000+</span><br>
+      <span class="text-xs">Active Students</span>
     </div>
+
+    <!-- BADGE 2 -->
+    <div class="absolute top-10 right-0 bg-white shadow px-4 py-2 rounded-xl">
+      <span class="font-bold text-red-500">7500+</span><br>
+      <span class="text-xs">Video Courses</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="grid md:grid-cols-5 text-center px-6 py-10 bg-white shadow">
+  <div>♾ Lifetime Access</div>
+  <div>💰 Value for Money</div>
+  <div>📞 Support</div>
+  <div>👥 Community</div>
+
+</section>
+
+<!-- CATEGORY TABS -->
+<section class="text-center py-10">
+  <h2 class="text-2xl font-bold mb-6">Our Popular Courses</h2>
+
+  <div class="flex justify-center gap-4 flex-wrap">
+    <button class="bg-blue-600 text-white px-4 py-2 rounded">MS-Basic</button>
+    <button class="bg-gray-200 px-4 py-2 rounded">Advanced Excel</button>
+    <button class="bg-gray-200 px-4 py-2 rounded">Tally Prime + GST</button>
+    <button class="bg-gray-200 px-4 py-2 rounded">SAP 4 HANA</button>
+    <button class="bg-gray-200 px-4 py-2 rounded">SAP FICO</button>
+    <button class="bg-gray-200 px-4 py-2 rounded">Power BI</button>
+    <button class="bg-gray-200 px-4 py-2 rounded">MS-Access</button>
+    <button class="bg-gray-200 px-4 py-2 rounded">Peach Tree</button>
   </div>
 </section>
 
+<!-- COURSE GRID -->
+<section id="courses" class="max-w-6xl mx-auto px-6 pb-14">
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <!-- CARD -->
+    <div class="bg-white rounded-xl shadow hover:scale-105 transition overflow-hidden">
+
+      <div class="relative">
+        <img src="excel.jpg" class="w-full h-40 object-cover">
+
+        <!-- TAG -->
+        <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+          08 Weeks
+        </span>
+      </div>
+
+      <div class="p-4">
+        <h3 class="font-bold mb-1">Excel Training</h3>
+        <p class="text-sm text-gray-500 mb-2">Learn Excel Advanced</p>
+
+        <div class="text-yellow-400 text-sm mb-2">★★★★★</div>
+
+        <div class="text-sm text-gray-500 mb-3">
+          📚 +50 Lessons
+        </div>
+
+        <div class="flex justify-between items-center">
+          <span class="text-green-600 font-bold">FREE</span>
+          <a href="#" class="bg-blue-600 text-white px-3 py-1 rounded text-sm">
+            Enroll
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- COPY CARD FOR MORE -->
+
+  </div>
+
+</section>
+
 <!-- FOOTER -->
-<footer class="text-center py-6 text-white/50 text-sm mt-10">
+<footer class="text-center py-6 text-gray-500">
   © 2026 CoreSkill Academy
 </footer>
 
