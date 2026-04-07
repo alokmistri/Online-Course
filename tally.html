@@ -22,77 +22,132 @@
   </section>
 
   <!-- Topics -->
- <div class="max-w-xl mx-auto bg-gray-900 p-6 rounded-2xl shadow-2xl">
-  <h2 class="text-white text-lg font-semibold mb-4">📘 Tally Prime Course Modules</h2>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tally Course Modules</title>
 
-  <ol class="space-y-2 text-gray-300 text-sm list-decimal list-inside">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Tally Prime Intro
-    </li>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Installation
-    </li>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+    }
 
-    <li class="p-3 rounded-lg bg-blue-500/20 border border-blue-400 text-blue-300">
-      Installation & Data Migration
-    </li>
+    /* Glow Effect */
+    .glow:hover {
+      box-shadow: 0 0 20px rgba(59,130,246,0.5);
+    }
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Company Creation
-    </li>
+    /* Animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Tally Prime Screen Interface
-    </li>
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Tally Prime Basic Accounting Transaction
-    </li>
+<body class="text-white">
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Tally Prime Business Transaction
-    </li>
+  <div class="min-h-screen flex items-center justify-center px-4 py-10">
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Tally Prime Basic Reports
-    </li>
+    <div class="w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-8 shadow-2xl">
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Tally Prime Introduction of Inventory
-    </li>
+      <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-center">
+        📘 Tally Prime Course Modules
+      </h2>
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      GST Introduction
-    </li>
+      <ol class="space-y-3 list-decimal list-inside text-sm sm:text-base">
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Adjustment Of ITC Liable Payment
-    </li>
+        <!-- ITEM -->
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition duration-300 glow">
+          Tally Prime Intro
+        </li>
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      GST Transaction
-    </li>
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.1s">
+          Installation
+        </li>
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      GST Report From Transaction
-    </li>
+        <!-- ACTIVE -->
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-blue-500/20 border border-blue-400 text-blue-300 glow" style="animation-delay:0.2s">
+          Installation & Data Migration
+        </li>
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      E-way Bill
-    </li>
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.3s">
+          Company Creation
+        </li>
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Banking
-    </li>
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.4s">
+          Tally Prime Screen Interface
+        </li>
 
-    <li class="p-3 rounded-lg hover:bg-gray-800 transition">
-      Cost Centre
-    </li>
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.5s">
+          Tally Prime Basic Accounting Transaction
+        </li>
 
-  </ol>
-</div>
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.6s">
+          Tally Prime Business Transaction
+        </li>
+
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.7s">
+          Tally Prime Basic Reports
+        </li>
+
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.8s">
+          Tally Prime Introduction of Inventory
+        </li>
+
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.9s">
+          GST Introduction
+        </li>
+
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1s">
+          Adjustment Of ITC Liable Payment
+        </li>
+
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.1s">
+          GST Transaction
+        </li>
+
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.2s">
+          GST Report From Transaction
+        </li>
+
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.3s">
+          E-way Bill
+        </li>
+
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.4s">
+          Banking
+        </li>
+
+        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.5s">
+          Cost Centre
+        </li>
+
+      </ol>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
   <!-- Enroll Button -->
   <div class="text-center py-6">
     <button onclick="showPayment()"
