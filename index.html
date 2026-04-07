@@ -287,13 +287,30 @@
   </section>
 
   <!-- FUNNEL SCRIPTS -->
-  <script>
+ 
+  <!-- STYLES -->
+  <style>
+    .glass-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.2);
+      backdrop-filter:blur(20px);
+      padding:20px;
+      border-radius:20px;
+      text-align:center;
+      transition:0.3s;
+    }
+    .glass-card:hover{transform:scale(1.05);box-shadow:0 0 20px orange}
+
+    .neon-text{text-shadow:0 0 10px orange,0 0 20px orange}
+    .neon-btn{background:linear-gradient(45deg,#ff7a00,#ffae00);box-shadow:0 0 10px orange}
+
     @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
     .float{animation:float 6s infinite}
     .float2{animation:float 7s infinite}
     .float3{animation:float 8s infinite}
     .float4{animation:float 9s infinite}
   </style>
+
 
     // Countdown Timer
     let time = 600;
