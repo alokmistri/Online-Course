@@ -261,9 +261,21 @@
 
 
   <!-- COUNTDOWN TIMER -->
-  <div class="fixed top-16 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-2 rounded-full text-sm shadow-lg z-50">
-    ⏳ Offer Ends In: <span id="timer">10:00</span>
-  </div>
+  <script>
+  let time = 600; // 10 minutes
+
+  setInterval(() => {
+    let min = Math.floor(time / 60);
+    let sec = time % 60;
+
+    document.getElementById("timer").innerText =
+      `${min}:${sec < 10 ? '0' + sec : sec}`;
+
+    if (time > 0) {
+      time--;
+    }
+  }, 1000);
+</script>
 
   <!-- POPUP OFFER -->
   <div id="offerPopup" class="fixed inset-0 hidden items-center justify-center bg-black/70 z-50">
