@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grab Offer - CoreSkill Academy</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+.glow {
+  box-shadow: 0 0 25px rgba(255,115,0,0.7);
+}
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body class="bg-gray-950 text-white">
+
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center px-6 py-4 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+  <h1 class="text-xl font-bold text-orange-400">CoreSkill Academy</h1>
+  <span class="text-red-400 font-semibold animate-pulse">🔥 Limited Offer</span>
+</nav>
+
+<!-- HERO -->
+<section class="text-center py-16 px-6">
+
+  <h2 class="text-4xl md:text-6xl font-bold mb-4">
+    🎯 Grab This Limited Offer
+  </h2>
+
+  <p class="text-white/70 mb-6">
+    Master Excel + SAP with Lifetime Access
+  </p>
+
+  <!-- PRICE -->
+  <div class="mb-6">
+    <span class="text-gray-400 line-through text-xl">₹4999</span>
+    <span class="text-5xl font-bold text-orange-400 ml-3">₹499</span>
+  </div>
+
+  <!-- TIMER -->
+  <div id="timer" class="text-xl font-semibold text-red-400 mb-6">
+    ⏳ Offer Ends In: 10:00
+  </div>
+
+  <!-- CTA -->
+  <a href="enroll.html"
+  class="inline-block bg-orange-500 hover:bg-orange-600 px-10 py-4 rounded-full font-bold text-lg glow pulse transition">
+    🚀 Enroll Now
+  </a>
+
+</section>
+
+<!-- TRUST SECTION -->
+<section class="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-6 text-center">
+
+  <div class="bg-gray-900 p-5 rounded-xl">📚 Lifetime Access</div>
+  <div class="bg-gray-900 p-5 rounded-xl">🎓 Certificate Included</div>
+  <div class="bg-gray-900 p-5 rounded-xl">💼 Job Assistance</div>
+
+</section>
+
+<!-- COURSE HIGHLIGHTS -->
+<section class="max-w-4xl mx-auto px-6 py-10">
+
+  <h3 class="text-2xl font-bold mb-6 text-center">📊 What You Will Learn</h3>
+
+  <div class="bg-gray-900 p-6 rounded-xl space-y-2 text-sm">
+
+    <p>✔ Excel Basic to Advanced</p>
+    <p>✔ Pivot Tables & Charts</p>
+    <p>✔ VLOOKUP, IF, Advanced Functions</p>
+    <p>✔ SAP S/4 HANA Basics</p>
+    <p>✔ Finance, HR & Implementation</p>
+
+  </div>
+
+</section>
+
+<!-- FINAL CTA -->
+<section class="text-center py-12">
+
+  <h3 class="text-2xl font-bold mb-4">
+    ⚡ Limited Seats Available
+  </h3>
+
+  <a href="enroll.html"
+  class="inline-block bg-orange-500 hover:bg-orange-600 px-10 py-4 rounded-full font-bold text-lg glow pulse">
+    🔥 Enroll Now
+  </a>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center py-6 border-t border-white/10 text-white/50 text-sm">
+  © 2026 CoreSkill Academy
+</footer>
+
+<!-- TIMER SCRIPT -->
+<script>
+let time = 600;
+const timer = document.getElementById("timer");
+
+setInterval(() => {
+  let min = Math.floor(time / 60);
+  let sec = time % 60;
+  timer.innerHTML = `⏳ Offer Ends In: ${min}:${sec < 10 ? '0'+sec : sec}`;
+  if(time > 0) time--;
+}, 1000);
+</script>
+
+</body>
+</html>
