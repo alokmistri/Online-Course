@@ -25,126 +25,125 @@
  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tally Course Modules</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+body {
+  background: radial-gradient(circle at top, #020617, #000);
+}
 
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #0f172a, #020617);
-    }
+/* CARD ANIMATION */
+.card {
+  transform: translateY(40px);
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
 
-    /* Glow Effect */
-    .glow:hover {
-      box-shadow: 0 0 20px rgba(59,130,246,0.5);
-    }
+@keyframes fadeUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
-    /* Animation */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.6s ease forwards;
-    }
+/* HOVER EFFECT */
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 20px rgba(59,130,246,0.4);
+}
 
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+/* BORDER GLOW */
+.border-glow {
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.border-glow:hover {
+  border-color: rgba(59,130,246,0.6);
+}
+</style>
 </head>
 
 <body class="text-white">
 
-  <div class="min-h-screen flex items-center justify-center px-4 py-10">
+<div class="min-h-screen flex items-center justify-center px-4 py-10">
 
-    <div class="w-full max-w-2xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-8 shadow-2xl">
+<div class="w-full max-w-2xl p-4 sm:p-6">
 
-      <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-center">
-        📘 Tally Prime Course Modules
-      </h2>
+<h2 class="text-center text-xl font-semibold mb-6">
+📘 Tally Prime Course
+</h2>
 
-      <ol class="space-y-3 list-decimal list-inside text-sm sm:text-base">
+<ol class="space-y-3 list-decimal list-inside text-sm sm:text-base">
 
-        <!-- ITEM -->
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition duration-300 glow">
-          Tally Prime Intro
-        </li>
+<li class="card border-glow p-4 rounded-xl">Tally Prime Intro</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.1s">
-          Installation
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:.1s">
+Installation
+</li>
 
-        <!-- ACTIVE -->
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-blue-500/20 border border-blue-400 text-blue-300 glow" style="animation-delay:0.2s">
-          Installation & Data Migration
-        </li>
+<li class="card border-glow p-4 rounded-xl text-blue-400 border-blue-500" style="animation-delay:.2s">
+Installation & Data Migration
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.3s">
-          Company Creation
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:.3s">
+Company Creation
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.4s">
-          Tally Prime Screen Interface
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:.4s">
+Tally Prime Screen Interface
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.5s">
-          Tally Prime Basic Accounting Transaction
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:.5s">
+Tally Prime Basic Accounting Transaction
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.6s">
-          Tally Prime Business Transaction
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:.6s">
+Tally Prime Business Transaction
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.7s">
-          Tally Prime Basic Reports
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:.7s">
+Tally Prime Basic Reports
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.8s">
-          Tally Prime Introduction of Inventory
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:.8s">
+Tally Prime Introduction of Inventory
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:0.9s">
-          GST Introduction
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:.9s">
+GST Introduction
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1s">
-          Adjustment Of ITC Liable Payment
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:1s">
+Adjustment Of ITC Liable Payment
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.1s">
-          GST Transaction
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:1.1s">
+GST Transaction
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.2s">
-          GST Report From Transaction
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:1.2s">
+GST Report From Transaction
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.3s">
-          E-way Bill
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:1.3s">
+E-way Bill
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.4s">
-          Banking
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:1.4s">
+Banking
+</li>
 
-        <li class="fade-up p-3 sm:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition glow" style="animation-delay:1.5s">
-          Cost Centre
-        </li>
+<li class="card border-glow p-4 rounded-xl" style="animation-delay:1.5s">
+Cost Centre
+</li>
 
-      </ol>
+</ol>
 
-    </div>
-
-  </div>
+</div>
+</div>
 
 </body>
 </html>
