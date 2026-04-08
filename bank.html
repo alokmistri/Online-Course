@@ -40,128 +40,158 @@
 
 <body class="bg-gradient-to-br from-blue-100 via-white to-gray-200 min-h-screen text-gray-800">
 
-  <!-- HEADER -->
-  <div class="flex justify-between items-center p-4 sm:p-6 fade-up">
-    
-    <!-- BACK BUTTON -->
-    <button onclick="window.location.href='index.html'" 
-      class="text-orange-500 text-sm hover:underline">
-      ← Back
+<!-- HEADER -->
+<div class="flex justify-between items-center p-4 sm:p-6 fade-up">
+
+  <button onclick="window.location.href='index.html'" 
+    class="text-orange-500 text-sm hover:underline">
+    ← Back
+  </button>
+
+  <a href="https://wa.me/917439034248?text=Hi I want help with payment"
+    class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600">
+    WhatsApp
+  </a>
+
+</div>
+
+<!-- TITLE -->
+<div class="text-center mt-6 fade-up">
+  <h1 class="text-3xl sm:text-4xl font-bold">Pay via NEFT / RTGS</h1>
+  <p class="text-gray-500 mt-2">Secure bank transfer payment</p>
+</div>
+
+<!-- MAIN -->
+<div class="max-w-6xl mx-auto px-4 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+  <!-- LEFT CARD -->
+  <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-6 sm:p-8 fade-up">
+
+    <h2 class="text-xl font-bold text-blue-600 mb-6 text-center">
+      💳 Bank Details
+    </h2>
+
+    <!-- BANK DETAILS -->
+    <div class="space-y-4 text-sm">
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-semibold text-gray-600">A/C Holder</span>
+        <span>Alok Mistri</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-semibold text-gray-600">Bank Name</span>
+        <span>Bank Of India</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-semibold text-gray-600">Account No</span>
+        <span>410610510000064</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-semibold text-gray-600">IFSC Code</span>
+        <span>BKID0004106</span>
+      </div>
+
+    </div>
+
+    <!-- WARNING -->
+    <p class="text-red-500 text-sm mt-6 text-center animate-pulse">
+      ⚠️ After payment, send screenshot on WhatsApp
+    </p>
+
+    <!-- COURSE DROPDOWN -->
+    <select id="course"
+      class="w-full mt-6 p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 text-sm">
+
+      <option value="">🎯 Select Course</option>
+
+      <option value="MS Basic - ₹499">MS Basic - ₹499</option>
+      <option value="Advanced Excel - ₹999">Advanced Excel - ₹999</option>
+      <option value="Tally + GST - ₹1499">Tally + GST - ₹1499</option>
+      <option value="Power BI - ₹1999">Power BI - ₹1999</option>
+      <option value="Peachtree - ₹999">Peachtree - ₹999</option>
+
+      <option value="🔥 Combo Offer - ₹1999">🔥 Combo Offer - ₹1999</option>
+      <option value="🔥 Full Bundle - ₹2999">🔥 Full Bundle - ₹2999</option>
+
+    </select>
+
+    <!-- EMAIL -->
+    <input id="email" type="email" placeholder="Enter your Email"
+      class="w-full mt-3 p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500">
+
+    <!-- BUTTON -->
+    <button onclick="sendWhatsApp()"
+      class="magnetic mt-4 w-full bg-green-500 text-white py-3 rounded-xl">
+
+      🚀 Confirm Payment
     </button>
 
-    <a href="https://wa.me/917439034248?text=Hi I want help with payment"
-      class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition">
-      WhatsApp
-    </a>
   </div>
 
-  <!-- TITLE -->
-  <div class="text-center mt-6 fade-up">
-    <h1 class="text-3xl sm:text-4xl font-bold">Pay via NEFT / RTGS</h1>
-    <p class="text-gray-500 mt-2">Secure bank transfer payment</p>
-  </div>
+  <!-- RIGHT IMAGE -->
+  <div class="flex justify-center">
 
-  <!-- MAIN -->
-  <div class="max-w-6xl mx-auto px-4 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    <div class="relative float">
 
-    <!-- LEFT CARD -->
-    <div class="backdrop-blur-xl bg-white/70 border border-white/30 rounded-3xl shadow-2xl p-6 sm:p-8 fade-up">
+      <div class="w-72 h-72 rounded-full border-4 border-blue-500 flex items-center justify-center glow-pulse">
 
-      <h2 class="text-xl font-bold text-blue-600 mb-6 text-center">
-        💳 Bank Details
-      </h2>
-
-      <!-- ALIGNED DETAILS -->
-      <div class="space-y-4 text-sm sm:text-base">
-
-        <div class="flex justify-between border-b pb-2">
-          <span class="font-semibold text-gray-600">A/C Holder</span>
-          <span class="font-medium">Alok Mistri</span>
-        </div>
-
-        <div class="flex justify-between border-b pb-2">
-          <span class="font-semibold text-gray-600">Bank Name</span>
-          <span class="font-medium">Bank Of India</span>
-        </div>
-
-        <div class="flex justify-between border-b pb-2">
-          <span class="font-semibold text-gray-600">Account No</span>
-          <span class="font-medium">410610510000064</span>
-        </div>
-
-        <div class="flex justify-between border-b pb-2">
-          <span class="font-semibold text-gray-600">IFSC Code</span>
-          <span class="font-medium">BKID0004106</span>
+        <div class="w-64 h-64 rounded-full border-4 border-blue-200 overflow-hidden">
+          <img src="student1.jpg" class="w-full h-full object-cover">
         </div>
 
       </div>
 
-      <!-- WARNING -->
-      <p class="text-red-500 text-sm mt-6 text-center animate-pulse">
-        ⚠️ After payment, send screenshot on WhatsApp
-      </p>
+      <div class="absolute right-0 top-10 bg-white px-3 py-1 rounded shadow text-xs">
+        AI Powered Learning
+      </div>
 
-      <!-- INPUT -->
-      <input id="email" type="email" placeholder="Enter your Gmail"
-        class="w-full mt-6 p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500">
-
-      <!-- BUTTON -->
-      <button onclick="sendWhatsApp()"
-        class="magnetic mt-4 w-full bg-green-500 text-white py-3 rounded-xl">
-
-        🚀 Confirm Payment
-      </button>
-
-    </div>
-
-    <!-- RIGHT IMAGE -->
-    <div class="flex justify-center">
-
-      <div class="relative float">
-
-        <div class="w-72 h-72 rounded-full border-4 border-blue-500 flex items-center justify-center glow-pulse">
-
-          <div class="w-64 h-64 rounded-full border-4 border-blue-200 overflow-hidden">
-
-            <img src="student1.jpg" class="w-full h-full object-cover">
-
-          </div>
-        </div>
-
-        <div class="absolute right-0 top-10 bg-white px-3 py-1 rounded shadow text-xs">
-          AI Powered Learning
-        </div>
-
-        <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1 rounded shadow text-xs">
-          5000+ Students
-        </div>
-
+      <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1 rounded shadow text-xs">
+        <b class="text-blue-600">5000+</b> Students
       </div>
 
     </div>
 
   </div>
 
-  <!-- SCRIPT -->
-  <script>
-    function sendWhatsApp() {
-      const email = document.getElementById("email").value.trim();
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+</div>
 
-      if (!email) {
-        alert("⚠️ Enter your Gmail");
-        return;
-      }
+<!-- FOOT -->
+<div class="text-center mt-12 text-sm text-gray-500">
+  Trusted by thousands of learners 🚀
+</div>
 
-      if (!emailPattern.test(email)) {
-        alert("❌ Enter valid Gmail");
-        return;
-      }
+<!-- SCRIPT -->
+<script>
+function sendWhatsApp() {
+  const email = document.getElementById("email").value.trim();
+  const course = document.getElementById("course").value;
 
-      const msg = `Hi, I have completed NEFT payment. My Gmail: ${email}`;
-      window.open(`https://wa.me/917439034248?text=${encodeURIComponent(msg)}`, '_blank');
-    }
-  </script>
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!course) {
+    alert("⚠️ Please select a course");
+    return;
+  }
+
+  if (!email) {
+    alert("⚠️ Please enter your email");
+    return;
+  }
+
+  if (!emailPattern.test(email)) {
+    alert("❌ Invalid email");
+    return;
+  }
+
+  const msg = `Hi, I have completed NEFT payment.\n\nCourse: ${course}\nEmail: ${email}`;
+  const url = `https://wa.me/917439034248?text=${encodeURIComponent(msg)}`;
+
+  window.open(url, '_blank');
+}
+</script>
 
 </body>
 </html>
