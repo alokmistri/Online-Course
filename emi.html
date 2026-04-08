@@ -65,14 +65,24 @@
       <div class="bg-white p-4 rounded-xl shadow">
         <h2 class="font-semibold text-purple-600 mb-3">💰 EMI Calculator</h2>
 
-        <input id="amount" type="number" placeholder="Enter Course Price"
+        <!-- COURSE SELECT -->
+        <select id="course" onchange="calculateEMI()"
           class="w-full p-2 border rounded mb-3">
 
-        <button onclick="calculateEMI()"
-          class="bg-purple-500 text-white px-4 py-2 rounded w-full mb-3">
-          Calculate EMI
-        </button>
+          <option value="">Select Course</option>
 
+          <option value="499">MS Basic - ₹499</option>
+          <option value="999">Advanced Excel - ₹999</option>
+          <option value="1499">Tally + GST - ₹1499</option>
+          <option value="1999">Power BI - ₹1999</option>
+          <option value="999">Peachtree - ₹999</option>
+
+          <option value="1999">🔥 Combo Offer - ₹1999</option>
+          <option value="2999">🔥 Full Bundle - ₹2999</option>
+
+        </select>
+
+        <!-- RESULT -->
         <p id="result" class="text-center font-semibold text-green-600"></p>
       </div>
 
@@ -116,17 +126,18 @@
   <!-- SCRIPT -->
   <script>
     function calculateEMI() {
-      const amount = document.getElementById("amount").value;
+      const amount = document.getElementById("course").value;
 
-      if (!amount || amount <= 0) {
-        document.getElementById("result").innerText = "Enter valid amount";
+      if (!amount || amount <= 99) {
+        document.getElementById("result").innerText =
+          "❌ EMI not available for this course";
         return;
       }
 
       const emi = (amount / 6).toFixed(2);
 
-      document.getElementById("result").innerText = 
-        `Monthly EMI: ₹${emi} × 6 installments`;
+      document.getElementById("result").innerText =
+        `Monthly EMI: ₹${emi} × 6 months`;
     }
   </script>
 
