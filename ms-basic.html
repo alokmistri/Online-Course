@@ -524,6 +524,29 @@
       filter: brightness(1.05);
     }
 
+    .enroll-float {
+      position: fixed;
+      right: 20px;
+      bottom: 78px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, #df2d1f, #ff6a3d);
+      border-radius: 999px;
+      box-shadow: 0 18px 36px rgba(223, 45, 31, 0.35);
+      font-weight: 700;
+      letter-spacing: 0.03rem;
+      animation: supportPulse 2.5s ease-in-out infinite;
+    }
+
+    .enroll-float:hover {
+      filter: brightness(1.05);
+    }
+
     @keyframes panelRise {
       from {
         opacity: 0;
@@ -677,6 +700,13 @@
         bottom: 12px;
         justify-content: center;
       }
+
+      .enroll-float {
+        right: 12px;
+        left: 12px;
+        bottom: 68px;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -781,6 +811,10 @@
       </div>
     </div>
   </div>
+
+  <a class="enroll-float" href="enroll.html">
+    Enroll Now
+  </a>
 
   <a class="whatsapp-float" href="https://wa.me/917439034248" target="_blank" rel="noopener noreferrer">
     WhatsApp Support
