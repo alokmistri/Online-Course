@@ -3,90 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Select Payment Method</title>
+  <title>Enroll Now</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .glow-ring {
+      box-shadow: 0 0 25px rgba(59,130,246,0.4);
+    }
+  </style>
 </head>
 
-<body class="bg-gradient-to-br from-blue-100 via-gray-100 to-gray-200 text-gray-800 min-h-screen">
+<body class="bg-gradient-to-br from-blue-100 via-white to-gray-200 min-h-screen text-gray-800">
 
   <!-- HEADER -->
-  <div class="flex items-center justify-between p-4 sm:p-6">
+  <div class="flex justify-between items-center p-4 sm:p-6">
     <button onclick="goBack()" class="text-orange-500 text-sm hover:underline">
       ← Back
     </button>
 
-    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
-      Contact
-    </button>
+    <!-- WhatsApp ONLY -->
+    <a href="https://wa.me/917439034248?text=Hi I want course details"
+      class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition">
+      WhatsApp
+    </a>
   </div>
 
-  <!-- HERO SECTION -->
-  <div class="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-10 gap-10">
+  <!-- HERO -->
+  <div class="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-10 gap-10 fade-in">
 
-    <!-- LEFT CONTENT -->
+    <!-- LEFT -->
     <div class="max-w-xl text-center lg:text-left">
       <p class="text-blue-500 font-semibold mb-2">ONLINE E-LEARNING COURSE</p>
 
-      <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4">
-        Online Education <br> Feels Like Real Classroom
+      <h1 class="text-3xl sm:text-5xl font-bold leading-tight mb-4">
+        Learn Skills That <br> Get You Hired 🚀
       </h1>
 
       <p class="text-gray-600 text-sm mb-6">
-        ✔ Professional Courses &nbsp;&nbsp;
-        ✔ Job-ready Skills &nbsp;&nbsp;
-        ✔ Learn Anytime Anywhere
+        ✔ Job-ready Skills &nbsp; ✔ Practical Training &nbsp; ✔ Lifetime Support
       </p>
 
-      <button class="bg-blue-600 text-white px-5 py-2 rounded-lg mr-3">
-        Get Started
-      </button>
+      <p class="text-red-500 font-semibold mb-4 animate-pulse">
+        ⚠️ Limited Seats Available
+      </p>
 
-      <button class="bg-gray-300 px-5 py-2 rounded-lg">
-        Our Courses
-      </button>
+      <!-- MAIN CTA -->
+      <a href="https://wa.me/917439034248?text=Hi I want to enroll in course"
+        class="bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:scale-105 transition inline-block">
+        Enroll Now
+      </a>
     </div>
 
     <!-- RIGHT IMAGE -->
     <div class="relative">
 
-      <!-- OUTER -->
-      <div class="w-64 h-64 sm:w-72 sm:h-72 rounded-full border-4 border-blue-500 flex items-center justify-center">
+      <div class="w-64 h-64 sm:w-72 sm:h-72 rounded-full border-4 border-blue-500 flex items-center justify-center glow-ring">
 
-        <!-- INNER -->
         <div class="w-56 h-56 sm:w-64 sm:h-64 rounded-full border-4 border-blue-200 overflow-hidden">
 
-          <img src="student.png" class="w-full h-full object-cover">
+          <img src="student.png" class="w-full h-full object-cover hover:scale-110 transition duration-500">
 
         </div>
       </div>
 
-      <!-- BADGE -->
       <div class="absolute -right-6 top-10 bg-white px-3 py-1 rounded-lg shadow text-sm">
         <span class="text-red-500 font-semibold">Professional+</span><br>
         Courses
       </div>
 
-      <!-- STUDENTS -->
       <div class="absolute left-1/2 -bottom-6 transform -translate-x-1/2 bg-white px-4 py-2 rounded-xl shadow text-sm">
         <span class="text-blue-600 font-bold">5000+</span> Students
       </div>
 
     </div>
-
   </div>
 
   <!-- PAYMENT SECTION -->
-  <section class="mt-16">
+  <section class="mt-20 fade-in">
 
-    <h2 class="text-center text-2xl font-bold mb-8">
+    <h2 class="text-center text-2xl sm:text-3xl font-bold mb-10">
       Choose Payment Method
     </h2>
 
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-5xl mx-auto px-6">
 
-      <!-- QR -->
       <div onclick="goTo('qr.html')" 
-        class="bg-white p-5 rounded-2xl shadow hover:scale-105 transition text-center cursor-pointer">
+        class="bg-white p-5 rounded-2xl shadow-lg hover:scale-105 hover:shadow-xl transition text-center cursor-pointer">
 
         <img src="https://cdn-icons-png.flaticon.com/512/483/483947.png"
           class="w-14 h-14 mx-auto mb-3">
@@ -94,9 +105,8 @@
         <p class="font-semibold">QR Code</p>
       </div>
 
-      <!-- BANK -->
       <div onclick="goTo('bank.html')" 
-        class="bg-white p-5 rounded-2xl shadow hover:scale-105 transition text-center cursor-pointer">
+        class="bg-white p-5 rounded-2xl shadow-lg hover:scale-105 hover:shadow-xl transition text-center cursor-pointer">
 
         <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png"
           class="w-14 h-14 mx-auto mb-3">
@@ -106,7 +116,11 @@
 
       <!-- UPI -->
       <div onclick="goTo('upi.html')" 
-        class="bg-white p-5 rounded-2xl shadow hover:scale-105 transition text-center cursor-pointer">
+        class="bg-white p-5 rounded-2xl shadow-lg hover:scale-105 hover:shadow-xl transition text-center cursor-pointer relative border-2 border-blue-500">
+
+        <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">
+          ⭐ Popular
+        </span>
 
         <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png"
           class="w-14 h-14 mx-auto mb-3">
@@ -114,9 +128,8 @@
         <p class="font-semibold">UPI</p>
       </div>
 
-      <!-- EMI -->
       <div onclick="goTo('emi.html')" 
-        class="bg-white p-5 rounded-2xl shadow hover:scale-105 transition text-center cursor-pointer">
+        class="bg-white p-5 rounded-2xl shadow-lg hover:scale-105 hover:shadow-xl transition text-center cursor-pointer">
 
         <img src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png"
           class="w-14 h-14 mx-auto mb-3">
@@ -127,31 +140,19 @@
     </div>
 
   </section>
+  <!-- FOOTER -->
+<footer class="bg-white border-t mt-20">
 
-  <!-- CONTACT FLOAT BAR -->
-  <div class="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[92%] max-w-md">
+  <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
 
-    <div class="flex justify-between items-center bg-white border rounded-2xl px-4 py-3 shadow-lg">
-
-      <!-- WhatsApp -->
-      <a href="https://wa.me/917439034248" target="_blank"
-        class="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-xl text-sm text-white font-semibold transition">
-
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="w-5 h-5">
-        WhatsApp
-      </a>
-
-      <!-- Email -->
-      <a href="mailto:a.mistri2004@gmail.com"
-        class="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-xl text-sm text-white font-semibold transition">
-
-        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="w-5 h-5">
-        Email
-      </a>
-
+    <!-- BRAND -->
+    <div>
+      <h2 class="text-xl font-bold text-blue-600 mb-3">CoreSkill Academy</h2>
+      <p class="text-gray-500 text-sm">
+        Learn practical skills that help you get jobs faster. Join thousands of students growing with us.
+      </p>
     </div>
 
-  </div>
 
   <!-- SCRIPT -->
   <script>
