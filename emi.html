@@ -5,92 +5,163 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMI Payment</title>
 <script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+.float { animation: floatY 4s ease-in-out infinite; }
+</style>
+
 </head>
 
 <body class="bg-gradient-to-br from-purple-100 via-white to-gray-200 min-h-screen text-gray-800">
 
-<div class="max-w-xl mx-auto mt-10 bg-white p-6 rounded-2xl shadow-lg">
-
-<h2 class="text-xl font-bold text-purple-600 text-center mb-4">
-💳 EMI Payment System
-</h2>
-
-<!-- COURSE -->
-<select id="course" onchange="calculateEMI()"
-  class="w-full p-3 border rounded mb-3">
-
-  <option value="">Select Course</option>
-  <option value="499">MS Basic - ₹499</option>
-  <option value="999">Advanced Excel - ₹999</option>
-  <option value="1499">Tally + GST - ₹1499</option>
-  <option value="1999">Power BI - ₹1999</option>
-  <option value="2999">Full Bundle - ₹2999</option>
-
-</select>
-
-<!-- EMI RESULT -->
-<p id="result" class="text-green-600 font-semibold text-center mb-4"></p>
-
-<!-- BUTTON -->
-<button onclick="showPaymentOptions()"
-  class="w-full bg-green-500 text-white py-3 rounded mb-4">
-
-🚀 Start EMI Now
-</button>
-
-<!-- PAYMENT OPTIONS -->
-<div id="paymentBox" class="hidden space-y-4">
-
-  <!-- QR -->
-  <div class="border p-4 rounded text-center">
-    <p class="font-semibold mb-2">📷 QR Code</p>
-    <img src="qr.png" class="w-32 mx-auto mb-2">
-    <a href="qr.png" download class="text-blue-500 text-sm underline">Download QR</a>
-  </div>
-
-  <!-- NEFT -->
-  <div class="border p-4 rounded text-sm">
-    <p class="font-semibold mb-2">🏦 NEFT / RTGS</p>
-    <p>A/C: 410610510000064</p>
-    <p>IFSC: BKID0004106</p>
-  </div>
-
-  <!-- UPI -->
-  <div class="border p-4 rounded flex justify-between items-center">
-    <span id="upi">alokmistri69-2@oksbi</span>
-    <button onclick="copyUPI()" class="bg-purple-500 text-white px-3 py-1 rounded text-sm">Copy</button>
-  </div>
-
-  <!-- EMAIL -->
-  <input id="email" type="email" placeholder="Enter your Email"
-    class="w-full p-2 border rounded">
-
-  <!-- CONFIRM -->
-  <button onclick="sendWhatsApp()"
-    class="w-full bg-purple-600 text-white py-3 rounded">
-
-📩 Confirm EMI Payment
+<!-- HEADER -->
+<div class="flex justify-between items-center p-4">
+  <button onclick="window.location.href='index.html'" class="text-purple-600 text-sm">
+    ← Back
   </button>
 
+  <a href="https://wa.me/917439034248?text=Hi I want EMI details"
+    class="bg-green-500 text-white px-4 py-2 rounded text-sm">
+    WhatsApp
+  </a>
 </div>
+
+<!-- TITLE -->
+<div class="text-center mt-6">
+  <h1 class="text-3xl font-bold">EMI Payment System</h1>
+  <p class="text-gray-500">Flexible learning with easy installments</p>
+</div>
+
+<!-- MAIN -->
+<div class="max-w-6xl mx-auto px-4 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+  <!-- LEFT -->
+  <div class="bg-white/80 rounded-2xl shadow-lg p-6">
+
+    <!-- RULES -->
+    <div class="mb-6">
+      <h2 class="font-bold text-purple-600 mb-2">📜 EMI Rules</h2>
+      <ul class="text-sm space-y-1">
+        <li>❌ EMI not for ₹99 courses</li>
+        <li>📊 6 Installments</li>
+        <li>⏰ 5 days grace</li>
+      </ul>
+    </div>
+
+    <!-- COURSE -->
+    <select id="course" onchange="calculateEMI()"
+      class="w-full p-3 border rounded mb-3">
+
+      <option value="">Select Course</option>
+      <option value="499">MS Basic - ₹499</option>
+      <option value="999">Advanced Excel - ₹999</option>
+      <option value="1499">Tally + GST - ₹1499</option>
+      <option value="1999">Power BI - ₹1999</option>
+      <option value="2999">Full Bundle - ₹2999</option>
+
+    </select>
+
+    <!-- RESULT -->
+    <p id="result" class="text-green-600 font-semibold text-center mb-4"></p>
+
+    <!-- BUTTON -->
+    <button onclick="showPaymentOptions()"
+      class="w-full bg-green-500 text-white py-3 rounded mb-4">
+
+      🚀 Start EMI Now
+    </button>
+
+    <!-- PAYMENT OPTIONS -->
+    <div id="paymentBox" class="hidden space-y-4">
+
+      <!-- QR -->
+      <div class="border p-4 rounded text-center">
+        <p class="font-semibold">QR Code</p>
+        <img src="qr.png" class="w-32 mx-auto my-2">
+        <a href="qr.png" download class="text-blue-500 text-sm">Download QR</a>
+      </div>
+
+      <!-- NEFT -->
+      <div class="border p-4 rounded text-sm">
+        <p class="font-semibold">NEFT / RTGS</p>
+        <p>A/C: 410610510000064</p>
+        <p>IFSC: BKID0004106</p>
+      </div>
+
+      <!-- UPI -->
+      <div class="border p-4 rounded flex justify-between">
+        <span id="upi">alokmistri69-2@oksbi</span>
+        <button onclick="copyUPI()" class="bg-purple-500 text-white px-2 rounded text-sm">Copy</button>
+      </div>
+
+      <!-- EMAIL -->
+      <input id="email" type="email" placeholder="Enter your Email"
+        class="w-full p-2 border rounded">
+
+      <!-- CONFIRM -->
+      <button onclick="sendWhatsApp()"
+        class="w-full bg-purple-600 text-white py-3 rounded">
+
+        📩 Confirm EMI Payment
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT IMAGE -->
+  <div class="flex justify-center">
+
+    <div class="relative float">
+
+      <!-- Glow -->
+      <div class="absolute inset-0 rounded-full blur-2xl bg-purple-400/30 scale-110"></div>
+
+      <!-- CIRCLE -->
+      <div class="w-64 h-64 rounded-full border-4 border-purple-500 flex items-center justify-center shadow-lg">
+
+        <div class="w-56 h-56 rounded-full overflow-hidden border-4 border-purple-200">
+          <img src="student1.jpg" class="w-full h-full object-cover">
+        </div>
+
+      </div>
+
+      <!-- BADGE -->
+      <div class="absolute right-0 top-8 bg-white px-3 py-1 rounded text-xs shadow">
+        Easy EMI
+      </div>
+
+      <!-- TRUST -->
+      <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1 rounded text-xs shadow">
+        <b class="text-purple-600">5000+</b> Students
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
 
+<!-- SCRIPT -->
 <script>
 
 let selectedCourse = "";
 let selectedAmount = "";
 let emiAmount = "";
 
-// EMI CALC
+// EMI
 function calculateEMI() {
   const select = document.getElementById("course");
   selectedAmount = select.value;
   selectedCourse = select.options[select.selectedIndex].text;
 
   if (!selectedAmount || selectedAmount <= 99) {
-    document.getElementById("result").innerText =
-      "❌ EMI not available";
+    document.getElementById("result").innerText = "❌ EMI not available";
     return;
   }
 
@@ -112,8 +183,7 @@ function showPaymentOptions() {
 
 // COPY UPI
 function copyUPI() {
-  const text = document.getElementById("upi").innerText;
-  navigator.clipboard.writeText(text);
+  navigator.clipboard.writeText(document.getElementById("upi").innerText);
   alert("UPI Copied");
 }
 
