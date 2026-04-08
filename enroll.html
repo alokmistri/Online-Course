@@ -19,6 +19,15 @@
     .glow-ring {
       box-shadow: 0 0 25px rgba(59,130,246,0.4);
     }
+    @keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+.float {
+  animation: floatY 4s ease-in-out infinite;
+}
   </style>
 </head>
 
@@ -64,7 +73,7 @@
     </div>
 
     <!-- RIGHT IMAGE -->
-    <div class="relative">
+    <div class="relative float">
 
       <div class="w-64 h-64 sm:w-72 sm:h-72 rounded-full border-4 border-blue-500 flex items-center justify-center glow-ring">
 
