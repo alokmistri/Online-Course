@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPI Payment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatY {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 40px rgba(34,197,94,.3); }
+      50% { box-shadow: 0 0 70px rgba(34,197,94,.6); }
+      100% { box-shadow: 0 0 40px rgba(34,197,94,.3); }
+    }
+
+    .fade-up { animation: fadeUp .8s ease both; }
+    .float { animation: floatY 4s ease-in-out infinite; }
+    .glow-pulse { animation: pulseGlow 3s ease-in-out infinite; }
+
+    .magnetic {
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .magnetic:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(34,197,94,.35);
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-green-100 via-white to-gray-200 min-h-screen text-gray-800">
+
+  <!-- HEADER -->
+  <div class="flex justify-between items-center p-4 sm:p-6 fade-up">
+    
+    <!-- BACK -->
+    <button onclick="window.location.href='index.html'" 
+      class="text-green-600 text-sm hover:underline">
+      ← Back
+    </button>
+
+    <a href="https://wa.me/917439034248?text=Hi I want help with payment"
+      class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition">
+      WhatsApp
+    </a>
+  </div>
+
+  <!-- TITLE -->
+  <div class="text-center mt-6 fade-up">
+    <h1 class="text-3xl sm:text-4xl font-bold">Pay via UPI</h1>
+    <p class="text-gray-500 mt-2">Fast & secure UPI payment</p>
+  </div>
+
+  <!-- MAIN -->
+  <div class="max-w-6xl mx-auto px-4 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+    <!-- LEFT CARD -->
+    <div class="backdrop-blur-xl bg-white/70 border border-white/30 rounded-3xl shadow-2xl p-6 sm:p-8 fade-up">
+
+      <h2 class="text-xl font-bold text-green-600 mb-6 text-center">
+        💳 UPI Payment
+      </h2>
+
+      <!-- UPI BOX -->
+      <div class="bg-gray-100 border rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+
+        <span id="upiText" class="font-semibold text-gray-800 break-all">
+          alokmistri69-2@oksbi
+        </span>
+
+        <button onclick="copyUPI()"
+          class="bg-green-500 text-white px-4 py-1.5 rounded-lg text-sm hover:bg-green-600 transition">
+
+          📋 Copy
+        </button>
+
+      </div>
+
+      <!-- SUCCESS MSG -->
+      <p id="copyMsg" class="text-green-600 text-sm mt-3 hidden text-center">
+        ✅ UPI ID Copied!
+      </p>
+
+      <!-- WARNING -->
+      <p class="text-red-500 text-sm mt-6 text-center animate-pulse">
+        ⚠️ After payment, send screenshot on WhatsApp
+      </p>
+
+      <!-- INPUT -->
+      <input id="email" type="email" placeholder="Enter your Gmail"
+        class="w-full mt-6 p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500">
+
+      <!-- BUTTON -->
+      <button onclick="sendWhatsApp()"
+        class="magnetic mt-4 w-full bg-green-500 text-white py-3 rounded-xl">
+
+        🚀 Confirm Payment
+      </button>
+
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="flex justify-center">
+
+      <div class="relative float">
+
+        <div class="w-72 h-72 rounded-full border-4 border-green-500 flex items-center justify-center glow-pulse">
+
+          <div class="w-64 h-64 rounded-full border-4 border-green-200 overflow-hidden">
+
+            <img src="student1.jpg" class="w-full h-full object-cover">
+
+          </div>
+        </div>
+
+        <div class="absolute right-0 top-10 bg-white px-3 py-1 rounded shadow text-xs">
+          Instant Payment
+        </div>
+
+        <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1 rounded shadow text-xs">
+          Trusted by Students
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function copyUPI() {
+      const text = document.getElementById("upiText").innerText;
+
+      navigator.clipboard.writeText(text);
+
+      const msg = document.getElementById("copyMsg");
+      msg.classList.remove("hidden");
+
+      setTimeout(() => {
+        msg.classList.add("hidden");
+      }, 2000);
+    }
+
+    function sendWhatsApp() {
+      const email = document.getElementById("email").value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email) {
+        alert("⚠️ Enter your Gmail");
+        return;
+      }
+
+      if (!emailPattern.test(email)) {
+        alert("❌ Enter valid Gmail");
+        return;
+      }
+
+      const msg = `Hi, I have completed UPI payment. My Gmail: ${email}`;
+      window.open(`https://wa.me/917439034248?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
