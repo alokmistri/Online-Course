@@ -5,150 +5,220 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demo Classes</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Ultra smooth animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px) scale(0.98);
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Glass UI */
+    .glass {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    /* Image animation */
+    .img-hover {
+      transition: transform 1.2s ease;
+    }
+
+    .card:hover .img-hover {
+      transform: scale(1.08);
+    }
+
+    /* Smooth hover */
+    .card {
+      transition: all 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+    }
+  </style>
 </head>
 
-<body class="bg-gradient-to-br from-[#d9dde3] via-[#eef1f5] to-[#f8f9fb] text-gray-800 min-h-screen">
+<body class="bg-gradient-to-br from-[#eef2f7] via-white to-[#f8fafc] text-gray-800 min-h-screen">
 
   <!-- HEADER -->
-  <div class="flex justify-between items-center p-4">
-    <button onclick="window.location.href='index.html'" class="text-orange-500 text-sm">
+  <div class="flex justify-between items-center p-5">
+    <button onclick="window.location.href='index.html'" class="text-gray-600 hover:text-black">
       ← Back
     </button>
-    <h1 class="font-bold">Demo Classes</h1>
+    <h1 class="font-semibold">Demo Classes</h1>
   </div>
 
   <!-- TITLE -->
-  <div class="text-center mt-4">
-    <h1 class="text-3xl font-bold">🎓 Watch Demo Classes</h1>
-    <p class="text-gray-500 mt-2">Try before you enroll</p>
-  </div>
-
-  <!-- AD SECTION -->
-  <div class="max-w-5xl mx-auto px-4 mt-6">
-    <div class="bg-blue-600 text-white rounded-xl p-4 text-center shadow">
-      🔥 Limited Offer – Get Discount Now!
-    </div>
+  <div class="text-center mt-6 px-4">
+    <h1 class="text-4xl font-semibold">Explore Demo Courses</h1>
+    <p class="text-gray-500 mt-2">Learn skills that actually pay 💰</p>
   </div>
 
   <!-- COURSES -->
-  <div class="max-w-5xl mx-auto mt-8 px-4 space-y-4">
+  <div class="max-w-5xl mx-auto mt-10 px-4 space-y-8">
+
+    <!-- TEMPLATE START -->
 
     <!-- MS BASIC -->
-    <div class="course-card flex gap-4 items-center bg-white p-4 rounded-xl shadow" data-price="499">
-      <img src="https://via.placeholder.com/80" class="w-20 h-20 rounded-lg">
-      <div class="flex-1">
-        <h2 class="font-semibold">MS Basic</h2>
-        <p class="text-green-600 text-xs emi-text"></p>
-        <a href="msbasicdemo.html" class="text-blue-600 text-sm">▶ Demo</a>
+    <div class="reveal glass rounded-3xl overflow-hidden card">
+      <div class="h-44 overflow-hidden">
+        <img src="msbasic.jpg" class="w-full h-full object-cover img-hover">
       </div>
-      <a href="ms-basic.html?course=MS Basic&price=499" class="bg-orange-500 text-white px-3 py-1 rounded">View</a>
+      <div class="p-5">
+        <h2 class="font-semibold">MS Basic</h2>
+        <p class="emi-text text-green-600 text-sm" data-price="499"></p>
+        <div class="flex justify-between mt-4">
+          <a href="msbasicdemo.html" class="text-blue-600">Demo</a>
+          <a href="ms-basic.html?course=MS Basic&price=499" class="bg-black text-white px-4 py-1 rounded-full">Enroll</a>
+        </div>
+      </div>
     </div>
 
     <!-- EXCEL -->
-    <div class="course-card flex gap-4 items-center bg-white p-4 rounded-xl shadow" data-price="999">
-      <img src="https://via.placeholder.com/80" class="w-20 h-20 rounded-lg">
-      <div class="flex-1">
-        <h2 class="font-semibold">Advanced Excel</h2>
-        <p class="text-green-600 text-xs emi-text"></p>
-        <a href="exceldemo.html" class="text-blue-600 text-sm">▶ Demo</a>
+    <div class="reveal glass rounded-3xl overflow-hidden card">
+      <div class="h-44 overflow-hidden">
+        <img src="excel.jpg" class="w-full h-full object-cover img-hover">
       </div>
-      <a href="excell.html?course=Advanced Excel&price=999" class="bg-orange-500 text-white px-3 py-1 rounded">View</a>
+      <div class="p-5">
+        <h2 class="font-semibold">Advanced Excel</h2>
+        <p class="emi-text text-green-600 text-sm" data-price="999"></p>
+        <div class="flex justify-between mt-4">
+          <a href="exceldemo.html" class="text-blue-600">Demo</a>
+          <a href="excel.html?course=Excel&price=999" class="bg-black text-white px-4 py-1 rounded-full">Enroll</a>
+        </div>
+      </div>
     </div>
 
     <!-- TALLY -->
-    <div class="course-card flex gap-4 items-center bg-white p-4 rounded-xl shadow" data-price="1499">
-      <img src="https://via.placeholder.com/80" class="w-20 h-20 rounded-lg">
-      <div class="flex-1">
-        <h2 class="font-semibold">Tally GST</h2>
-        <p class="text-green-600 text-xs emi-text"></p>
-        <a href="tallydemo.html" class="text-blue-600 text-sm">▶ Demo</a>
+    <div class="reveal glass rounded-3xl overflow-hidden card">
+      <div class="h-44 overflow-hidden">
+        <img src="tally.jpg" class="w-full h-full object-cover img-hover">
       </div>
-      <a href="tally.html?course=Tally&price=1499" class="bg-orange-500 text-white px-3 py-1 rounded">View</a>
+      <div class="p-5">
+        <h2 class="font-semibold">Tally + GST</h2>
+        <p class="emi-text text-green-600 text-sm" data-price="1499"></p>
+        <div class="flex justify-between mt-4">
+          <a href="tallydemo.html" class="text-blue-600">Demo</a>
+          <a href="tally.html?course=Tally&price=1499" class="bg-black text-white px-4 py-1 rounded-full">Enroll</a>
+        </div>
+      </div>
     </div>
 
     <!-- POWER BI -->
-    <div class="course-card flex gap-4 items-center bg-white p-4 rounded-xl shadow" data-price="1999">
-      <img src="https://via.placeholder.com/80" class="w-20 h-20 rounded-lg">
-      <div class="flex-1">
-        <h2 class="font-semibold">Power BI</h2>
-        <p class="text-green-600 text-xs emi-text"></p>
-        <a href="powerbidemo.html" class="text-blue-600 text-sm">▶ Demo</a>
+    <div class="reveal glass rounded-3xl overflow-hidden card">
+      <div class="h-44 overflow-hidden">
+        <img src="powerbi.jpg" class="w-full h-full object-cover img-hover">
       </div>
-      <a href="powerbi.html?course=Power BI&price=1999" class="bg-orange-500 text-white px-3 py-1 rounded">View</a>
+      <div class="p-5">
+        <h2 class="font-semibold">Power BI</h2>
+        <p class="emi-text text-green-600 text-sm" data-price="1999"></p>
+        <div class="flex justify-between mt-4">
+          <a href="powerbidemo.html" class="text-blue-600">Demo</a>
+          <a href="powerbi.html?course=PowerBI&price=1999" class="bg-black text-white px-4 py-1 rounded-full">Enroll</a>
+        </div>
+      </div>
     </div>
 
     <!-- PEACHTREE -->
-    <div class="course-card flex gap-4 items-center bg-white p-4 rounded-xl shadow" data-price="999">
-      <img src="https://via.placeholder.com/80" class="w-20 h-20 rounded-lg">
-      <div class="flex-1">
-        <h2 class="font-semibold">Peachtree</h2>
-        <p class="text-green-600 text-xs emi-text"></p>
-        <a href="peachtreedemo.html" class="text-blue-600 text-sm">▶ Demo</a>
+    <div class="reveal glass rounded-3xl overflow-hidden card">
+      <div class="h-44 overflow-hidden">
+        <img src="peachtree.jpg" class="w-full h-full object-cover img-hover">
       </div>
-      <a href="peachtree.html?course=Peachtree&price=999" class="bg-orange-500 text-white px-3 py-1 rounded">View</a>
+      <div class="p-5">
+        <h2 class="font-semibold">Peachtree</h2>
+        <p class="emi-text text-green-600 text-sm" data-price="999"></p>
+        <div class="flex justify-between mt-4">
+          <a href="peachtreedemo.html" class="text-blue-600">Demo</a>
+          <a href="peachtree.html?course=Peachtree&price=999" class="bg-black text-white px-4 py-1 rounded-full">Enroll</a>
+        </div>
+      </div>
     </div>
 
     <!-- MS ACCESS -->
-    <div class="flex gap-4 items-center bg-white p-4 rounded-xl shadow">
-      <img src="https://via.placeholder.com/80" class="w-20 h-20 rounded-lg">
-      <div class="flex-1">
-        <h2 class="font-semibold">MS Access</h2>
-        <p class="text-gray-500 text-xs">No EMI</p>
-        <a href="msaccessdemo.html" class="text-blue-600 text-sm">▶ Demo</a>
+    <div class="reveal glass rounded-3xl overflow-hidden card">
+      <div class="h-44 overflow-hidden">
+        <img src="msaccess.jpg" class="w-full h-full object-cover img-hover">
       </div>
-      <a href="msaccess.html?course=MS Access&price=99" class="bg-orange-500 text-white px-3 py-1 rounded">View</a>
+      <div class="p-5">
+        <h2 class="font-semibold">MS Access</h2>
+        <p class="text-gray-500 text-sm">No EMI</p>
+        <div class="flex justify-between mt-4">
+          <a href="msaccessdemo.html" class="text-blue-600">Demo</a>
+          <a href="msaccess.html?course=Access&price=99" class="bg-black text-white px-4 py-1 rounded-full">Enroll</a>
+        </div>
+      </div>
     </div>
-    <!-- SAP 4 HANA -->
-<div class="course-card flex gap-4 items-center bg-white p-4 rounded-xl shadow" data-price="1999">
-  <img src="https://via.placeholder.com/80" class="w-20 h-20 rounded-lg">
-  
-  <div class="flex-1">
-    <h2 class="font-semibold">SAP 4 HANA</h2>
-    <p class="text-green-600 text-xs emi-text"></p>
-    
-    <a href="sap4hanademo.html" class="text-blue-600 text-sm">
-      ▶ Demo
+
+    <!-- SAP HANA -->
+    <div class="reveal glass rounded-3xl overflow-hidden card">
+      <div class="h-44 overflow-hidden">
+        <img src="sap4hana.jpg" class="w-full h-full object-cover img-hover">
+      </div>
+      <div class="p-5">
+        <h2 class="font-semibold">SAP 4 HANA</h2>
+        <p class="emi-text text-green-600 text-sm" data-price="1999"></p>
+        <div class="flex justify-between mt-4">
+          <a href="sap4hanademo.html" class="text-blue-600">Demo</a>
+          <a href="sap4hana.html?course=SAP&price=1999" class="bg-black text-white px-4 py-1 rounded-full">Enroll</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAP FICO -->
+    <div class="reveal glass rounded-3xl overflow-hidden card">
+      <div class="h-44 overflow-hidden">
+        <img src="sapfico.jpg" class="w-full h-full object-cover img-hover">
+      </div>
+      <div class="p-5">
+        <h2 class="font-semibold">SAP FICO</h2>
+        <p class="emi-text text-green-600 text-sm" data-price="1999"></p>
+        <div class="flex justify-between mt-4">
+          <a href="sapficodemo.html" class="text-blue-600">Demo</a>
+          <a href="sapfico.html?course=FICO&price=1999" class="bg-black text-white px-4 py-1 rounded-full">Enroll</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="mt-16 mb-10 text-center">
+    <a href="https://wa.me/917439034248"
+      class="bg-green-500 text-white px-6 py-3 rounded-full shadow hover:bg-green-600 transition">
+      💬 WhatsApp 7439034248
     </a>
   </div>
 
-  <a href="sap4hana.html?course=SAP 4 HANA&price=1999"
-    class="bg-orange-500 text-white px-3 py-1 rounded">
-    View
-  </a>
-</div>
-
-<!-- SAP FICO -->
-<div class="course-card flex gap-4 items-center bg-white p-4 rounded-xl shadow" data-price="1999">
-  <img src="https://via.placeholder.com/80" class="w-20 h-20 rounded-lg">
-  
-  <div class="flex-1">
-    <h2 class="font-semibold">SAP FICO</h2>
-    <p class="text-green-600 text-xs emi-text"></p>
-    
-    <a href="sapficodemo.html" class="text-blue-600 text-sm">
-      ▶ Demo
-    </a>
-  </div>
-
-  <a href="sapfico.html?course=SAP FICO&price=1999"
-    class="bg-orange-500 text-white px-3 py-1 rounded">
-    View
-  </a>
-</div>
-
-  </div>
-
-  <!-- EMI SCRIPT -->
+  <!-- EMI -->
   <script>
-    document.querySelectorAll(".course-card").forEach(card => {
-      const price = parseFloat(card.getAttribute("data-price"));
-      const emiText = card.querySelector(".emi-text");
-
+    document.querySelectorAll(".emi-text").forEach(el => {
+      const price = parseFloat(el.dataset.price);
       if (price > 99) {
-        const emi = Math.ceil(price / 6);
-        emiText.innerText = `EMI from ₹${emi}/month`;
+        el.innerText = `EMI from ₹${Math.ceil(price/6)}/month`;
       }
     });
+  </script>
+
+  <!-- SCROLL -->
+  <script>
+    function reveal() {
+      document.querySelectorAll(".reveal").forEach((el, i) => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+          setTimeout(()=>el.classList.add("active"), i*100);
+        }
+      });
+    }
+    window.addEventListener("scroll", reveal);
+    window.addEventListener("load", reveal);
   </script>
 
 </body>
