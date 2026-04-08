@@ -685,10 +685,10 @@
 
     @media (max-width: 760px) {
       .page-shell {
-        width: min(100% - 16px, 100%);
-        margin: 8px auto;
-        padding: 14px 12px 22px;
-        border-radius: 24px;
+        width: min(100% - 12px, 100%);
+        margin: 6px auto;
+        padding: 12px 10px 18px;
+        border-radius: 20px;
       }
 
       .topbar,
@@ -703,19 +703,23 @@
       .nav,
       .top-actions {
         justify-content: center;
-        gap: 12px;
+        gap: 10px;
       }
 
       .nav {
-        gap: 14px;
+        gap: 10px 16px;
+      }
+
+      .nav a {
+        font-size: 0.98rem;
       }
 
       .hero {
         display: grid;
-        gap: 12px;
-        padding: 20px 16px;
+        gap: 10px;
+        padding: 18px 12px 14px;
         min-height: auto;
-        border-radius: 24px;
+        border-radius: 20px;
       }
 
       .hero-copy {
@@ -729,42 +733,70 @@
       }
 
       .hero-copy h1 {
-        margin-bottom: 12px;
-        font-size: clamp(1.9rem, 9vw, 2.8rem);
+        margin-bottom: 10px;
+        font-size: clamp(1.8rem, 8.2vw, 2.45rem);
+        line-height: 1.02;
+        max-width: 11ch;
       }
 
       .hero-copy p {
-        margin-bottom: 18px;
-        font-size: 0.95rem;
-        line-height: 1.55;
+        margin-bottom: 14px;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        max-width: 34ch;
+      }
+
+      .hero-kicker {
+        margin-bottom: 12px;
+        padding: 7px 12px;
+        font-size: 0.8rem;
       }
 
       .hero-buttons {
         justify-content: center;
-        margin-bottom: 16px;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .btn,
+      .toggle-btn {
+        padding: 12px 18px;
+        font-size: 0.92rem;
       }
 
       .hero-stats {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 8px;
       }
 
       .hero-stat {
         min-width: 0;
+        padding: 12px 14px;
+        border-radius: 16px;
+      }
+
+      .hero-stat strong {
+        font-size: 1rem;
+      }
+
+      .hero-stat span {
+        font-size: 0.82rem;
       }
 
       .hero-visual {
-        min-height: 290px;
-        padding: 8px 8px 16px;
+        min-height: 250px;
+        padding: 6px 6px 10px;
       }
 
       .hero-image {
-        width: min(62vw, 220px);
+        width: min(60vw, 200px);
+        border-width: 8px;
+        border-radius: 20px;
       }
 
       .orbital-bg {
-        inset: 12% 16%;
+        inset: 12% 18%;
       }
 
       .hero::before,
@@ -780,47 +812,108 @@
       }
 
       .sections {
-        gap: 14px;
-        margin-top: 8px;
+        gap: 12px;
+        margin-top: 6px;
       }
 
       .ad-panel {
-        padding: 18px;
-        border-radius: 20px;
+        padding: 16px;
+        border-radius: 18px;
         min-height: auto;
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 14px;
       }
 
       .ad-panel h2 {
         margin-bottom: 8px;
+        font-size: 1.3rem;
       }
 
       .ad-panel p {
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         line-height: 1.5;
+        font-size: 0.9rem;
       }
 
       .ad-panel {
-        min-height: 180px;
+        min-height: 160px;
       }
 
       .ad-media {
-        min-height: 180px;
+        min-height: 150px;
+        border-radius: 18px;
       }
 
       .offer-pill {
-        padding: 8px 14px;
-        font-size: 0.82rem;
-      }
-
-      .marquee-item {
-        padding: 12px 18px;
+        padding: 8px 12px;
         font-size: 0.78rem;
       }
 
+      .marquee-item {
+        padding: 10px 16px;
+        font-size: 0.72rem;
+        letter-spacing: 0.02em;
+      }
+
       .footer-note {
-        padding-top: 14px;
+        padding-top: 12px;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .brand {
+        font-size: 1.2rem;
+      }
+
+      .nav {
+        gap: 8px 12px;
+      }
+
+      .nav a {
+        font-size: 0.9rem;
+      }
+
+      .hero {
+        padding: 16px 10px 12px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(1.6rem, 8vw, 2.1rem);
+      }
+
+      .hero-copy p {
+        font-size: 0.88rem;
+      }
+
+      .btn,
+      .toggle-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 11px 16px;
+        font-size: 0.88rem;
+      }
+
+      .hero-buttons {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 220px;
+      }
+
+      .hero-image {
+        width: min(64vw, 180px);
+      }
+
+      .ad-panel h2 {
+        font-size: 1.15rem;
+      }
+
+      .ad-panel p,
+      .ad-upload-text,
+      .ad-placeholder {
         font-size: 0.84rem;
       }
     }
@@ -951,7 +1044,7 @@
       </section>
     </main>
 
-    <p class="footer-note">2025:All Rights Reserved</p>
+    <p class="footer-note">Responsive landing page created in a single file: index.html</p>
   </div>
 
   <script>
