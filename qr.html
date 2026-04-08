@@ -7,7 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    /* ===== Animations ===== */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
@@ -38,144 +37,114 @@
 
     .float { animation: floatY 4s ease-in-out infinite; }
     .glow-pulse { animation: pulseGlow 3s ease-in-out infinite; }
-
-    /* Magnetic button */
-    .magnetic {
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .magnetic:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 12px 30px rgba(16,185,129,.35);
-    }
-
-    /* Glass hover */
-    .glass:hover {
-      background: rgba(255,255,255,.85);
-    }
   </style>
 </head>
 
 <body class="bg-gradient-to-br from-blue-100 via-white to-gray-200 min-h-screen text-gray-800 overflow-x-hidden">
 
-  <!-- BACKGROUND BLOBS -->
-  <div class="pointer-events-none fixed inset-0 -z-10">
-    <div class="absolute w-72 h-72 bg-blue-300/30 rounded-full blur-3xl top-10 left-10 animate-[blobMove_10s_ease-in-out_infinite]"></div>
-    <div class="absolute w-72 h-72 bg-green-300/30 rounded-full blur-3xl bottom-10 right-10 animate-[blobMove_12s_ease-in-out_infinite]"></div>
-  </div>
+<!-- HEADER -->
+<div class="flex justify-between items-center p-4 sm:p-6 fade-up">
+  <button onclick="goBack()" class="text-orange-500 text-sm hover:underline">
+    ← Back
+  </button>
 
-  <!-- HEADER -->
-  <div class="flex justify-between items-center p-4 sm:p-6 fade-up">
-    <button onclick="goBack()" class="text-orange-500 text-sm hover:underline">
-      ← Back
+  <a href="https://wa.me/917439034248?text=Hi I want help with payment"
+    class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 shadow-md">
+    WhatsApp
+  </a>
+</div>
+
+<!-- TITLE -->
+<div class="text-center mt-6 fade-up delay-1">
+  <h1 class="text-3xl sm:text-4xl font-bold">Pay via QR Code</h1>
+  <p class="text-gray-500 mt-2">Secure & instant payment experience</p>
+</div>
+
+<!-- MAIN -->
+<div class="max-w-6xl mx-auto px-4 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+  <!-- LEFT -->
+  <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-6 text-center fade-up delay-2">
+
+    <img src="qr.png" class="w-48 mx-auto rounded-xl shadow mb-4">
+
+    <p class="text-sm text-gray-600 mb-3">
+      Scan with any UPI app (GPay, PhonePe, Paytm)
+    </p>
+
+    <p class="text-red-500 font-semibold text-sm mb-5">
+      ⚠️ After payment, send screenshot on WhatsApp
+    </p>
+
+    <!-- COURSE -->
+    <select id="course"
+      class="w-full p-3 rounded-xl border border-gray-300 mb-3 text-sm">
+
+      <option value="">🎯 Select Course</option>
+
+      <option value="MS Basic - ₹499">MS Basic - ₹499</option>
+      <option value="Advanced Excel - ₹999">Advanced Excel - ₹999</option>
+      <option value="Tally + GST - ₹1499">Tally + GST - ₹1499</option>
+      <option value="Power BI - ₹1999">Power BI - ₹1999</option>
+      <option value="Peachtree - ₹999">Peachtree - ₹999</option>
+
+      <option value="🔥 Combo Offer - ₹1999">🔥 Combo Offer - ₹1999</option>
+      <option value="🔥 Full Bundle - ₹2999">🔥 Full Bundle - ₹2999</option>
+    </select>
+
+    <!-- EMAIL -->
+    <input id="email" type="email" placeholder="Enter your Email"
+      class="w-full p-3 rounded-xl border border-gray-300 mb-3 text-sm">
+
+    <!-- BUTTON -->
+    <button onclick="sendWhatsApp()"
+      class="bg-green-500 w-full text-white py-3 rounded-xl shadow hover:bg-green-600">
+
+      🚀 Confirm Payment
     </button>
 
-    <a href="https://wa.me/917439034248?text=Hi I want help with payment"
-      class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition shadow-md">
-      WhatsApp
-    </a>
   </div>
 
-  <!-- TITLE -->
-  <div class="text-center mt-6 fade-up delay-1">
-    <h1 class="text-3xl sm:text-4xl font-bold">Pay via QR Code</h1>
-    <p class="text-gray-500 mt-2">Secure & instant payment experience</p>
-  </div>
+  <!-- RIGHT -->
+  <div class="flex justify-center fade-up delay-3">
 
-  <!-- MAIN SECTION -->
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center fade-up delay-2">
+    <div class="relative float">
 
-    <!-- LEFT (QR CARD) -->
-    <div class="glass backdrop-blur-xl bg-white/70 border border-white/30 rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 text-center">
+      <div class="absolute inset-0 rounded-full blur-2xl bg-blue-400/30"></div>
 
-      <img src="qr.png" 
-        class="w-40 sm:w-48 md:w-52 mx-auto rounded-xl shadow-lg mb-4 hover:scale-105 transition">
+      <div class="w-64 h-64 rounded-full border-4 border-blue-500 flex items-center justify-center glow-pulse">
 
-      <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
-        Scan with any UPI app (GPay, PhonePe, Paytm)
-      </p>
-
-      <p class="text-red-500 font-semibold text-xs sm:text-sm animate-pulse mb-4 sm:mb-6">
-        ⚠️ After payment, send screenshot on WhatsApp
-      </p>
-
-     <!-- COURSE SELECT -->
-<select id="course"
-  class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 mb-3 text-sm">
-
-  <option value="">🎯 Select Course</option>
-
-  <option value="MS Basic - ₹499">MS Basic - ₹499</option>
-  <option value="Advanced Excel - ₹999">Advanced Excel - ₹999</option>
-  <option value="Tally + GST - ₹1499">Tally + GST - ₹1499</option>
-  <option value="Power BI - ₹1999">Power BI - ₹1999</option>
-  <option value="Peachtree - ₹999">Peachtree - ₹999</option>
-
-  <!-- OFFER -->
-  <option value="🔥 Combo Offer (MS + Excel + Tally) - ₹1999">🔥 Combo Offer (MS + Excel + Tally) - ₹1999</option>
-  <option value="🔥 Full Accounting Bundle - ₹2999">🔥 Full Accounting Bundle - ₹2999</option>
-
-</select>
-
-<!-- EMAIL -->
-<input id="email" type="email" placeholder="Enter your Email"
-  class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 mb-3 text-sm">
-
-<!-- BUTTON -->
-<button onclick="sendWhatsApp()"
-  class="magnetic bg-gradient-to-r from-green-500 to-green-600 w-full text-white py-3 rounded-xl shadow-lg">
-
-  🚀 Confirm Payment
-</button>
-
-    <!-- RIGHT (IMAGE SECTION) -->
-    <div class="flex justify-center items-center mt-6 lg:mt-0">
-
-      <div class="relative float fade-up delay-3">
-
-        <!-- Glow Background -->
-        <div class="absolute inset-0 rounded-full blur-2xl bg-blue-400/30 scale-110"></div>
-
-        <!-- OUTER -->
-        <div class="w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full border-4 border-blue-500 flex items-center justify-center glow-pulse">
-
-          <!-- INNER -->
-          <div class="w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border-4 border-blue-200 overflow-hidden bg-white">
-
-            <img src="student1.jpg" 
-              class="w-full h-full object-cover hover:scale-110 transition duration-500">
-
-          </div>
+        <div class="w-56 h-56 rounded-full overflow-hidden border-4 border-blue-200">
+          <img src="student1.jpg" class="w-full h-full object-cover">
         </div>
 
-        <!-- BADGE -->
-        <div class="absolute right-0 top-6 sm:top-10 bg-white px-2 sm:px-3 py-1 rounded-lg shadow text-[10px] sm:text-xs">
-          <span class="text-red-500 font-semibold">AI Powered</span><br>
-          Learning
-        </div>
+      </div>
 
-        <!-- TRUST -->
-        <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1.5 rounded-xl shadow text-[10px] sm:text-xs">
-          <span class="text-blue-600 font-bold">5000+</span> Students
-        </div>
+      <div class="absolute top-5 right-0 bg-white px-3 py-1 rounded shadow text-xs">
+        AI Powered Learning
+      </div>
 
+      <div class="absolute bottom-[-15px] left-1/2 transform -translate-x-1/2 bg-white px-3 py-1 rounded shadow text-xs">
+        <b class="text-blue-600">5000+</b> Students
       </div>
 
     </div>
 
   </div>
 
-  <!-- FOOT -->
-  <div class="text-center mt-12 text-sm text-gray-500 fade-up delay-3">
-    Trusted by thousands of learners 🚀
-  </div>
+</div>
 
-  <!-- SCRIPT -->
-  <script>
-    function goBack() {
-      window.location.href = "index.html";
-    }
+<!-- FOOT -->
+<div class="text-center mt-12 text-sm text-gray-500">
+  Trusted by thousands of learners 🚀
+</div>
 
-   <script>
+<!-- SCRIPT -->
+<script>
+function goBack() {
+  window.location.href = "index.html";
+}
+
 function sendWhatsApp() {
   const email = document.getElementById("email").value.trim();
   const course = document.getElementById("course").value;
@@ -193,7 +162,7 @@ function sendWhatsApp() {
   }
 
   if (!emailPattern.test(email)) {
-    alert("❌ Please enter a valid email");
+    alert("❌ Invalid email");
     return;
   }
 
