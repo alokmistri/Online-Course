@@ -98,16 +98,34 @@
         ⚠️ After payment, send screenshot on WhatsApp
       </p>
 
-      <input id="email" type="email" placeholder="Enter your Gmail"
-        class="w-full p-3 sm:p-3.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 mb-3 sm:mb-4 text-sm">
+     <!-- COURSE SELECT -->
+<select id="course"
+  class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 mb-3 text-sm">
 
-      <button onclick="sendWhatsApp()"
-        class="magnetic bg-gradient-to-r from-green-500 to-green-600 w-full text-white py-3 sm:py-3.5 rounded-xl shadow-lg transition text-sm sm:text-base">
+  <option value="">🎯 Select Course</option>
 
-        🚀 Confirm Payment
-      </button>
+  <option value="MS Basic - ₹499">MS Basic - ₹499</option>
+  <option value="Advanced Excel - ₹999">Advanced Excel - ₹999</option>
+  <option value="Tally + GST - ₹1499">Tally + GST - ₹1499</option>
+  <option value="Power BI - ₹1999">Power BI - ₹1999</option>
+  <option value="Peachtree - ₹999">Peachtree - ₹999</option>
 
-    </div>
+  <!-- OFFER -->
+  <option value="🔥 Combo Offer (MS + Excel + Tally) - ₹1999">🔥 Combo Offer (MS + Excel + Tally) - ₹1999</option>
+  <option value="🔥 Full Accounting Bundle - ₹2999">🔥 Full Accounting Bundle - ₹2999</option>
+
+</select>
+
+<!-- EMAIL -->
+<input id="email" type="email" placeholder="Enter your Email"
+  class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 mb-3 text-sm">
+
+<!-- BUTTON -->
+<button onclick="sendWhatsApp()"
+  class="magnetic bg-gradient-to-r from-green-500 to-green-600 w-full text-white py-3 rounded-xl shadow-lg">
+
+  🚀 Confirm Payment
+</button>
 
     <!-- RIGHT (IMAGE SECTION) -->
     <div class="flex justify-center items-center mt-6 lg:mt-0">
@@ -157,26 +175,34 @@
       window.location.href = "index.html";
     }
 
-    function sendWhatsApp() {
-      const email = document.getElementById("email").value.trim();
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+   <script>
+function sendWhatsApp() {
+  const email = document.getElementById("email").value.trim();
+  const course = document.getElementById("course").value;
 
-      if (!email) {
-        alert("⚠️ Please enter your Gmail first");
-        return;
-      }
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (!emailPattern.test(email)) {
-        alert("❌ Please enter a valid Gmail address");
-        return;
-      }
+  if (!course) {
+    alert("⚠️ Please select a course");
+    return;
+  }
 
-      const message = `Hi, I have successfully completed payment. My Gmail: ${email}`;
-      const url = `https://wa.me/917439034248?text=${encodeURIComponent(message)}`;
+  if (!email) {
+    alert("⚠️ Please enter your email");
+    return;
+  }
 
-      window.open(url, '_blank');
-    }
-  </script>
+  if (!emailPattern.test(email)) {
+    alert("❌ Please enter a valid email");
+    return;
+  }
+
+  const message = `Hi, I have completed payment.\n\nCourse: ${course}\nEmail: ${email}`;
+  const url = `https://wa.me/917439034248?text=${encodeURIComponent(message)}`;
+
+  window.open(url, '_blank');
+}
+</script>
 
 </body>
 </html>
