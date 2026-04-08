@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Demo Class</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white min-h-screen">
+
+  <!-- HEADER -->
+  <div class="flex justify-between items-center p-4 sm:p-6">
+    <button onclick="window.location.href='index.html'" 
+      class="text-orange-400 text-sm hover:underline">
+      ← Back
+    </button>
+
+    <a href="https://wa.me/917439034248?text=Hi I watched demo class"
+      class="bg-green-500 px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition">
+      WhatsApp
+    </a>
+  </div>
+
+  <!-- TITLE -->
+  <div class="text-center mt-4">
+    <h1 class="text-3xl sm:text-4xl font-bold">🎓 Free Demo Class</h1>
+    <p class="text-gray-400 mt-2">Watch before you enroll</p>
+  </div>
+
+  <!-- VIDEO SECTION -->
+  <div class="max-w-4xl mx-auto mt-10 px-4">
+
+    <div class="bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+
+      <video 
+        id="videoPlayer"
+        class="w-full"
+        controls
+        controlsList="nodownload"
+        oncontextmenu="return false">
+
+        <source src="demo.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
+
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="text-center mt-10">
+    <a href="graboffer.html"
+      class="bg-orange-500 px-6 py-3 rounded-xl font-semibold hover:scale-105 transition inline-block">
+      🚀 Enroll Now
+    </a>
+  </div>
+
+  <!-- 🔒 LOCK POPUP -->
+  <div id="lockPopup" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+
+    <div class="bg-white text-black p-6 rounded-xl text-center max-w-sm">
+
+      <h2 class="text-xl font-bold mb-2">🔒 Demo Limit Reached</h2>
+
+      <p class="text-sm mb-4">
+        To continue watching full course, please enroll now.
+      </p>
+
+      <a href="graboffer.html"
+        class="bg-orange-500 text-white px-5 py-2 rounded-lg inline-block hover:scale-105 transition">
+        🚀 Unlock Full Course
+      </a>
+
+      <button onclick="closePopup()" 
+        class="block mt-3 text-sm text-gray-500">
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const video = document.getElementById("videoPlayer");
+
+    // Disable right click
+    video.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Disable shortcuts
+    document.addEventListener("keydown", function(e) {
+      if (e.ctrlKey && (e.key === 's' || e.key === 'u')) {
+        e.preventDefault();
+      }
+    });
+
+    // 🔥 LOCK AFTER 2 MINUTES
+    video.addEventListener("timeupdate", function () {
+      if (video.currentTime >= 120) {
+        video.pause();
+        video.currentTime = 120;
+        document.getElementById("lockPopup").classList.remove("hidden");
+      }
+    });
+
+    function closePopup() {
+      document.getElementById("lockPopup").classList.add("hidden");
+    }
+  </script>
+
+</body>
+</html>
