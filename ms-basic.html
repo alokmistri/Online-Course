@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MS-Basic Course</title>
+  <style>
+    :root {
+      --bg: #070707;
+      --panel: rgba(13, 13, 13, 0.92);
+      --panel-soft: rgba(19, 19, 19, 0.88);
+      --line: rgba(255, 255, 255, 0.06);
+      --text: #f4f1ea;
+      --muted: #9a948b;
+      --accent: #df2d1f;
+      --accent-soft: rgba(223, 45, 31, 0.18);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.48);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(112, 44, 14, 0.22), transparent 24%),
+        radial-gradient(circle at 80% 20%, rgba(68, 12, 10, 0.18), transparent 26%),
+        linear-gradient(135deg, #120d0b 0%, #080808 45%, #050505 100%);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0 16.5%, rgba(255, 255, 255, 0.025) 16.5% 16.8%, transparent 16.8% 46%,
+        rgba(255, 255, 255, 0.025) 46% 46.3%, transparent 46.3% 76%, rgba(255, 255, 255, 0.025) 76% 76.3%, transparent 76.3%),
+        linear-gradient(180deg, transparent 0 49.6%, rgba(255, 255, 255, 0.03) 49.6% 50%, transparent 50%);
+      opacity: 0.34;
+      pointer-events: none;
+    }
+
+    .page {
+      width: min(1240px, calc(100% - 28px));
+      margin: 34px auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .frame {
+      position: relative;
+      min-height: calc(100vh - 68px);
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 14%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent 40%),
+        var(--panel);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 16% 14%, rgba(223, 45, 31, 0.12), transparent 18%),
+        radial-gradient(circle at 83% 70%, rgba(223, 45, 31, 0.08), transparent 18%);
+      pointer-events: none;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr) 150px;
+      min-height: calc(100vh - 68px);
+    }
+
+    .sidebar,
+    .rightbar {
+      position: relative;
+      padding: 28px 18px;
+      background: rgba(10, 10, 10, 0.88);
+      border-right: 1px solid var(--line);
+      z-index: 1;
+    }
+
+    .rightbar {
+      border-right: 0;
+      border-left: 1px solid var(--line);
+    }
+
+    .brand {
+      font-size: 0.72rem;
+      letter-spacing: 0.28rem;
+      text-transform: uppercase;
+      color: #f0ebe1;
+      margin-bottom: 54px;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      margin-bottom: 30px;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .back-link:hover {
+      color: var(--text);
+      transform: translateX(-2px);
+    }
+
+    .side-menu {
+      display: grid;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .side-menu a,
+    .support-mini {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.08rem;
+      text-transform: uppercase;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .side-menu a:hover,
+    .support-mini:hover {
+      color: var(--text);
+      transform: translateX(4px);
+    }
+
+    .support-mini {
+      margin-top: auto;
+      display: inline-block;
+    }
+
+    .right-label {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.16rem;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+
+    .right-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 16px rgba(223, 45, 31, 0.7);
+    }
+
+    .poster-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .poster-mini {
+      height: 124px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.5)),
+        url("excel.jpg") center/cover no-repeat;
+      filter: grayscale(0.15) brightness(0.74);
+      transform: translateX(18px) scale(0.95);
+      opacity: 0.72;
+      transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
+      animation: posterFloat 6s ease-in-out infinite;
+    }
+
+    .poster-mini:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .poster-mini:nth-child(3) {
+      animation-delay: 2s;
+    }
+
+    .poster-mini.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      filter: grayscale(0) brightness(0.95);
+      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.34);
+    }
+
+    .content {
+      position: relative;
+      padding: 34px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .top-title {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.34rem;
+      text-transform: uppercase;
+      color: var(--accent);
+      z-index: 3;
+    }
+
+    .slider-shell {
+      position: relative;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .slider-shell::before,
+    .slider-shell::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line);
+      opacity: 0.6;
+    }
+
+    .slider-shell::before {
+      left: 22%;
+    }
+
+    .slider-shell::after {
+      right: 18%;
+    }
+
+    .slide-row {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      gap: 14px;
+      width: 100%;
+      min-height: 420px;
+      justify-content: center;
+      padding: 20px 10px;
+    }
+
+    .course-card {
+      position: relative;
+      width: 72px;
+      height: 320px;
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.62)),
+        url("excel.jpg") center/cover no-repeat;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: width 0.7s ease, transform 0.7s ease, filter 0.7s ease, opacity 0.7s ease;
+      filter: grayscale(0.18) brightness(0.68);
+      opacity: 0.78;
+      animation: panelRise 1s ease both;
+    }
+
+    .course-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.7)),
+        linear-gradient(0deg, rgba(223, 45, 31, 0.16), transparent 42%);
+      transition: opacity 0.5s ease;
+    }
+
+    .course-card.active {
+      width: 210px;
+      transform: translateY(-8px);
+      filter: grayscale(0) brightness(1);
+      opacity: 1;
+      box-shadow: 0 30px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .course-card.active::before {
+      opacity: 0.7;
+    }
+
+    .card-title {
+      position: absolute;
+      left: 50%;
+      bottom: 26px;
+      transform: translateX(-50%) rotate(-90deg);
+      transform-origin: center;
+      white-space: nowrap;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.08rem;
+      color: #f7f1e7;
+      text-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.7s ease, bottom 0.7s ease, left 0.7s ease;
+      z-index: 1;
+    }
+
+    .course-card.active .card-title {
+      left: 24px;
+      bottom: 24px;
+      transform: translateX(0) rotate(0deg);
+    }
+
+    .card-copy {
+      position: absolute;
+      left: 24px;
+      right: 20px;
+      bottom: 58px;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: rgba(247, 241, 231, 0.84);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease 0.18s, transform 0.45s ease 0.18s;
+      z-index: 1;
+    }
+
+    .course-card.active .card-copy {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card-index {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18rem;
+      color: rgba(255, 255, 255, 0.7);
+      z-index: 1;
+    }
+
+    .info-panel {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 18px;
+    }
+
+    .intro-box,
+    .stat-box {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .intro-box h1 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      margin-bottom: 12px;
+      letter-spacing: 0.02rem;
+    }
+
+    .intro-box p,
+    .stat-box p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .stat-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .stat-box strong {
+      font-size: 2.8rem;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .controls {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 3;
+    }
+
+    .control-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.03);
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .control-btn:hover {
+      background: var(--accent-soft);
+      border-color: rgba(223, 45, 31, 0.36);
+      transform: translateY(-2px);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 18px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, #19b958, #25d366);
+      border-radius: 999px;
+      box-shadow: 0 18px 36px rgba(25, 185, 88, 0.35);
+      font-weight: 700;
+      letter-spacing: 0.03rem;
+      animation: supportPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes panelRise {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes posterFloat {
+      0%,
+      100% {
+        transform: translateX(18px) scale(0.95);
+      }
+      50% {
+        transform: translateX(10px) scale(0.97);
+      }
+    }
+
+    @keyframes supportPulse {
+      0%,
+      100% {
+        box-shadow: 0 18px 36px rgba(25, 185, 88, 0.35);
+        transform: translateY(0);
+      }
+      50% {
+        box-shadow: 0 24px 44px rgba(37, 211, 102, 0.5);
+        transform: translateY(-4px);
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .layout {
+        grid-template-columns: 110px minmax(0, 1fr) 116px;
+      }
+
+      .course-card.active {
+        width: 180px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .frame,
+      .layout {
+        min-height: auto;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar,
+      .rightbar {
+        border: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .rightbar {
+        border-top: 1px solid var(--line);
+      }
+
+      .poster-stack {
+        flex-direction: row;
+        margin-top: 18px;
+      }
+
+      .poster-mini {
+        flex: 1;
+        min-width: 0;
+        transform: none;
+      }
+
+      .slider-shell {
+        min-height: 460px;
+      }
+
+      .slide-row {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 16px;
+      }
+
+      .info-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 14px, 1240px);
+        margin: 12px auto 82px;
+      }
+
+      .frame {
+        border-radius: 24px;
+      }
+
+      .content {
+        padding: 58px 14px 26px;
+      }
+
+      .top-title {
+        top: 18px;
+        font-size: 0.78rem;
+        letter-spacing: 0.22rem;
+      }
+
+      .slider-shell {
+        min-height: 380px;
+      }
+
+      .slide-row {
+        gap: 10px;
+      }
+
+      .course-card {
+        width: 58px;
+        height: 260px;
+      }
+
+      .course-card.active {
+        width: 150px;
+      }
+
+      .card-copy {
+        left: 14px;
+        right: 12px;
+        bottom: 52px;
+        font-size: 0.75rem;
+      }
+
+      .course-card.active .card-title {
+        left: 14px;
+      }
+
+      .whatsapp-float {
+        right: 12px;
+        left: 12px;
+        bottom: 12px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="frame">
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="brand">MS <span>Basic</span></div>
+          <a class="back-link" href="index.html">← Back</a>
+          <nav class="side-menu">
+            <a href="#topics">Topics</a>
+            <a href="#course">Course</a>
+            <a href="#support">Support</a>
+          </nav>
+        </aside>
+
+        <main class="content">
+          <div class="top-title">MS-Basic</div>
+
+          <section class="slider-shell" id="topics">
+            <div class="slide-row">
+              <article class="course-card active" data-title="Computer" data-copy="Computer basics, device understanding, and file handling for absolute beginners.">
+                <div class="card-index">01</div>
+                <div class="card-copy">Computer basics, device understanding, and file handling for absolute beginners.</div>
+                <div class="card-title">Computer</div>
+              </article>
+
+              <article class="course-card" data-title="Windows" data-copy="Desktop, folder management, shortcuts, settings, and practical system use.">
+                <div class="card-index">02</div>
+                <div class="card-copy">Desktop, folder management, shortcuts, settings, and practical system use.</div>
+                <div class="card-title">Windows</div>
+              </article>
+
+              <article class="course-card" data-title="Typing" data-copy="Keyboard practice, typing speed improvement, and shortcut key usage.">
+                <div class="card-index">03</div>
+                <div class="card-copy">Keyboard practice, typing speed improvement, and shortcut key usage.</div>
+                <div class="card-title">Typing</div>
+              </article>
+
+              <article class="course-card" data-title="MS Word" data-copy="Document making, text formatting, tables, page setup, and office-style writing.">
+                <div class="card-index">04</div>
+                <div class="card-copy">Document making, text formatting, tables, page setup, and office-style writing.</div>
+                <div class="card-title">MS Word</div>
+              </article>
+
+              <article class="course-card" data-title="MS Excel" data-copy="Rows, columns, formulas, calculations, data formatting, and worksheet basics.">
+                <div class="card-index">05</div>
+                <div class="card-copy">Rows, columns, formulas, calculations, data formatting, and worksheet basics.</div>
+                <div class="card-title">MS Excel</div>
+              </article>
+
+              <article class="course-card" data-title="PowerPoint" data-copy="Slides, transitions, image use, presentation structure, and slideshow viewing.">
+                <div class="card-index">06</div>
+                <div class="card-copy">Slides, transitions, image use, presentation structure, and slideshow viewing.</div>
+                <div class="card-title">PowerPoint</div>
+              </article>
+
+              <article class="course-card" data-title="Internet" data-copy="Browsing, searching, downloading, and safe internet practices for daily work.">
+                <div class="card-index">07</div>
+                <div class="card-copy">Browsing, searching, downloading, and safe internet practices for daily work.</div>
+                <div class="card-title">Internet</div>
+              </article>
+            </div>
+
+            <div class="controls">
+              <button class="control-btn" id="prevBtn" type="button" aria-label="Previous slide">←</button>
+              <button class="control-btn" id="nextBtn" type="button" aria-label="Next slide">→</button>
+            </div>
+          </section>
+
+          <section class="info-panel" id="course">
+            <div class="intro-box">
+              <h1>Which Topic Covers By MS-Basic Course</h1>
+              <p>
+                This page now follows a dark poster-slider style like your sample image. Each vertical panel represents one core topic,
+                and the active panel opens to reveal what students will learn in the MS-Basic course.
+              </p>
+            </div>
+
+            <div class="stat-box">
+              <strong>07</strong>
+              <p>Main learning topics in one beginner-friendly course.</p>
+            </div>
+          </section>
+        </main>
+
+        <aside class="rightbar" id="support">
+          <div class="right-label">Support</div>
+          <div class="poster-stack">
+            <div class="poster-mini active"></div>
+            <div class="poster-mini"></div>
+            <div class="poster-mini"></div>
+          </div>
+          <div style="margin-top: 28px; color: var(--muted); font-size: 0.82rem; line-height: 1.8;">
+            Need help with admission or course details?
+          </div>
+          <a class="support-mini" href="https://wa.me/917439034248" target="_blank" rel="noopener noreferrer" style="margin-top: 16px;">
+            WhatsApp 7439034248
+          </a>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <a class="whatsapp-float" href="https://wa.me/917439034248" target="_blank" rel="noopener noreferrer">
+    WhatsApp Support
+  </a>
+
+  <script>
+    const cards = Array.from(document.querySelectorAll(".course-card"));
+    const miniPosters = Array.from(document.querySelectorAll(".poster-mini"));
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    let activeIndex = 0;
+    let autoRotate;
+
+    function setActiveCard(index) {
+      cards.forEach((card, i) => {
+        card.classList.toggle("active", i === index);
+      });
+
+      miniPosters.forEach((poster, i) => {
+        poster.classList.toggle("active", i === index % miniPosters.length);
+      });
+
+      activeIndex = index;
+    }
+
+    function showNext() {
+      setActiveCard((activeIndex + 1) % cards.length);
+    }
+
+    function showPrev() {
+      setActiveCard((activeIndex - 1 + cards.length) % cards.length);
+    }
+
+    function restartAutoRotate() {
+      clearInterval(autoRotate);
+      autoRotate = setInterval(showNext, 2600);
+    }
+
+    cards.forEach((card, index) => {
+      card.addEventListener("click", () => {
+        setActiveCard(index);
+        restartAutoRotate();
+      });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      showPrev();
+      restartAutoRotate();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      showNext();
+      restartAutoRotate();
+    });
+
+    setActiveCard(0);
+    restartAutoRotate();
+  </script>
+</body>
+</html>
