@@ -3,110 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Demo Class</title>
+  <title>Demo Classes</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white min-h-screen">
+<body class="bg-gradient-to-br from-[#d9dde3] via-[#eef1f5] to-[#f8f9fb] text-gray-800 min-h-screen">
 
   <!-- HEADER -->
-  <div class="flex justify-between items-center p-4 sm:p-6">
-    <button onclick="window.location.href='index.html'" 
-      class="text-orange-400 text-sm hover:underline">
+  <div class="flex justify-between items-center p-4">
+    <button onclick="window.location.href='index.html'" class="text-orange-500 text-sm">
       ← Back
     </button>
-
-    <a href="https://wa.me/917439034248?text=Hi I watched demo class and I Am Interested Pls Guide Me For Payment"
-      class="bg-green-500 px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition">
-      WhatsApp
-    </a>
+    <h1 class="font-bold text-gray-800">Demo Classes</h1>
   </div>
 
   <!-- TITLE -->
   <div class="text-center mt-4">
-    <h1 class="text-3xl sm:text-4xl font-bold">🎓 Free Demo Class</h1>
-    <p class="text-gray-400 mt-2">Watch before you enroll</p>
+    <h1 class="text-3xl font-bold text-gray-800">🎓 Watch Demo Classes</h1>
+    <p class="text-gray-500 mt-2">Try before you enroll</p>
   </div>
 
-  <!-- VIDEO SECTION -->
-  <div class="max-w-4xl mx-auto mt-10 px-4">
+  <!-- LIST -->
+  <div class="max-w-4xl mx-auto mt-8 px-4 space-y-4">
 
-    <div class="bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+    <!-- CARD STYLE -->
+    <!-- MS BASIC -->
+    <div class="relative course-card bg-white/60 backdrop-blur-xl border border-gray-200 rounded-xl p-4 flex justify-between items-center shadow hover:shadow-lg transition" data-price="499">
+      <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">EMI AVAILABLE</div>
+      <div>
+        <h2 class="font-semibold">1. MS Basic</h2>
+        <p class="text-xs text-green-600 emi-text"></p>
+        <a href="msbasicdemo.html" class="text-blue-600 text-sm hover:underline">▶ Demo</a>
+      </div>
+      <a href="enroll.html?course=MS Basic&price=499" class="bg-orange-500 text-white px-4 py-1 rounded text-sm hover:scale-105 transition">View</a>
+    </div>
 
-      <video 
-        id="videoPlayer"
-        class="w-full"
-        controls
-        controlsList="nodownload"
-        oncontextmenu="return false">
+    <!-- EXCEL -->
+    <div class="relative course-card bg-white/60 backdrop-blur-xl border border-gray-200 rounded-xl p-4 flex justify-between items-center shadow hover:shadow-lg transition" data-price="999">
+      <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">EMI AVAILABLE</div>
+      <div>
+        <h2 class="font-semibold">2. Advanced Excel</h2>
+        <p class="text-xs text-green-600 emi-text"></p>
+        <a href="exceldemo.html" class="text-blue-600 text-sm hover:underline">▶ Demo</a>
+      </div>
+      <a href="enroll.html?course=Advanced Excel&price=999" class="bg-orange-500 text-white px-4 py-1 rounded text-sm">View</a>
+    </div>
 
-        <source src="demo.mp4" type="video/mp4">
-        Your browser does not support video.
-      </video>
+    <!-- TALLY -->
+    <div class="relative course-card bg-white/60 backdrop-blur-xl border border-gray-200 rounded-xl p-4 flex justify-between items-center shadow hover:shadow-lg transition" data-price="1499">
+      <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">EMI AVAILABLE</div>
+      <div>
+        <h2 class="font-semibold">3. Tally (Prime) + GST</h2>
+        <p class="text-xs text-green-600 emi-text"></p>
+        <a href="tallydemo.html" class="text-blue-600 text-sm hover:underline">▶ Demo</a>
+      </div>
+      <a href="enroll.html?course=Tally GST&price=1499" class="bg-orange-500 text-white px-4 py-1 rounded text-sm">View</a>
+    </div>
 
+    <!-- POWER BI -->
+    <div class="relative course-card bg-white/60 backdrop-blur-xl border border-gray-200 rounded-xl p-4 flex justify-between items-center shadow hover:shadow-lg transition" data-price="1999">
+      <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">EMI AVAILABLE</div>
+      <div>
+        <h2 class="font-semibold">4. Power BI</h2>
+        <p class="text-xs text-green-600 emi-text"></p>
+        <a href="powerbidemo.html" class="text-blue-600 text-sm hover:underline">▶ Demo</a>
+      </div>
+      <a href="enroll.html?course=Power BI&price=1999" class="bg-orange-500 text-white px-4 py-1 rounded text-sm">View</a>
+    </div>
+
+    <!-- PEACHTREE -->
+    <div class="relative course-card bg-white/60 backdrop-blur-xl border border-gray-200 rounded-xl p-4 flex justify-between items-center shadow hover:shadow-lg transition" data-price="999">
+      <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">EMI AVAILABLE</div>
+      <div>
+        <h2 class="font-semibold">5. Peachtree</h2>
+        <p class="text-xs text-green-600 emi-text"></p>
+        <a href="peachtreedemo.html" class="text-blue-600 text-sm hover:underline">▶ Demo</a>
+      </div>
+      <a href="enroll.html?course=Peachtree&price=999" class="bg-orange-500 text-white px-4 py-1 rounded text-sm">View</a>
+    </div>
+
+    <!-- MS ACCESS -->
+    <div class="bg-white/60 backdrop-blur-xl border border-gray-200 rounded-xl p-4 flex justify-between items-center shadow">
+      <div>
+        <h2 class="font-semibold">6. MS Access</h2>
+        <p class="text-xs text-gray-500">No EMI Available</p>
+        <a href="msaccessdemo.html" class="text-blue-600 text-sm hover:underline">▶ Demo</a>
+      </div>
+      <a href="enroll.html?course=MS Access&price=99" class="bg-orange-500 text-white px-4 py-1 rounded text-sm">View</a>
+    </div>
+
+    <!-- SAP HANA -->
+    <div class="relative course-card bg-white/60 backdrop-blur-xl border border-gray-200 rounded-xl p-4 flex justify-between items-center shadow hover:shadow-lg transition" data-price="1999">
+      <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">EMI AVAILABLE</div>
+      <div>
+        <h2 class="font-semibold">7. SAP 4 HANA</h2>
+        <p class="text-xs text-green-600 emi-text"></p>
+        <a href="sap4hanademo.html" class="text-blue-600 text-sm hover:underline">▶ Demo</a>
+      </div>
+      <a href="enroll.html?course=SAP HANA&price=1999" class="bg-orange-500 text-white px-4 py-1 rounded text-sm">View</a>
+    </div>
+
+    <!-- SAP FICO -->
+    <div class="relative course-card bg-white/60 backdrop-blur-xl border border-gray-200 rounded-xl p-4 flex justify-between items-center shadow hover:shadow-lg transition" data-price="1999">
+      <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">EMI AVAILABLE</div>
+      <div>
+        <h2 class="font-semibold">8. SAP FICO</h2>
+        <p class="text-xs text-green-600 emi-text"></p>
+        <a href="sapficodemo.html" class="text-blue-600 text-sm hover:underline">▶ Demo</a>
+      </div>
+      <a href="enroll.html?course=SAP FICO&price=1999" class="bg-orange-500 text-white px-4 py-1 rounded text-sm">View</a>
     </div>
 
   </div>
 
-  <!-- CTA -->
-  <div class="text-center mt-10">
-    <a href="index.html"
-      class="bg-orange-500 px-6 py-3 rounded-xl font-semibold hover:scale-105 transition inline-block">
-      🚀 Enroll Now
-    </a>
-  </div>
-
-  <!-- 🔒 LOCK POPUP -->
-  <div id="lockPopup" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-
-    <div class="bg-white text-black p-6 rounded-xl text-center max-w-sm">
-
-      <h2 class="text-xl font-bold mb-2">🔒 Demo Limit Reached</h2>
-
-      <p class="text-sm mb-4">
-        To continue watching full course, please enroll now.
-      </p>
-
-      <a href="index.html"
-        class="bg-orange-500 text-white px-5 py-2 rounded-lg inline-block hover:scale-105 transition">
-        🚀 Unlock Full Course
-      </a>
-
-      <button onclick="closePopup()" 
-        class="block mt-3 text-sm text-gray-500">
-        Close
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- SCRIPT -->
+  <!-- EMI SCRIPT -->
   <script>
-    const video = document.getElementById("videoPlayer");
+    document.querySelectorAll(".course-card").forEach(card => {
+      const price = parseFloat(card.getAttribute("data-price"));
+      const emiText = card.querySelector(".emi-text");
 
-    // Disable right click
-    video.addEventListener("contextmenu", e => e.preventDefault());
-
-    // Disable shortcuts
-    document.addEventListener("keydown", function(e) {
-      if (e.ctrlKey && (e.key === 's' || e.key === 'u')) {
-        e.preventDefault();
+      if (price && price > 99) {
+        const emi = Math.ceil(price / 6);
+        emiText.innerText = `EMI from ₹${emi}/month`;
       }
     });
-
-    // 🔥 LOCK AFTER 2 MINUTES
-    video.addEventListener("timeupdate", function () {
-      if (video.currentTime >= 120) {
-        video.pause();
-        video.currentTime = 120;
-        document.getElementById("lockPopup").classList.remove("hidden");
-      }
-    });
-
-    function closePopup() {
-      document.getElementById("lockPopup").classList.add("hidden");
-    }
   </script>
 
 </body>
