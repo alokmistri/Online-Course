@@ -12,16 +12,19 @@
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     @keyframes floatY {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(1deg); }
-      100% { transform: translateY(0) rotate(0deg); }
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
     }
+
     @keyframes pulseGlow {
       0% { box-shadow: 0 0 40px rgba(59,130,246,.35); }
       50% { box-shadow: 0 0 70px rgba(59,130,246,.6); }
       100% { box-shadow: 0 0 40px rgba(59,130,246,.35); }
     }
+
     @keyframes blobMove {
       0% { transform: translate(0,0) scale(1); }
       50% { transform: translate(30px,-20px) scale(1.1); }
@@ -33,19 +36,19 @@
     .delay-2 { animation-delay: .2s; }
     .delay-3 { animation-delay: .3s; }
 
-    .float { animation: floatY 5s ease-in-out infinite; }
+    .float { animation: floatY 4s ease-in-out infinite; }
     .glow-pulse { animation: pulseGlow 3s ease-in-out infinite; }
 
     /* Magnetic button */
     .magnetic {
-      transition: transform .15s ease, box-shadow .2s ease;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
     .magnetic:hover {
-      transform: translateY(-2px) scale(1.02);
+      transform: translateY(-3px) scale(1.03);
       box-shadow: 0 12px 30px rgba(16,185,129,.35);
     }
 
-    /* Glass shimmer */
+    /* Glass hover */
     .glass:hover {
       background: rgba(255,255,255,.85);
     }
@@ -78,73 +81,70 @@
     <p class="text-gray-500 mt-2">Secure & instant payment experience</p>
   </div>
 
-<!-- MAIN SECTION -->
-<div class="max-w-6xl mx-auto px-4 sm:px-6 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+  <!-- MAIN SECTION -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center fade-up delay-2">
 
-  <!-- LEFT (QR CARD) -->
-  <div class="backdrop-blur-xl bg-white/70 border border-white/30 rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 text-center">
+    <!-- LEFT (QR CARD) -->
+    <div class="glass backdrop-blur-xl bg-white/70 border border-white/30 rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 text-center">
 
-    <!-- QR -->
-    <img src="qr.png" 
-      class="w-40 sm:w-48 md:w-52 mx-auto rounded-xl shadow-lg mb-4 transition hover:scale-105">
+      <img src="qr.png" 
+        class="w-40 sm:w-48 md:w-52 mx-auto rounded-xl shadow-lg mb-4 hover:scale-105 transition">
 
-    <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
-      Scan with any UPI app (GPay, PhonePe, Paytm)
-    </p>
+      <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
+        Scan with any UPI app (GPay, PhonePe, Paytm)
+      </p>
 
-    <p class="text-red-500 font-semibold text-xs sm:text-sm animate-pulse mb-4 sm:mb-6">
-      ⚠️ After payment, send screenshot on WhatsApp
-    </p>
+      <p class="text-red-500 font-semibold text-xs sm:text-sm animate-pulse mb-4 sm:mb-6">
+        ⚠️ After payment, send screenshot on WhatsApp
+      </p>
 
-    <!-- INPUT -->
-    <input id="email" type="email" placeholder="Enter your Gmail"
-      class="w-full p-3 sm:p-3.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 mb-3 sm:mb-4 text-sm">
+      <input id="email" type="email" placeholder="Enter your Gmail"
+        class="w-full p-3 sm:p-3.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 mb-3 sm:mb-4 text-sm">
 
-    <!-- BUTTON -->
-    <button onclick="sendWhatsApp()"
-      class="bg-gradient-to-r from-green-500 to-green-600 w-full text-white py-3 sm:py-3.5 rounded-xl shadow-lg hover:scale-105 transition text-sm sm:text-base">
+      <button onclick="sendWhatsApp()"
+        class="magnetic bg-gradient-to-r from-green-500 to-green-600 w-full text-white py-3 sm:py-3.5 rounded-xl shadow-lg transition text-sm sm:text-base">
 
-      🚀 Confirm Payment
-    </button>
+        🚀 Confirm Payment
+      </button>
 
-  </div>
+    </div>
 
-  <!-- RIGHT (IMAGE SECTION) -->
-  <div class="flex justify-center items-center mt-6 lg:mt-0">
+    <!-- RIGHT (IMAGE SECTION) -->
+    <div class="flex justify-center items-center mt-6 lg:mt-0">
 
-    <div class="relative">
+      <div class="relative float fade-up delay-3">
 
-      <!-- GLOW BACKGROUND -->
-      <div class="absolute inset-0 rounded-full blur-2xl bg-blue-400/30 scale-110"></div>
+        <!-- Glow Background -->
+        <div class="absolute inset-0 rounded-full blur-2xl bg-blue-400/30 scale-110"></div>
 
-      <!-- OUTER -->
-      <div class="w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full border-4 border-blue-500 flex items-center justify-center shadow-[0_0_50px_rgba(59,130,246,0.4)]">
+        <!-- OUTER -->
+        <div class="w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full border-4 border-blue-500 flex items-center justify-center glow-pulse">
 
-        <!-- INNER -->
-        <div class="w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border-4 border-blue-200 overflow-hidden bg-white">
+          <!-- INNER -->
+          <div class="w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border-4 border-blue-200 overflow-hidden bg-white">
 
-          <img src="student1.jpg" 
-            class="w-full h-full object-cover hover:scale-110 transition duration-500">
+            <img src="student1.jpg" 
+              class="w-full h-full object-cover hover:scale-110 transition duration-500">
 
+          </div>
         </div>
-      </div>
 
-      <!-- BADGE -->
-      <div class="absolute right-0 top-6 sm:top-10 bg-white px-2 sm:px-3 py-1 rounded-lg shadow text-[10px] sm:text-xs">
-        <span class="text-red-500 font-semibold">AI Powered</span><br>
-        Learning
-      </div>
+        <!-- BADGE -->
+        <div class="absolute right-0 top-6 sm:top-10 bg-white px-2 sm:px-3 py-1 rounded-lg shadow text-[10px] sm:text-xs">
+          <span class="text-red-500 font-semibold">AI Powered</span><br>
+          Learning
+        </div>
 
-      <!-- TRUST -->
-      <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1.5 rounded-xl shadow text-[10px] sm:text-xs">
-        <span class="text-blue-600 font-bold">5000+</span> Students
+        <!-- TRUST -->
+        <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1.5 rounded-xl shadow text-[10px] sm:text-xs">
+          <span class="text-blue-600 font-bold">5000+</span> Students
+        </div>
+
       </div>
 
     </div>
 
   </div>
-
-</div>
 
   <!-- FOOT -->
   <div class="text-center mt-12 text-sm text-gray-500 fade-up delay-3">
@@ -173,6 +173,7 @@
 
       const message = `Hi, I have successfully completed payment. My Gmail: ${email}`;
       const url = `https://wa.me/917439034248?text=${encodeURIComponent(message)}`;
+
       window.open(url, '_blank');
     }
   </script>
