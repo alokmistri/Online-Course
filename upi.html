@@ -7,41 +7,20 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     @keyframes floatY {
       0% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
 
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 0 40px rgba(34,197,94,.3); }
-      50% { box-shadow: 0 0 70px rgba(34,197,94,.6); }
-      100% { box-shadow: 0 0 40px rgba(34,197,94,.3); }
-    }
-
-    .fade-up { animation: fadeUp .8s ease both; }
     .float { animation: floatY 4s ease-in-out infinite; }
-    .glow-pulse { animation: pulseGlow 3s ease-in-out infinite; }
-
-    .magnetic {
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .magnetic:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 12px 30px rgba(34,197,94,.35);
-    }
   </style>
 </head>
 
 <body class="bg-gradient-to-br from-green-100 via-white to-gray-200 min-h-screen text-gray-800">
 
 <!-- HEADER -->
-<div class="flex justify-between items-center p-4 sm:p-6 fade-up">
+<div class="flex justify-between items-center p-4 sm:p-6">
 
   <button onclick="window.location.href='index.html'" 
     class="text-green-600 text-sm hover:underline">
@@ -56,7 +35,7 @@
 </div>
 
 <!-- TITLE -->
-<div class="text-center mt-6 fade-up">
+<div class="text-center mt-6">
   <h1 class="text-3xl sm:text-4xl font-bold">Pay via UPI</h1>
   <p class="text-gray-500 mt-2">Fast & secure UPI payment</p>
 </div>
@@ -65,60 +44,54 @@
 <div class="max-w-6xl mx-auto px-4 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
   <!-- LEFT CARD -->
-  <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-6 sm:p-8 fade-up">
+  <div class="bg-white rounded-2xl shadow-lg p-6">
 
     <h2 class="text-xl font-bold text-green-600 mb-6 text-center">
       💳 UPI Payment
     </h2>
 
-    <!-- UPI BOX -->
+    <!-- UPI -->
     <div class="bg-gray-100 border rounded-xl p-4 flex justify-between items-center">
-      <span id="upiText" class="font-semibold break-all">
+      <span id="upiText" class="font-semibold">
         alokmistri69-2@oksbi
       </span>
 
       <button onclick="copyUPI()"
         class="bg-green-500 text-white px-3 py-1 rounded text-sm">
-        📋 Copy
+        Copy
       </button>
     </div>
 
     <p id="copyMsg" class="text-green-600 text-sm mt-2 hidden text-center">
-      ✅ UPI Copied!
-    </p>
-
-    <!-- WARNING -->
-    <p class="text-red-500 text-sm mt-6 text-center animate-pulse">
-      ⚠️ After payment, send screenshot on WhatsApp
+      ✅ Copied!
     </p>
 
     <!-- COURSE -->
     <select id="course"
-      class="w-full mt-6 p-3 rounded-xl border border-gray-300">
+      class="w-full mt-6 p-3 border rounded">
 
-      <option value="">🎯 Select Course</option>
-
+      <option value="">Select Course</option>
       <option value="MS Basic - ₹499">MS Basic - ₹499</option>
       <option value="Advanced Excel - ₹999">Advanced Excel - ₹999</option>
       <option value="Tally + GST - ₹1499">Tally + GST - ₹1499</option>
       <option value="Power BI - ₹1999">Power BI - ₹1999</option>
       <option value="Peachtree - ₹999">Peachtree - ₹999</option>
-
-      <option value="🔥 Combo Offer - ₹1999">🔥 Combo Offer - ₹1999</option>
-      <option value="🔥 Full Bundle - ₹2999">🔥 Full Bundle - ₹2999</option>
-
     </select>
 
     <!-- EMAIL -->
     <input id="email" type="email" placeholder="Enter your Email"
-      class="w-full mt-3 p-3 rounded-xl border border-gray-300">
+      class="w-full mt-3 p-3 border rounded">
 
     <!-- BUTTON -->
     <button onclick="sendWhatsApp()"
-      class="magnetic mt-4 w-full bg-green-500 text-white py-3 rounded-xl">
+      class="w-full mt-4 bg-green-500 text-white py-3 rounded">
 
-      🚀 Confirm Payment
+      Confirm Payment
     </button>
+
+    <p class="text-red-500 text-xs mt-3 text-center">
+      ⚠️ Send screenshot on WhatsApp
+    </p>
 
   </div>
 
@@ -127,19 +100,19 @@
 
     <div class="relative float">
 
-      <div class="w-72 h-72 rounded-full border-4 border-green-500 flex items-center justify-center glow-pulse">
+      <div class="w-64 h-64 rounded-full border-4 border-green-500 flex items-center justify-center">
 
-        <div class="w-64 h-64 rounded-full border-4 border-green-200 overflow-hidden">
+        <div class="w-56 h-56 rounded-full overflow-hidden border-4 border-green-200">
           <img src="student1.jpg" class="w-full h-full object-cover">
         </div>
 
       </div>
 
-      <div class="absolute right-0 top-10 bg-white px-3 py-1 rounded shadow text-xs">
+      <div class="absolute right-0 top-8 bg-white px-3 py-1 rounded text-xs shadow">
         Instant Payment
       </div>
 
-      <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1 rounded shadow text-xs">
+      <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1 rounded text-xs shadow">
         Trusted by Students
       </div>
 
@@ -151,6 +124,8 @@
 
 <!-- SCRIPT -->
 <script>
+
+// COPY
 function copyUPI() {
   const text = document.getElementById("upiText").innerText;
   navigator.clipboard.writeText(text);
@@ -158,11 +133,10 @@ function copyUPI() {
   const msg = document.getElementById("copyMsg");
   msg.classList.remove("hidden");
 
-  setTimeout(() => {
-    msg.classList.add("hidden");
-  }, 2000);
+  setTimeout(() => msg.classList.add("hidden"), 2000);
 }
 
+// WHATSAPP WITH DATE + TIME
 function sendWhatsApp() {
   const email = document.getElementById("email").value.trim();
   const course = document.getElementById("course").value;
@@ -170,25 +144,34 @@ function sendWhatsApp() {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!course) {
-    alert("⚠️ Please select a course");
+    alert("Select course");
     return;
   }
 
   if (!email) {
-    alert("⚠️ Please enter your email");
+    alert("Enter email");
     return;
   }
 
   if (!emailPattern.test(email)) {
-    alert("❌ Invalid email");
+    alert("Invalid email");
     return;
   }
 
-  const msg = `Hi, I have completed UPI payment.\n\nCourse: ${course}\nEmail: ${email}`;
-  const url = `https://wa.me/917439034248?text=${encodeURIComponent(msg)}`;
+  const now = new Date();
+  const date = now.toLocaleDateString();
+  const time = now.toLocaleTimeString();
 
-  window.open(url, '_blank');
+  const msg = `Hi, I have completed UPI payment.
+
+Course: ${course}
+Email: ${email}
+Date: ${date}
+Time: ${time}`;
+
+  window.open(`https://wa.me/917439034248?text=${encodeURIComponent(msg)}`);
 }
+
 </script>
 
 </body>
