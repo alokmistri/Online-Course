@@ -45,15 +45,17 @@
 
   </div>
 
+
   <!-- WHATSAPP CONFIRM BUTTON -->
   <div class="text-center mt-8">
+      <input id="email" type="email" placeholder="Enter your Gmail"
+  class="w-full max-w-sm mx-auto block p-3 rounded-lg border border-gray-300 outline-none focus:ring-2 focus:ring-green-500 mb-4">
 
-    <button onclick="sendWhatsApp()"
-      class="bg-green-500 text-white px-6 py-3 rounded-xl shadow hover:scale-105 transition">
+  <button onclick="sendWhatsApp()"
+  class="bg-green-500 text-white px-6 py-3 rounded-xl shadow hover:scale-105 transition">
 
-      📲 Send Payment Screenshot
-    </button>
-
+  📲 Send Payment Screenshot
+</button>
   </div>
 
   <!-- TRUST -->
@@ -62,21 +64,32 @@
   </div>
 
   <!-- SCRIPT -->
-  <script>
-    function goBack() {
-      window.location.href = "index.html";
-    }
+<script>
+function goBack() {
+  window.location.href = "index.html";
+}
 
-    function sendWhatsApp() {
-      const course = "Tally Course";   // 🔁 Change this
-      const amount = "1999";           // 🔁 Change this
+function sendWhatsApp() {
+  const email = document.getElementById("email").value.trim();
 
-      const message = `Hi, I have completed payment for ${course}. Amount: ₹${amount}`;
-      const url = `https://wa.me/917439034248?text=${encodeURIComponent(message)}`;
+  // EMAIL VALIDATION
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      window.open(url, '_blank');
-    }
-  </script>
+  if (!email) {
+    alert("⚠️ Please enter your Gmail first");
+    return;
+  }
 
+  if (!emailPattern.test(email)) {
+    alert("❌ Please enter a valid Gmail address");
+    return;
+  }
+
+  const message = `Hi, I have successfully completed payment. My Gmail: ${email}`;
+  const url = `https://wa.me/917439034248?text=${encodeURIComponent(message)}`;
+
+  window.open(url, '_blank');
+}
+</script>
 </body>
 </html>
