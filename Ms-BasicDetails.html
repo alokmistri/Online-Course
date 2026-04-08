@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MS-Basic Course Details</title>
+  <style>
+    :root {
+      --bg: #0f0b14;
+      --panel: rgba(16, 12, 22, 0.82);
+      --panel-strong: rgba(25, 20, 35, 0.94);
+      --text: #f6f1ff;
+      --muted: #c8bed7;
+      --primary: #ff4d4d;
+      --accent: #9b6dff;
+      --line: rgba(255, 255, 255, 0.1);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+      --overlay: linear-gradient(90deg, rgba(8, 6, 12, 0.96) 0%, rgba(10, 8, 14, 0.82) 30%, rgba(10, 8, 14, 0.42) 100%);
+      --chip: rgba(255, 255, 255, 0.08);
+      --card: rgba(255, 255, 255, 0.05);
+    }
+
+    body.bright {
+      --bg: #f4edf8;
+      --panel: rgba(255, 255, 255, 0.84);
+      --panel-strong: rgba(255, 255, 255, 0.94);
+      --text: #261b36;
+      --muted: #6e637f;
+      --primary: #ff544a;
+      --accent: #7d45ff;
+      --line: rgba(103, 72, 156, 0.12);
+      --shadow: 0 24px 60px rgba(76, 40, 137, 0.16);
+      --overlay: linear-gradient(90deg, rgba(244, 237, 248, 0.96) 0%, rgba(244, 237, 248, 0.84) 34%, rgba(244, 237, 248, 0.38) 100%);
+      --chip: rgba(125, 69, 255, 0.08);
+      --card: rgba(255, 255, 255, 0.52);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 104, 104, 0.08), transparent 22%),
+        radial-gradient(circle at 80% 14%, rgba(155, 109, 255, 0.14), transparent 26%),
+        linear-gradient(160deg, var(--bg), #120d18 62%, #09070d 100%);
+      min-height: 100vh;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    body.bright {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 176, 176, 0.24), transparent 22%),
+        radial-gradient(circle at 80% 14%, rgba(155, 109, 255, 0.14), transparent 26%),
+        linear-gradient(160deg, #f4edf8, #ece3f5 62%, #e7ddf2 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      width: min(1240px, calc(100% - 20px));
+      margin: 10px auto;
+      padding: 12px;
+      border-radius: 26px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 6px 4px 12px;
+    }
+
+    .brand {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn,
+    .toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.84rem;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    body.bright .btn,
+    body.bright .toggle-btn {
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #c62525);
+      color: #fff;
+    }
+
+    .cinema {
+      position: relative;
+      min-height: 700px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #0e0a13;
+    }
+
+    .video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .bg-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.95) contrast(1.02);
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--overlay);
+    }
+
+    .cinema-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr) 170px;
+      min-height: 700px;
+    }
+
+    .side-menu,
+    .profile-bar {
+      padding: 22px 14px;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .profile-bar {
+      border-right: 0;
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .menu-search {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 34px;
+    }
+
+    .menu-nav {
+      display: grid;
+      gap: 14px;
+    }
+
+    .menu-nav a {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .menu-nav a.active {
+      color: var(--text);
+    }
+
+    .profile-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .profile-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.24), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      padding: 18px 22px 22px;
+      overflow: hidden;
+    }
+
+    .brand-banner {
+      text-align: center;
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .poster-strip {
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      gap: 10px;
+      min-height: 410px;
+      padding: 14px 0 6px;
+    }
+
+    .topic-card {
+      position: relative;
+      width: 74px;
+      height: 270px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(0) scale(1);
+      transition: width 0.55s ease, height 0.55s ease, transform 0.55s ease, box-shadow 0.55s ease;
+      flex: 0 0 auto;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.16);
+    }
+
+    body.bright .topic-card {
+      background: rgba(255, 255, 255, 0.42);
+    }
+
+    .topic-card.active {
+      width: 190px;
+      height: 340px;
+      transform: translateY(-10px);
+      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.24);
+    }
+
+    .topic-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .topic-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)),
+        linear-gradient(135deg, rgba(255, 77, 77, 0.42), rgba(155, 109, 255, 0.36));
+      color: #fff;
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .topic-label {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 14px;
+      z-index: 2;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
+    }
+
+    .topic-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.82));
+    }
+
+    .details-panel {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    body.bright .details-panel {
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .details-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .details-head h2 {
+      margin: 0 0 4px;
+      font-size: 1.4rem;
+    }
+
+    .details-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .auto-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.76rem;
+      white-space: nowrap;
+    }
+
+    .subtopics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .subtopic {
+      padding: 12px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255, 96, 96, 0.22), rgba(155, 109, 255, 0.16));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 800;
+      font-size: 0.84rem;
+      line-height: 1.35;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .subtopic.color-1 { background: linear-gradient(135deg, rgba(255, 96, 96, 0.3), rgba(255, 164, 92, 0.18)); }
+    .subtopic.color-2 { background: linear-gradient(135deg, rgba(255, 178, 66, 0.28), rgba(255, 106, 167, 0.18)); }
+    .subtopic.color-3 { background: linear-gradient(135deg, rgba(111, 210, 255, 0.3), rgba(111, 131, 255, 0.18)); }
+    .subtopic.color-4 { background: linear-gradient(135deg, rgba(112, 255, 191, 0.26), rgba(72, 165, 255, 0.18)); }
+    .subtopic.color-5 { background: linear-gradient(135deg, rgba(191, 118, 255, 0.3), rgba(255, 115, 188, 0.18)); }
+    .subtopic.color-6 { background: linear-gradient(135deg, rgba(255, 129, 198, 0.28), rgba(255, 171, 99, 0.18)); }
+    .subtopic.color-7 { background: linear-gradient(135deg, rgba(126, 255, 147, 0.26), rgba(76, 208, 255, 0.18)); }
+    .subtopic.color-8 { background: linear-gradient(135deg, rgba(255, 104, 149, 0.28), rgba(154, 111, 255, 0.18)); }
+
+    .footer-note {
+      text-align: center;
+      color: var(--muted);
+      padding-top: 14px;
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 980px) {
+      .cinema-grid {
+        grid-template-columns: 86px minmax(0, 1fr);
+      }
+
+      .profile-bar {
+        display: none;
+      }
+
+      .poster-strip {
+        min-height: 340px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page-shell {
+        width: min(100% - 8px, 100%);
+        margin: 4px auto;
+        padding: 8px;
+        border-radius: 16px;
+      }
+
+      .topbar {
+        justify-content: center;
+        gap: 8px;
+        padding-bottom: 8px;
+      }
+
+      .brand {
+        font-size: 1.06rem;
+      }
+
+      .top-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+
+      .top-actions .toggle-btn {
+        grid-column: 1 / -1;
+      }
+
+      .btn,
+      .toggle-btn {
+        padding: 8px 10px;
+        font-size: 0.74rem;
+      }
+
+      .cinema {
+        min-height: 100svh;
+        border-radius: 16px;
+      }
+
+      .cinema-grid {
+        grid-template-columns: 1fr;
+        min-height: 100svh;
+      }
+
+      .side-menu {
+        display: none;
+      }
+
+      .content-area {
+        padding: 12px 10px 14px;
+      }
+
+      .brand-banner {
+        font-size: 1.35rem;
+        margin-bottom: 8px;
+      }
+
+      .poster-strip {
+        min-height: 220px;
+        gap: 7px;
+        padding: 8px 0 2px;
+        justify-content: center;
+      }
+
+      .topic-card {
+        width: 52px;
+        height: 178px;
+        border-radius: 12px;
+      }
+
+      .topic-card.active {
+        width: 116px;
+        height: 220px;
+        transform: translateY(-4px);
+      }
+
+      .topic-label {
+        left: 8px;
+        right: 8px;
+        bottom: 10px;
+        font-size: 0.72rem;
+      }
+
+      .details-panel {
+        margin-top: 10px;
+        padding: 12px;
+        border-radius: 14px;
+      }
+
+      .details-head h2 {
+        font-size: 1rem;
+      }
+
+      .details-head p,
+      .auto-badge {
+        font-size: 0.72rem;
+      }
+
+      .subtopics-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .subtopic {
+        padding: 10px;
+        font-size: 0.74rem;
+        border-radius: 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .top-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .cinema {
+        min-height: 100svh;
+      }
+
+      .poster-strip {
+        gap: 6px;
+      }
+
+      .topic-card {
+        width: 44px;
+        height: 154px;
+      }
+
+      .topic-card.active {
+        width: 96px;
+        height: 188px;
+      }
+
+      .subtopics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="Courses.html">LO<span>OO</span></a>
+
+      <div class="top-actions">
+        <a class="btn" href="support.html">Support</a>
+        <a class="btn" href="offers.html">Offers</a>
+        <a class="btn" href="Courses.html">Back To Home</a>
+        <button class="toggle-btn" id="themeToggle" type="button" aria-label="Toggle bright mode">Bright Mode</button>
+      </div>
+    </header>
+
+    <main class="cinema">
+      <div class="video-wrap" aria-hidden="true">
+        <video class="bg-video" autoplay muted loop playsinline poster="ms-basic-hero.jpg">
+          <source src="ms-basic-background.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+      </div>
+
+      <div class="cinema-grid">
+        <aside class="side-menu">
+          <div class="menu-search">Search</div>
+          <nav class="menu-nav" aria-label="Topic sections">
+            <a class="active" href="#word">MS-Word</a>
+            <a href="#powerpoint">MS-PowerPoint</a>
+            <a href="#excel">MS-Excel</a>
+          </nav>
+        </aside>
+
+        <section class="content-area">
+          <div class="brand-banner">MS BASIC</div>
+
+          <div class="poster-strip" id="posterStrip" aria-label="Main topics">
+            <article class="topic-card active" data-topic="word" id="word">
+              <img src="ms-word.jpg" alt="MS Word topic image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="topic-fallback">MS-Word</div>
+              <div class="topic-label">MS-Word</div>
+            </article>
+
+            <article class="topic-card" data-topic="powerpoint" id="powerpoint">
+              <img src="ms-powerpoint.jpg" alt="MS PowerPoint topic image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="topic-fallback">MS-PowerPoint</div>
+              <div class="topic-label">MS-PowerPoint</div>
+            </article>
+
+            <article class="topic-card" data-topic="excel" id="excel">
+              <img src="ms-excel.jpg" alt="MS Excel topic image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="topic-fallback">MS-Excel</div>
+              <div class="topic-label">MS-Excel</div>
+            </article>
+          </div>
+
+          <section class="details-panel">
+            <div class="details-head">
+              <div>
+                <h2 id="topicTitle">MS-Word</h2>
+                <p id="topicDescription">Document creation, design, structure, review, and advanced tools.</p>
+              </div>
+              <div class="auto-badge">Auto Changing Topic View</div>
+            </div>
+
+            <div class="subtopics-grid" id="subtopicsGrid"></div>
+          </section>
+        </section>
+
+        <aside class="profile-bar">
+          <div class="profile-box">
+            <div class="profile-avatar"></div>
+            <span>Android View</span>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <p class="footer-note">Use image files `ms-word.jpg`, `ms-powerpoint.jpg`, `ms-excel.jpg` and optional background video `ms-basic-background.mp4`.</p>
+  </div>
+
+  <script>
+    const topics = [
+      {
+        key: "word",
+        title: "MS-Word",
+        description: "Document creation, design, structure, review, and advanced tools.",
+        subtopics: [
+          "Basics",
+          "Intermediate Features",
+          "Media & Design",
+          "Advanced Tools",
+          "Document Structuring",
+          "Review & Proofing",
+          "Accessibility",
+          "Projects"
+        ]
+      },
+      {
+        key: "powerpoint",
+        title: "MS-PowerPoint",
+        description: "Presentation building, setup, effects, animation, and advanced slide features.",
+        subtopics: [
+          "Basics",
+          "Presentation Setup",
+          "Effects & Animation",
+          "Advanced Feature"
+        ]
+      },
+      {
+        key: "excel",
+        title: "MS-Excel",
+        description: "Spreadsheet work, formulas, analysis, charts, lookup functions, and projects.",
+        subtopics: [
+          "Basics",
+          "Formula & Functions",
+          "Data Handling & Analysis",
+          "Charts & Visualization",
+          "Tools & Features",
+          "Lookup & Reference Functions",
+          "Financial Functions",
+          "Practical & Projects"
+        ]
+      }
+    ];
+
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    const titleEl = document.getElementById("topicTitle");
+    const descEl = document.getElementById("topicDescription");
+    const gridEl = document.getElementById("subtopicsGrid");
+    const cards = Array.from(document.querySelectorAll(".topic-card"));
+    const menuLinks = Array.from(document.querySelectorAll(".menu-nav a[href^='#']"));
+    let activeIndex = 0;
+    let timer;
+
+    function renderTopic(index) {
+      const topic = topics[index];
+      activeIndex = index;
+
+      cards.forEach((card, cardIndex) => {
+        card.classList.toggle("active", cardIndex === index);
+      });
+
+      menuLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === "#" + topic.key;
+        link.classList.toggle("active", isActive);
+      });
+
+      titleEl.textContent = topic.title;
+      descEl.textContent = topic.description;
+      gridEl.innerHTML = topic.subtopics.map(function (item, itemIndex) {
+        const colorClass = "color-" + ((itemIndex % 8) + 1);
+        return "<div class='subtopic " + colorClass + "'>" + item + "</div>";
+      }).join("");
+    }
+
+    function startRotation() {
+      clearInterval(timer);
+      timer = setInterval(function () {
+        const next = (activeIndex + 1) % topics.length;
+        renderTopic(next);
+      }, 3200);
+    }
+
+    cards.forEach(function (card, index) {
+      card.addEventListener("click", function () {
+        renderTopic(index);
+        startRotation();
+      });
+    });
+
+    const savedTheme = localStorage.getItem("msBasicTheme");
+    if (savedTheme === "bright") {
+      body.classList.add("bright");
+      toggle.textContent = "Dark Mode";
+    }
+
+    toggle.addEventListener("click", function () {
+      body.classList.toggle("bright");
+      const isBright = body.classList.contains("bright");
+      toggle.textContent = isBright ? "Dark Mode" : "Bright Mode";
+      localStorage.setItem("msBasicTheme", isBright ? "bright" : "dark");
+    });
+
+    renderTopic(0);
+    startRotation();
+  </script>
+</body>
+</html>
