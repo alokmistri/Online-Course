@@ -3,141 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enroll Now</title>
+  <title>Select Payment Method</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+
+<body class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white min-h-screen">
 
   <!-- Header -->
-  <div class="flex justify-between items-center p-4 border-b border-gray-800">
-    <a href="ms-basic.html" class="text-orange-400 text-sm">← Back</a>
-    <h1 class="text-lg font-semibold">CoreSkill Academy</h1>
+  <div class="flex items-center p-4 sm:p-6">
+    <button onclick="goBack()" 
+      class="bg-white/10 px-3 py-1 rounded-lg text-sm hover:bg-white/20 transition">
+      ← Back
+    </button>
   </div>
 
   <!-- Title -->
-  <section class="text-center py-10">
-    <h1 class="text-3xl font-bold">Complete Your Enrollment</h1>
-    <p class="text-gray-400 mt-2">Pay & send details on WhatsApp</p>
+  <section class="text-center mt-4 sm:mt-6 mb-8 sm:mb-10 px-4">
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-wide">Choose Payment Method</h1>
+    <p class="text-gray-400 mt-2 text-sm sm:text-base">Secure & fast payment options</p>
   </section>
 
-  <!-- PAYMENT BOX -->
-  <div class="max-w-md mx-auto bg-gray-900 p-6 rounded-xl space-y-5 border border-gray-800">
+  <!-- 🎓 STUDENTS EMOJI SECTION -->
+  <div class="flex justify-center gap-4 sm:gap-6 mb-8">
 
-    <!-- QR -->
-    <div class="text-center">
-      <img src="qr.png" class="mx-auto w-40 rounded-lg shadow-lg">
-      <p class="text-sm text-gray-400 mt-2">Scan & Pay</p>
+    <div class="bg-white/10 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full text-xl sm:text-2xl backdrop-blur-lg">
+      🎓
     </div>
 
-    <!-- BANK DETAILS -->
-    <div class="text-sm space-y-1 text-gray-300">
-      <p>Account Name: Alok Mistri</p>
-      <p>Bank: Bank Of India</p>
-      <p>Account No: 410610510000064</p>
-      <p>IFSC: BKID0004106</p>
+    <div class="bg-white/10 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full text-xl sm:text-2xl backdrop-blur-lg">
+      👨‍🎓
     </div>
 
-    <!-- URGENCY -->
-    <div class="text-center">
-      <p class="text-red-400 font-semibold animate-pulse">
-        ⚠️ Share your payment screenshot on WhatsApp!
-      </p>
+    <div class="bg-white/10 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full text-xl sm:text-2xl backdrop-blur-lg">
+      👩‍🎓
     </div>
-
-    <!-- EMAIL INPUT -->
-    <input id="email" type="email" placeholder="Enter your Gmail"
-      class="w-full p-2 rounded bg-gray-800 text-sm outline-none focus:ring-2 focus:ring-green-500">
-
-    <!-- WHATSAPP BUTTON -->
-    <button onclick="sendWhatsApp()"
-      class="bg-green-600 w-full py-2 rounded hover:bg-green-700 transition font-semibold">
-      📲 Send on WhatsApp
-    </button>
 
   </div>
 
-  <!-- UPI SECTION -->
-  <section class="max-w-md mx-auto px-4 py-8">
-    <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-center">
+  <!-- OPTIONS GRID -->
+  <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6 max-w-md mx-auto px-4">
 
-      <h2 class="text-2xl font-bold mb-4">💳 Pay via UPI</h2>
-      <p class="text-gray-400 text-sm mb-3">Use the UPI ID below to complete your payment</p>
+    <!-- QR -->
+    <div onclick="goTo('qr.html')" 
+      class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 sm:p-5 text-center cursor-pointer hover:scale-105 hover:bg-white/10 transition">
 
-      <!-- UPI BOX -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 bg-black/40 border border-white/20 rounded-xl px-4 py-3">
-        
-        <span id="upiText" class="text-green-400 font-semibold break-all">
-          alokmistri69@oksbi
-        </span>
+      <img src="https://cdn-icons-png.flaticon.com/512/483/483947.png" 
+        class="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 rounded-full bg-white p-2 sm:p-3">
 
-        <button onclick="copyUPI()"
-          class="bg-green-500 px-4 py-1 rounded-lg text-sm font-semibold hover:scale-105 transition cursor-pointer">
-          📋 Copy
-        </button>
+      <p class="font-semibold text-sm sm:text-base">QR Code</p>
+    </div>
 
-      </div>
+    <!-- BANK -->
+    <div onclick="goTo('bank.html')" 
+      class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 sm:p-5 text-center cursor-pointer hover:scale-105 hover:bg-white/10 transition">
 
-      <!-- SUCCESS MESSAGE -->
-      <p id="copyMsg" class="text-green-400 text-sm mt-3 hidden">
-        ✅ UPI ID Copied!
-      </p>
+      <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" 
+        class="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 rounded-full bg-white p-2 sm:p-3">
+
+      <p class="font-semibold text-sm sm:text-base">NEFT / RTGS</p>
+    </div>
+
+    <!-- UPI -->
+    <div onclick="goTo('upi.html')" 
+      class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 sm:p-5 text-center cursor-pointer hover:scale-105 hover:bg-white/10 transition">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" 
+        class="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 rounded-full bg-white p-2 sm:p-3">
+
+      <p class="font-semibold text-sm sm:text-base">UPI Payment</p>
+    </div>
+
+    <!-- EMI -->
+    <div onclick="goTo('emi.html')" 
+      class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 sm:p-5 text-center cursor-pointer hover:scale-105 hover:bg-white/10 transition">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png" 
+        class="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 rounded-full bg-white p-2 sm:p-3">
+
+      <p class="font-semibold text-sm sm:text-base">Installments</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div class="text-center mt-10 text-gray-500 text-xs sm:text-sm mb-28 px-4">
+    Choose your preferred payment method to continue
+  </div>
+
+  <!-- CONTACT FLOAT BAR -->
+  <div class="fixed bottom-4 sm:bottom-5 left-1/2 transform -translate-x-1/2 w-[92%] max-w-md">
+
+    <div class="flex justify-between items-center bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-3 sm:px-4 py-2 sm:py-3 shadow-lg">
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/917439034248" target="_blank"
+        class="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" 
+          class="w-4 h-4 sm:w-5 sm:h-5">
+
+        WhatsApp
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:a.mistri2004@gmail.com"
+        class="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" 
+          class="w-4 h-4 sm:w-5 sm:h-5">
+
+        Email
+      </a>
 
     </div>
-  </section>
+
+  </div>
 
   <!-- SCRIPT -->
   <script>
-    function sendWhatsApp() {
-      const email = document.getElementById('email').value;
-
-      if (!email) {
-        alert("Enter your Gmail first");
-        return;
-      }
-
-      const msg = `Hi, I completed payment for Particular Course. My Gmail: ${email}`;
-      const url = `https://wa.me/917439034248?text=${encodeURIComponent(msg)}`;
-
-      window.open(url, '_blank');
+    function goTo(page) {
+      window.location.href = page;
     }
 
-    function copyUPI() {
-      const upiText = document.getElementById("upiText").innerText;
-
-      // Modern method (HTTPS / localhost)
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(upiText)
-          .then(() => showMessage())
-          .catch(() => fallbackCopy(upiText));
-      } else {
-        // Fallback (works everywhere)
-        fallbackCopy(upiText);
-      }
-    }
-
-    function fallbackCopy(text) {
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
-      showMessage();
-    }
-
-    function showMessage() {
-      const msg = document.getElementById("copyMsg");
-      msg.classList.remove("hidden");
-
-      // Mobile vibration feedback 🔥
-      if (navigator.vibrate) {
-        navigator.vibrate(100);
-      }
-
-      // Auto hide
-      setTimeout(() => {
-        msg.classList.add("hidden");
-      }, 2000);
+    function goBack() {
+      window.location.href = "index.html";
     }
   </script>
 
