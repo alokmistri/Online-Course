@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay via QR</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-blue-100 via-white to-gray-200 min-h-screen text-gray-800">
+
+  <!-- HEADER -->
+  <div class="flex justify-between items-center p-4 sm:p-6">
+    <button onclick="goBack()" class="text-orange-500 text-sm hover:underline">
+      ← Back
+    </button>
+
+    <a href="https://wa.me/917439034248?text=Hi I want help with payment"
+      class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition">
+      WhatsApp
+    </a>
+  </div>
+
+  <!-- TITLE -->
+  <div class="text-center mt-6">
+    <h1 class="text-3xl font-bold">Pay via QR Code</h1>
+    <p class="text-gray-500 mt-2">Scan the QR and complete your payment</p>
+  </div>
+
+  <!-- QR BOX -->
+  <div class="max-w-md mx-auto mt-10 bg-white rounded-2xl shadow-xl p-6 text-center">
+
+    <!-- QR IMAGE -->
+    <img src="qr.png" 
+      class="w-52 mx-auto rounded-lg shadow mb-4">
+
+    <p class="text-sm text-gray-500 mb-4">
+      Scan using any UPI app (PhonePe, GPay, Paytm, Other UPI Apps)
+    </p>
+
+    <!-- WARNING -->
+    <p class="text-red-500 font-semibold text-sm animate-pulse">
+      ⚠️ After payment, send screenshot on WhatsApp
+    </p>
+
+  </div>
+
+  <!-- WHATSAPP CONFIRM BUTTON -->
+  <div class="text-center mt-8">
+
+    <button onclick="sendWhatsApp()"
+      class="bg-green-500 text-white px-6 py-3 rounded-xl shadow hover:scale-105 transition">
+
+      📲 Send Payment Screenshot
+    </button>
+
+  </div>
+
+  <!-- TRUST -->
+  <div class="text-center mt-6 text-sm text-gray-500">
+    Trusted by 5000+ students 🎓
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    function sendWhatsApp() {
+      const course = "Tally Course";   // 🔁 Change this
+      const amount = "1999";           // 🔁 Change this
+
+      const message = `Hi, I have completed payment for ${course}. Amount: ₹${amount}`;
+      const url = `https://wa.me/917439034248?text=${encodeURIComponent(message)}`;
+
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>
