@@ -5,91 +5,177 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pay via QR</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ===== Animations ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatY {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 40px rgba(59,130,246,.35); }
+      50% { box-shadow: 0 0 70px rgba(59,130,246,.6); }
+      100% { box-shadow: 0 0 40px rgba(59,130,246,.35); }
+    }
+    @keyframes blobMove {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(30px,-20px) scale(1.1); }
+      100% { transform: translate(0,0) scale(1); }
+    }
+
+    .fade-up { animation: fadeUp .9s ease both; }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .2s; }
+    .delay-3 { animation-delay: .3s; }
+
+    .float { animation: floatY 5s ease-in-out infinite; }
+    .glow-pulse { animation: pulseGlow 3s ease-in-out infinite; }
+
+    /* Magnetic button */
+    .magnetic {
+      transition: transform .15s ease, box-shadow .2s ease;
+    }
+    .magnetic:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(16,185,129,.35);
+    }
+
+    /* Glass shimmer */
+    .glass:hover {
+      background: rgba(255,255,255,.85);
+    }
+  </style>
 </head>
 
-<body class="bg-gradient-to-br from-blue-100 via-white to-gray-200 min-h-screen text-gray-800">
+<body class="bg-gradient-to-br from-blue-100 via-white to-gray-200 min-h-screen text-gray-800 overflow-x-hidden">
+
+  <!-- BACKGROUND BLOBS -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute w-72 h-72 bg-blue-300/30 rounded-full blur-3xl top-10 left-10 animate-[blobMove_10s_ease-in-out_infinite]"></div>
+    <div class="absolute w-72 h-72 bg-green-300/30 rounded-full blur-3xl bottom-10 right-10 animate-[blobMove_12s_ease-in-out_infinite]"></div>
+  </div>
 
   <!-- HEADER -->
-  <div class="flex justify-between items-center p-4 sm:p-6">
+  <div class="flex justify-between items-center p-4 sm:p-6 fade-up">
     <button onclick="goBack()" class="text-orange-500 text-sm hover:underline">
       ← Back
     </button>
 
     <a href="https://wa.me/917439034248?text=Hi I want help with payment"
-      class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition">
+      class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition shadow-md">
       WhatsApp
     </a>
   </div>
 
   <!-- TITLE -->
-  <div class="text-center mt-6">
-    <h1 class="text-3xl font-bold">Pay via QR Code</h1>
-    <p class="text-gray-500 mt-2">Scan the QR and complete your payment</p>
+  <div class="text-center mt-6 fade-up delay-1">
+    <h1 class="text-3xl sm:text-4xl font-bold">Pay via QR Code</h1>
+    <p class="text-gray-500 mt-2">Secure & instant payment experience</p>
   </div>
 
-  <!-- QR BOX -->
-  <div class="max-w-md mx-auto mt-10 bg-white rounded-2xl shadow-xl p-6 text-center">
+<!-- MAIN SECTION -->
+<div class="max-w-6xl mx-auto px-4 sm:px-6 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-    <!-- QR IMAGE -->
+  <!-- LEFT (QR CARD) -->
+  <div class="backdrop-blur-xl bg-white/70 border border-white/30 rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 text-center">
+
+    <!-- QR -->
     <img src="qr.png" 
-      class="w-52 mx-auto rounded-lg shadow mb-4">
+      class="w-40 sm:w-48 md:w-52 mx-auto rounded-xl shadow-lg mb-4 transition hover:scale-105">
 
-    <p class="text-sm text-gray-500 mb-4">
-      Scan using any UPI app (PhonePe, GPay, Paytm, Other UPI Apps)
+    <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
+      Scan with any UPI app (GPay, PhonePe, Paytm)
     </p>
 
-    <!-- WARNING -->
-    <p class="text-red-500 font-semibold text-sm animate-pulse">
+    <p class="text-red-500 font-semibold text-xs sm:text-sm animate-pulse mb-4 sm:mb-6">
       ⚠️ After payment, send screenshot on WhatsApp
     </p>
 
+    <!-- INPUT -->
+    <input id="email" type="email" placeholder="Enter your Gmail"
+      class="w-full p-3 sm:p-3.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 mb-3 sm:mb-4 text-sm">
+
+    <!-- BUTTON -->
+    <button onclick="sendWhatsApp()"
+      class="bg-gradient-to-r from-green-500 to-green-600 w-full text-white py-3 sm:py-3.5 rounded-xl shadow-lg hover:scale-105 transition text-sm sm:text-base">
+
+      🚀 Confirm Payment
+    </button>
+
   </div>
 
+  <!-- RIGHT (IMAGE SECTION) -->
+  <div class="flex justify-center items-center mt-6 lg:mt-0">
 
-  <!-- WHATSAPP CONFIRM BUTTON -->
-  <div class="text-center mt-8">
-      <input id="email" type="email" placeholder="Enter your Gmail"
-  class="w-full max-w-sm mx-auto block p-3 rounded-lg border border-gray-300 outline-none focus:ring-2 focus:ring-green-500 mb-4">
+    <div class="relative">
 
-  <button onclick="sendWhatsApp()"
-  class="bg-green-500 text-white px-6 py-3 rounded-xl shadow hover:scale-105 transition">
+      <!-- GLOW BACKGROUND -->
+      <div class="absolute inset-0 rounded-full blur-2xl bg-blue-400/30 scale-110"></div>
 
-  📲 Send Payment Screenshot
-</button>
+      <!-- OUTER -->
+      <div class="w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full border-4 border-blue-500 flex items-center justify-center shadow-[0_0_50px_rgba(59,130,246,0.4)]">
+
+        <!-- INNER -->
+        <div class="w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border-4 border-blue-200 overflow-hidden bg-white">
+
+          <img src="student1.jpg" 
+            class="w-full h-full object-cover hover:scale-110 transition duration-500">
+
+        </div>
+      </div>
+
+      <!-- BADGE -->
+      <div class="absolute right-0 top-6 sm:top-10 bg-white px-2 sm:px-3 py-1 rounded-lg shadow text-[10px] sm:text-xs">
+        <span class="text-red-500 font-semibold">AI Powered</span><br>
+        Learning
+      </div>
+
+      <!-- TRUST -->
+      <div class="absolute left-1/2 -bottom-5 transform -translate-x-1/2 bg-white px-3 py-1.5 rounded-xl shadow text-[10px] sm:text-xs">
+        <span class="text-blue-600 font-bold">5000+</span> Students
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- TRUST -->
-  <div class="text-center mt-6 text-sm text-gray-500">
-    Trusted by 5000+ students 🎓
+</div>
+
+  <!-- FOOT -->
+  <div class="text-center mt-12 text-sm text-gray-500 fade-up delay-3">
+    Trusted by thousands of learners 🚀
   </div>
 
   <!-- SCRIPT -->
-<script>
-function goBack() {
-  window.location.href = "index.html";
-}
+  <script>
+    function goBack() {
+      window.location.href = "index.html";
+    }
 
-function sendWhatsApp() {
-  const email = document.getElementById("email").value.trim();
+    function sendWhatsApp() {
+      const email = document.getElementById("email").value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // EMAIL VALIDATION
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email) {
+        alert("⚠️ Please enter your Gmail first");
+        return;
+      }
 
-  if (!email) {
-    alert("⚠️ Please enter your Gmail first");
-    return;
-  }
+      if (!emailPattern.test(email)) {
+        alert("❌ Please enter a valid Gmail address");
+        return;
+      }
 
-  if (!emailPattern.test(email)) {
-    alert("❌ Please enter a valid Gmail address");
-    return;
-  }
+      const message = `Hi, I have successfully completed payment. My Gmail: ${email}`;
+      const url = `https://wa.me/917439034248?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+  </script>
 
-  const message = `Hi, I have successfully completed payment. My Gmail: ${email}`;
-  const url = `https://wa.me/917439034248?text=${encodeURIComponent(message)}`;
-
-  window.open(url, '_blank');
-}
-</script>
 </body>
 </html>
