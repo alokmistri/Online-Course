@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Excel Course Details</title>
+  <style>
+    :root {
+      --bg: #08150f;
+      --panel: rgba(9, 26, 17, 0.84);
+      --panel-strong: rgba(14, 36, 24, 0.94);
+      --text: #effff5;
+      --muted: #b8d9c5;
+      --primary: #22c55e;
+      --accent: #3b82f6;
+      --line: rgba(255, 255, 255, 0.1);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+      --overlay: linear-gradient(90deg, rgba(5, 15, 10, 0.97) 0%, rgba(6, 18, 12, 0.84) 34%, rgba(6, 18, 12, 0.38) 100%);
+      --chip: rgba(255, 255, 255, 0.08);
+    }
+
+    body.bright {
+      --bg: #eef9f1;
+      --panel: rgba(255, 255, 255, 0.86);
+      --panel-strong: rgba(255, 255, 255, 0.95);
+      --text: #123120;
+      --muted: #587063;
+      --primary: #159947;
+      --accent: #2563eb;
+      --line: rgba(17, 118, 55, 0.12);
+      --shadow: 0 24px 60px rgba(25, 88, 49, 0.14);
+      --overlay: linear-gradient(90deg, rgba(238, 249, 241, 0.97) 0%, rgba(238, 249, 241, 0.85) 34%, rgba(238, 249, 241, 0.42) 100%);
+      --chip: rgba(21, 153, 71, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(34, 197, 94, 0.12), transparent 22%),
+        radial-gradient(circle at 80% 14%, rgba(59, 130, 246, 0.16), transparent 26%),
+        linear-gradient(160deg, var(--bg), #0c1a13 62%, #050a08 100%);
+      min-height: 100vh;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    body.bright {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(121, 231, 158, 0.22), transparent 22%),
+        radial-gradient(circle at 80% 14%, rgba(112, 171, 255, 0.14), transparent 26%),
+        linear-gradient(160deg, #eef9f1, #e2f3e8 62%, #d8ecdf 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page-shell {
+      width: min(1240px, calc(100% - 20px));
+      margin: 10px auto;
+      padding: 12px 12px 118px;
+      border-radius: 26px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 6px 4px 12px;
+    }
+
+    .brand {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand span { color: var(--primary); }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn,
+    .toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.84rem;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    body.bright .btn,
+    body.bright .toggle-btn { background: rgba(255, 255, 255, 0.66); }
+
+    .cinema {
+      position: relative;
+      min-height: 720px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #08130d;
+    }
+
+    .video-wrap,
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .video-wrap { z-index: 0; }
+
+    .bg-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.95) contrast(1.02);
+    }
+
+    .video-overlay { background: var(--overlay); }
+
+    .cinema-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr) 180px;
+      min-height: 720px;
+    }
+
+    .side-menu,
+    .profile-bar {
+      padding: 22px 14px;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .profile-bar {
+      border-right: 0;
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .menu-search {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .menu-nav {
+      display: grid;
+      gap: 12px;
+    }
+
+    .menu-nav a {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .menu-nav a.active { color: var(--text); }
+
+    .profile-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .profile-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.24), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .profile-stack {
+      display: grid;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .profile-chip {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: right;
+    }
+
+    .profile-chip strong {
+      display: block;
+      font-size: 0.78rem;
+      margin-bottom: 2px;
+    }
+
+    .profile-chip span {
+      display: block;
+      font-size: 0.66rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      padding: 18px 22px 22px;
+      overflow: hidden;
+    }
+
+    .brand-banner {
+      text-align: center;
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .hero-copy {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 14px;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .poster-strip {
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      min-height: 250px;
+      padding: 12px 2px 6px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .topic-card {
+      position: relative;
+      width: 64px;
+      height: 188px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(0) scale(1);
+      transition: width 0.55s ease, height 0.55s ease, transform 0.55s ease, box-shadow 0.55s ease;
+      flex: 0 0 auto;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.16);
+    }
+
+    body.bright .topic-card { background: rgba(255, 255, 255, 0.46); }
+
+    .topic-card.active {
+      width: 152px;
+      height: 232px;
+      transform: translateY(-8px);
+      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.24);
+    }
+
+    .topic-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)),
+        linear-gradient(135deg, rgba(34, 197, 94, 0.44), rgba(59, 130, 246, 0.34));
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.92rem;
+      line-height: 1.2;
+    }
+
+    .topic-label {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 14px;
+      z-index: 2;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.83rem;
+      text-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
+    }
+
+    .topic-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.82));
+    }
+
+    .details-panel {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    body.bright .details-panel { background: rgba(255, 255, 255, 0.58); }
+
+    .details-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .details-head h2 {
+      margin: 0 0 4px;
+      font-size: 1.4rem;
+    }
+
+    .details-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .auto-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.76rem;
+      white-space: nowrap;
+    }
+
+    .topic-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 12px;
+    }
+
+    .topic-control-btn {
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    body.bright .topic-control-btn { background: rgba(255, 255, 255, 0.56); }
+
+    .topic-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
+    }
+
+    .topic-switch-btn {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.76rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    body.bright .topic-switch-btn { background: rgba(255, 255, 255, 0.56); }
+
+    .topic-switch-btn.active {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.95), rgba(37, 99, 235, 0.88));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .subtopics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .subtopic {
+      padding: 12px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.22), rgba(59, 130, 246, 0.16));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 800;
+      font-size: 0.84rem;
+      line-height: 1.35;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .subtopic.color-1 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(89, 217, 171, 0.18)); }
+    .subtopic.color-2 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.28), rgba(45, 212, 191, 0.18)); }
+    .subtopic.color-3 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(96, 165, 250, 0.18)); }
+    .subtopic.color-4 { background: linear-gradient(135deg, rgba(56, 189, 248, 0.28), rgba(14, 165, 233, 0.18)); }
+    .subtopic.color-5 { background: linear-gradient(135deg, rgba(132, 204, 22, 0.3), rgba(34, 197, 94, 0.18)); }
+    .subtopic.color-6 { background: linear-gradient(135deg, rgba(249, 115, 22, 0.26), rgba(251, 191, 36, 0.18)); }
+    .subtopic.color-7 { background: linear-gradient(135deg, rgba(20, 184, 166, 0.28), rgba(59, 130, 246, 0.18)); }
+    .subtopic.color-8 { background: linear-gradient(135deg, rgba(101, 163, 13, 0.28), rgba(45, 212, 191, 0.18)); }
+
+    .footer-note {
+      text-align: center;
+      color: var(--muted);
+      padding-top: 14px;
+      font-size: 0.78rem;
+    }
+
+    .sticky-actions {
+      position: fixed;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      width: min(1180px, calc(100% - 20px));
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: 10px;
+      z-index: 30;
+    }
+
+    .sticky-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 18px;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .enroll-link {
+      background: linear-gradient(135deg, rgba(21, 153, 71, 0.96), rgba(14, 165, 233, 0.92));
+      padding: 10px 14px;
+    }
+
+    .ad-link {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.94), rgba(34, 197, 94, 0.9));
+      justify-content: flex-start;
+      padding: 10px 12px;
+    }
+
+    .sticky-link strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 2px;
+    }
+
+    .sticky-link span {
+      display: block;
+      font-size: 0.78rem;
+      opacity: 0.92;
+    }
+
+    .ad-thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      overflow: hidden;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .ad-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ad-thumb-fallback {
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6px;
+      font-size: 0.64rem;
+      font-weight: 900;
+      line-height: 1.2;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+    }
+
+    .ad-copy { min-width: 0; }
+
+    .sticky-pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      font-weight: 900;
+      white-space: nowrap;
+      font-size: 0.76rem;
+    }
+
+    @media (max-width: 980px) {
+      .cinema-grid { grid-template-columns: 92px minmax(0, 1fr); }
+      .profile-bar { display: none; }
+    }
+
+    @media (max-width: 760px) {
+      .page-shell {
+        width: min(100% - 8px, 100%);
+        margin: 4px auto;
+        padding: 6px 6px 96px;
+        border-radius: 14px;
+      }
+
+      .topbar {
+        justify-content: center;
+        gap: 6px;
+        padding-bottom: 6px;
+      }
+
+      .brand { font-size: 0.98rem; }
+
+      .top-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .top-actions .toggle-btn { grid-column: 1 / -1; }
+
+      .btn,
+      .toggle-btn {
+        padding: 7px 9px;
+        font-size: 0.68rem;
+      }
+
+      .cinema {
+        height: calc(100svh - 112px);
+        min-height: 0;
+        border-radius: 14px;
+      }
+
+      .cinema-grid {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        height: 100%;
+      }
+
+      .side-menu { display: none; }
+
+      .content-area {
+        display: flex;
+        flex-direction: column;
+        padding: 8px 8px 10px;
+        min-height: 0;
+      }
+
+      .brand-banner {
+        font-size: 1.05rem;
+        margin-bottom: 3px;
+      }
+
+      .hero-copy {
+        margin-bottom: 8px;
+      }
+
+      .hero-copy p { font-size: 0.68rem; }
+
+      .poster-strip {
+        min-height: 112px;
+        gap: 5px;
+        padding: 2px 0 0;
+        flex: 0 0 auto;
+      }
+
+      .topic-card {
+        width: 28px;
+        height: 82px;
+        border-radius: 10px;
+      }
+
+      .topic-card.active {
+        width: 56px;
+        height: 98px;
+        transform: translateY(0);
+      }
+
+      .topic-label {
+        left: 6px;
+        right: 6px;
+        bottom: 6px;
+        font-size: 0.42rem;
+      }
+
+      .details-panel {
+        margin-top: 6px;
+        padding: 8px;
+        border-radius: 10px;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: auto;
+      }
+
+      .details-head h2 {
+        font-size: 0.92rem;
+        margin-bottom: 2px;
+      }
+
+      .details-head p,
+      .auto-badge { font-size: 0.66rem; }
+
+      .topic-controls {
+        margin-bottom: 6px;
+      }
+
+      .topic-control-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+      }
+
+      .topic-switcher {
+        display: none;
+      }
+
+      .topic-switch-btn {
+        padding: 7px 8px;
+        font-size: 0.62rem;
+      }
+
+      .subtopics-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      .subtopic {
+        padding: 8px;
+        font-size: 0.66rem;
+        border-radius: 10px;
+      }
+
+      .sticky-actions {
+        width: calc(100% - 10px);
+        grid-template-columns: 1fr;
+        gap: 6px;
+        bottom: 4px;
+      }
+
+      .sticky-link {
+        padding: 8px 10px;
+        border-radius: 12px;
+      }
+
+      .ad-thumb {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+      }
+
+      .sticky-link strong { font-size: 0.74rem; }
+
+      .sticky-link span,
+      .sticky-pill { font-size: 0.62rem; }
+
+      .footer-note { display: none; }
+    }
+
+    @media (max-width: 420px) {
+      .top-actions { grid-template-columns: 1fr; }
+      .cinema { height: calc(100svh - 126px); }
+      .topic-card { width: 24px; height: 72px; }
+      .topic-card.active { width: 46px; height: 86px; }
+      .subtopics-grid { grid-template-columns: 1fr; }
+      .topic-label { font-size: 0.38rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="Courses.html">LO<span>OO</span></a>
+      <div class="top-actions">
+        <a class="btn" href="support.html">Support</a>
+        <a class="btn" href="offers.html">Offers</a>
+        <a class="btn" href="Courses.html">Back To Home</a>
+        <button class="toggle-btn" id="themeToggle" type="button" aria-label="Toggle bright mode">Bright Mode</button>
+      </div>
+    </header>
+
+    <main class="cinema">
+      <div class="video-wrap" aria-hidden="true">
+        <video class="bg-video" autoplay muted loop playsinline poster="advanced-excel-hero.jpg">
+          <source src="advanced-excel-background.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+      </div>
+
+      <div class="cinema-grid">
+        <aside class="side-menu">
+          <div class="menu-search">Modules</div>
+          <nav class="menu-nav" aria-label="Advanced Excel sections">
+            <a class="active" href="#text-functions">Text Functions</a>
+            <a href="#protection-security">Protection</a>
+            <a href="#logical-functions">Logical</a>
+            <a href="#lookup-reference">Lookup</a>
+            <a href="#date-time">Date &amp; Time</a>
+            <a href="#validation">Validation</a>
+            <a href="#sorting-tools">Data Tools</a>
+            <a href="#conditional-formatting">Formatting</a>
+            <a href="#charts-visualization">Charts</a>
+            <a href="#pivot-power-tools">Pivot</a>
+            <a href="#what-if-analysis">What-If</a>
+            <a href="#page-setup">Printing</a>
+            <a href="#hyperlink-named-ranges">Hyperlink</a>
+            <a href="#advanced-math">Math</a>
+            <a href="#macros-automation">Macros</a>
+          </nav>
+        </aside>
+
+        <section class="content-area">
+          <div class="brand-banner">ADVANCED EXCEL</div>
+          <div class="hero-copy">
+            <p>Deep Excel training with text handling, security, logic, lookup, validation, charts, pivot tables, what-if analysis, printing tools, math functions, and macro automation.</p>
+          </div>
+
+          <div class="poster-strip" id="posterStrip" aria-label="Advanced Excel modules"></div>
+
+          <section class="details-panel">
+            <div class="details-head">
+              <div>
+                <h2 id="topicTitle">Text Functions</h2>
+                <p id="topicDescription">Cleaning, transforming, searching, and structuring text data in Excel.</p>
+              </div>
+              <div class="auto-badge" id="slideStatus">Manual Slide View</div>
+            </div>
+
+            <div class="topic-controls" aria-label="Module navigation controls">
+              <button class="topic-control-btn" id="prevTopicBtn" type="button" aria-label="Previous topic">&#8249;</button>
+              <button class="topic-control-btn" id="nextTopicBtn" type="button" aria-label="Next topic">&#8250;</button>
+            </div>
+
+            <div class="topic-switcher" id="topicSwitcher" aria-label="Change module"></div>
+            <div class="subtopics-grid" id="subtopicsGrid"></div>
+          </section>
+        </section>
+
+        <aside class="profile-bar">
+          <div class="profile-box">
+            <div class="profile-avatar"></div>
+            <span>Excel Track</span>
+          </div>
+          <div class="profile-stack">
+            <div class="profile-chip">
+              <strong>15 Modules</strong>
+              <span>Detailed advanced course flow</span>
+            </div>
+            <div class="profile-chip">
+              <strong>Live Practice</strong>
+              <span>Task + solution style coverage</span>
+            </div>
+            <div class="profile-chip">
+              <strong>Office Ready</strong>
+              <span>Reports, analysis, and automation skills</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <p class="footer-note">Use optional files `advanced-excel-hero.jpg` and `advanced-excel-background.mp4` for the full visual version of this page.</p>
+  </div>
+
+  <div class="sticky-actions">
+    <a class="sticky-link enroll-link" href="enroll-now.html?course=Advanced%20Excel%20Course&price=999&back=Advancd-excel.html">
+      <div>
+        <strong>Enroll Now</strong>
+        <span>Continue registration for the Advanced Excel course</span>
+      </div>
+      <div class="sticky-pill">Buy</div>
+    </a>
+
+    <a class="sticky-link ad-link" href="ad.html">
+      <div class="ad-thumb">
+        <img src="ad-small.jpg" alt="Ad image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="ad-thumb-fallback">AD IMAGE</div>
+      </div>
+      <div class="ad-copy">
+        <strong>Special Ad</strong>
+        <span>Open current promotion and advertisement page</span>
+      </div>
+      <div class="sticky-pill">Open Ad</div>
+    </a>
+  </div>
+
+  <script>
+    const topics = [
+      { key: "text-functions", short: "Text", title: "Text Functions", description: "Cleaning, transforming, searching, and structuring text data in Excel.", subtopics: ["Replace & Substitute", "Replace Function (Task & Solution)", "Substitute Function", "Text Handling Functions", "LEN, REPT, EXACT", "SEARCH Function", "Text to Columns", "Number Value Function"] },
+      { key: "protection-security", short: "Protect", title: "Protection & Security", description: "Workbook control, sheet safety, locked cells, and password-based protection.", subtopics: ["Workbook Security", "Protect Workbook", "Protect Sheet", "Hide Formulas", "Lock Cells", "Unlock Cells", "Password Protection", "Data Safety"] },
+      { key: "logical-functions", short: "IF Logic", title: "Logical Functions", description: "Decision-making formulas with IF, IFS, AND, OR, and advanced logical testing.", subtopics: ["IF Function", "Basic IF", "IF with Logical Test", "Nested IF", "Advanced IF", "Multiple Conditions", "IFS Function", "AND / OR Functions", "AND / OR with IF", "Advanced Logical Functions (XOR)"] },
+      { key: "lookup-reference", short: "Lookup", title: "Lookup & Reference Functions", description: "Finding values across tables with VLOOKUP, HLOOKUP, MATCH, and INDEX MATCH.", subtopics: ["VLOOKUP", "Basic VLOOKUP", "VLOOKUP with Error Handling", "TRUE / Approx Match", "Array & Column Trick", "Advanced VLOOKUP", "HLOOKUP", "MATCH Function", "INDEX Function", "INDEX + MATCH", "Nested INDEX MATCH"] },
+      { key: "date-time", short: "Date", title: "Date & Time Functions", description: "Working with date formats, durations, business days, and live date/time formulas.", subtopics: ["Date Basics", "Date & Time Settings", "Date Formatting", "TODAY / NOW", "DATEDIF", "NETWORKDAYS", "Duration Function"] },
+      { key: "validation", short: "Validate", title: "Data Validation", description: "Control entries with alerts, input messages, dropdowns, and custom validation rules.", subtopics: ["Basic Validation", "Input Message", "Error Alert", "Drop-down Lists", "Custom Rules", "Advanced Validation"] },
+      { key: "sorting-tools", short: "Sort", title: "Sorting, Filtering & Data Tools", description: "Organize and refine datasets with sorting, filters, grouping, and subtotals.", subtopics: ["Basic Sorting", "Custom Sorting", "Auto Filter", "Advanced Filter", "Date Filter", "Color Filter", "Group / Ungroup", "Subtotal"] },
+      { key: "conditional-formatting", short: "Format", title: "Conditional Formatting", description: "Highlight trends, values, and patterns automatically with rule-based formatting.", subtopics: ["Conditional Formatting Basics", "Types of Rules", "Apply Formatting", "Create New Rules", "Manage Rules"] },
+      { key: "charts-visualization", short: "Charts", title: "Charts & Visualization", description: "Build charts, refine presentation, and use smart tools for faster visual analysis.", subtopics: ["Chart Preparation", "Basic Charts", "Advanced Charts", "Customize Charts", "Quick Analysis", "Chart Recommendations"] },
+      { key: "pivot-power-tools", short: "Pivot", title: "Pivot Tables & Power Tools", description: "Summarize, group, slice, and extend data using pivot tools and Microsoft power features.", subtopics: ["Introduction", "Field Management", "Value Fields & Reports", "Grouping Data", "Calculated Fields", "Slicer & Duplicate Pivot", "Power Pivot", "Power Map"] },
+      { key: "what-if-analysis", short: "What-If", title: "What-If Analysis", description: "Run scenarios, goal seek, loan tables, and financial calculations for planning models.", subtopics: ["Goal Seek", "Scenario Manager", "Data Tables", "Loan Table Creation", "PMT (EMI Calculator)", "Financial Function"] },
+      { key: "page-setup", short: "Print", title: "Page Setup & Printing", description: "Prepare sheets for print, presentation, drawing support, and workbook sharing.", subtopics: ["Print Options", "Print Part 1", "Print Part 2", "Workbook Sharing", "Draw Tab"] },
+      { key: "hyperlink-named-ranges", short: "Links", title: "Hyperlink & Named Ranges", description: "Create connected sheets and reusable formulas with hyperlinks and defined names.", subtopics: ["Hyperlink in Excel", "Define Name Feature"] },
+      { key: "advanced-math", short: "Math", title: "Advanced Math Functions", description: "Apply advanced formula patterns and wildcard logic to solve practical spreadsheet tasks.", subtopics: ["Basic to Advanced Math", "Wildcard Usage in Functions"] },
+      { key: "macros-automation", short: "Macros", title: "Macros & Automation", description: "Record, manage, and run macros to automate repetitive Excel workflows.", subtopics: ["Macro Recording", "Part 1", "Part 2", "Part 3", "Running Macros", "Different Methods"] }
+    ];
+
+    const body = document.body;
+    const toggle = document.getElementById("themeToggle");
+    const titleEl = document.getElementById("topicTitle");
+    const descEl = document.getElementById("topicDescription");
+    const gridEl = document.getElementById("subtopicsGrid");
+    const prevTopicBtn = document.getElementById("prevTopicBtn");
+    const nextTopicBtn = document.getElementById("nextTopicBtn");
+    const posterStrip = document.getElementById("posterStrip");
+    const switcher = document.getElementById("topicSwitcher");
+    let cards = [];
+    let switchButtons = [];
+    let menuLinks = [];
+    let activeIndex = 0;
+
+    function buildTopicCards() {
+      posterStrip.innerHTML = topics.map(function (topic) {
+        return "<article class='topic-card' data-topic='" + topic.key + "' id='" + topic.key + "'><div class='topic-fallback'>" + topic.title + "</div><div class='topic-label'>" + topic.short + "</div></article>";
+      }).join("");
+
+      switcher.innerHTML = topics.map(function (topic, index) {
+        return "<button class='topic-switch-btn' type='button' data-topic-index='" + index + "'>" + topic.short + "</button>";
+      }).join("");
+
+      cards = Array.from(document.querySelectorAll(".topic-card"));
+      switchButtons = Array.from(document.querySelectorAll(".topic-switch-btn"));
+      menuLinks = Array.from(document.querySelectorAll(".menu-nav a[href^='#']"));
+
+      cards.forEach(function (card, index) {
+        card.addEventListener("click", function () {
+          renderTopic(index);
+        });
+      });
+
+      switchButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          renderTopic(Number(button.getAttribute("data-topic-index")));
+        });
+      });
+    }
+
+    function renderTopic(index) {
+      const topic = topics[index];
+      activeIndex = index;
+
+      cards.forEach(function (card, cardIndex) {
+        card.classList.toggle("active", cardIndex === index);
+      });
+
+      switchButtons.forEach(function (button, buttonIndex) {
+        button.classList.toggle("active", buttonIndex === index);
+      });
+
+      menuLinks.forEach(function (link) {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + topic.key);
+      });
+
+      titleEl.textContent = topic.title;
+      descEl.textContent = topic.description;
+      gridEl.innerHTML = topic.subtopics.map(function (item, itemIndex) {
+        return "<div class='subtopic color-" + ((itemIndex % 8) + 1) + "'>" + item + "</div>";
+      }).join("");
+
+      if (cards[index]) {
+        cards[index].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    }
+
+    function goToNextTopic() {
+      renderTopic((activeIndex + 1) % topics.length);
+    }
+
+    function goToPreviousTopic() {
+      renderTopic((activeIndex - 1 + topics.length) % topics.length);
+    }
+
+    const savedTheme = localStorage.getItem("advancedExcelTheme");
+    if (savedTheme === "bright") {
+      body.classList.add("bright");
+      toggle.textContent = "Dark Mode";
+    }
+
+    toggle.addEventListener("click", function () {
+      body.classList.toggle("bright");
+      const isBright = body.classList.contains("bright");
+      toggle.textContent = isBright ? "Dark Mode" : "Bright Mode";
+      localStorage.setItem("advancedExcelTheme", isBright ? "bright" : "dark");
+    });
+
+    document.querySelectorAll(".menu-nav a[href^='#']").forEach(function (link, index) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        renderTopic(index);
+      });
+    });
+
+    prevTopicBtn.addEventListener("click", goToPreviousTopic);
+    nextTopicBtn.addEventListener("click", goToNextTopic);
+
+    buildTopicCards();
+    renderTopic(0);
+  </script>
+</body>
+</html>
