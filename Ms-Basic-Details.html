@@ -361,6 +361,32 @@
       white-space: nowrap;
     }
 
+    .topic-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 12px;
+    }
+
+    .topic-control-btn {
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    body.bright .topic-control-btn {
+      background: rgba(255, 255, 255, 0.56);
+    }
+
     .topic-switcher {
       display: flex;
       flex-wrap: wrap;
@@ -603,36 +629,36 @@
       }
 
       .poster-strip {
-        min-height: 148px;
-        gap: 6px;
-        padding: 4px 0 0;
+        min-height: 118px;
+        gap: 5px;
+        padding: 2px 0 0;
         justify-content: center;
         flex: 0 0 auto;
       }
 
       .topic-card {
-        width: 44px;
-        height: 132px;
+        width: 30px;
+        height: 88px;
         border-radius: 10px;
       }
 
       .topic-card.active {
-        width: 92px;
-        height: 160px;
-        transform: translateY(-2px);
+        width: 58px;
+        height: 102px;
+        transform: translateY(0);
       }
 
       .topic-label {
-        left: 6px;
-        right: 6px;
-        bottom: 8px;
-        font-size: 0.62rem;
+        left: 4px;
+        right: 4px;
+        bottom: 6px;
+        font-size: 0.46rem;
       }
 
       .details-panel {
-        margin-top: 8px;
-        padding: 10px;
-        border-radius: 12px;
+        margin-top: 6px;
+        padding: 8px;
+        border-radius: 10px;
         flex: 1 1 auto;
         min-height: 0;
         overflow: auto;
@@ -645,12 +671,21 @@
 
       .details-head p,
       .auto-badge {
-        font-size: 0.66rem;
+        font-size: 0.62rem;
+      }
+
+      .topic-controls {
+        margin-bottom: 6px;
+      }
+
+      .topic-control-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
       }
 
       .topic-switcher {
-        gap: 5px;
-        margin-bottom: 8px;
+        display: none;
       }
 
       .topic-switch-btn {
@@ -711,17 +746,17 @@
       }
 
       .poster-strip {
-        gap: 5px;
+        gap: 4px;
       }
 
       .topic-card {
-        width: 38px;
-        height: 116px;
+        width: 26px;
+        height: 78px;
       }
 
       .topic-card.active {
-        width: 78px;
-        height: 142px;
+        width: 50px;
+        height: 92px;
       }
 
       .subtopics-grid {
@@ -729,7 +764,7 @@
       }
 
       .topic-label {
-        font-size: 0.56rem;
+        font-size: 0.42rem;
       }
     }
   </style>
@@ -750,7 +785,7 @@
     <main class="cinema">
       <div class="video-wrap" aria-hidden="true">
         <video class="bg-video" autoplay muted loop playsinline poster="ms-basic-hero.jpg">
-          <source src="ms-basic-details-background.mp4" type="video/mp4">
+          <source src="ms-basic-background.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
       </div>
@@ -770,7 +805,7 @@
 
           <div class="poster-strip" id="posterStrip" aria-label="Main topics">
             <article class="topic-card active" data-topic="word" id="word">
-              <img src="ms-basic.jpg" alt="MS Word topic image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <img src="ms-word.jpg" alt="MS Word topic image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="topic-fallback">MS-Word</div>
               <div class="topic-label">MS-Word</div>
             </article>
@@ -782,7 +817,7 @@
             </article>
 
             <article class="topic-card" data-topic="excel" id="excel">
-              <img src="advanced-excel.jpg" alt="MS Excel topic image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <img src="ms-excel.jpg" alt="MS Excel topic image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="topic-fallback">MS-Excel</div>
               <div class="topic-label">MS-Excel</div>
             </article>
@@ -794,7 +829,12 @@
                 <h2 id="topicTitle">MS-Word</h2>
                 <p id="topicDescription">Document creation, design, structure, review, and advanced tools.</p>
               </div>
-              <div class="auto-badge">Auto Changing Topic View</div>
+              <div class="auto-badge" id="slideStatus">Manual Slide View</div>
+            </div>
+
+            <div class="topic-controls" aria-label="Topic navigation controls">
+              <button class="topic-control-btn" id="prevTopicBtn" type="button" aria-label="Previous topic">&#8249;</button>
+              <button class="topic-control-btn" id="nextTopicBtn" type="button" aria-label="Next topic">&#8250;</button>
             </div>
 
             <div class="topic-switcher" aria-label="Change topic">
@@ -891,11 +931,12 @@
     const titleEl = document.getElementById("topicTitle");
     const descEl = document.getElementById("topicDescription");
     const gridEl = document.getElementById("subtopicsGrid");
+    const prevTopicBtn = document.getElementById("prevTopicBtn");
+    const nextTopicBtn = document.getElementById("nextTopicBtn");
     const cards = Array.from(document.querySelectorAll(".topic-card"));
     const menuLinks = Array.from(document.querySelectorAll(".menu-nav a[href^='#']"));
     const switchButtons = Array.from(document.querySelectorAll(".topic-switch-btn"));
     let activeIndex = 0;
-    let timer;
 
     function renderTopic(index) {
       const topic = topics[index];
@@ -920,20 +961,23 @@
         const colorClass = "color-" + ((itemIndex % 8) + 1);
         return "<div class='subtopic " + colorClass + "'>" + item + "</div>";
       }).join("");
+
+      if (cards[index]) {
+        cards[index].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
     }
 
-    function startRotation() {
-      clearInterval(timer);
-      timer = setInterval(function () {
-        const next = (activeIndex + 1) % topics.length;
-        renderTopic(next);
-      }, 3200);
+    function goToNextTopic() {
+      renderTopic((activeIndex + 1) % topics.length);
+    }
+
+    function goToPreviousTopic() {
+      renderTopic((activeIndex - 1 + topics.length) % topics.length);
     }
 
     cards.forEach(function (card, index) {
       card.addEventListener("click", function () {
         renderTopic(index);
-        startRotation();
       });
     });
 
@@ -941,9 +985,11 @@
       button.addEventListener("click", function () {
         const index = Number(button.getAttribute("data-topic-index"));
         renderTopic(index);
-        startRotation();
       });
     });
+
+    prevTopicBtn.addEventListener("click", goToPreviousTopic);
+    nextTopicBtn.addEventListener("click", goToNextTopic);
 
     const savedTheme = localStorage.getItem("msBasicTheme");
     if (savedTheme === "bright") {
@@ -959,7 +1005,6 @@
     });
 
     renderTopic(0);
-    startRotation();
   </script>
 </body>
 </html>
