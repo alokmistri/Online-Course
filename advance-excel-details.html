@@ -229,6 +229,16 @@
       line-height: 1.35;
     }
 
+    .profile-chip.highlight {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.26), rgba(37, 99, 235, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .profile-chip.highlight span {
+      color: var(--text);
+    }
+
     .content-area {
       display: flex;
       flex-direction: column;
@@ -256,6 +266,63 @@
       color: var(--muted);
       font-size: 0.88rem;
       line-height: 1.55;
+    }
+
+    .hero-mini {
+      display: grid;
+      grid-template-columns: 148px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      margin: 0 auto 10px;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 780px;
+    }
+
+    body.bright .hero-mini { background: rgba(255, 255, 255, 0.56); }
+
+    .hero-mini-media {
+      height: 92px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.24), rgba(37, 99, 235, 0.24));
+    }
+
+    .hero-mini-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-mini-fallback {
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    .hero-mini-copy strong {
+      display: block;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-mini-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.45;
     }
 
     .poster-strip {
@@ -462,7 +529,7 @@
       transform: translateX(-50%);
       width: min(1180px, calc(100% - 20px));
       display: grid;
-      grid-template-columns: 0.72fr 1.28fr;
+      grid-template-columns: 0.82fr 1.18fr;
       gap: 10px;
       z-index: 30;
     }
@@ -472,8 +539,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 16px;
-      border-radius: 18px;
+      padding: 10px 14px;
+      border-radius: 16px;
       color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.14);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
@@ -489,25 +556,25 @@
     .ad-link {
       background: linear-gradient(135deg, rgba(37, 99, 235, 0.94), rgba(34, 197, 94, 0.9));
       justify-content: flex-start;
-      padding: 10px 12px;
+      padding: 8px 10px;
     }
 
     .sticky-link strong {
       display: block;
-      font-size: 0.98rem;
+      font-size: 0.88rem;
       margin-bottom: 2px;
     }
 
     .sticky-link span {
       display: block;
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       opacity: 0.92;
     }
 
     .ad-thumb {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       overflow: hidden;
       flex: 0 0 auto;
       border: 1px solid rgba(255, 255, 255, 0.16);
@@ -556,7 +623,7 @@
       .page-shell {
         width: min(100% - 8px, 100%);
         margin: 4px auto;
-        padding: 6px 6px 96px;
+        padding: 4px 4px 76px;
         border-radius: 14px;
       }
 
@@ -584,7 +651,7 @@
       }
 
       .cinema {
-        height: calc(100svh - 112px);
+        height: calc(100svh - 92px);
         min-height: 0;
         border-radius: 14px;
       }
@@ -600,7 +667,7 @@
       .content-area {
         display: flex;
         flex-direction: column;
-        padding: 8px 8px 10px;
+        padding: 6px 6px 8px;
         min-height: 0;
       }
 
@@ -621,6 +688,22 @@
         padding: 2px 0 0;
         flex: 0 0 auto;
       }
+
+      .hero-mini {
+        grid-template-columns: 84px minmax(0, 1fr);
+        gap: 8px;
+        margin-bottom: 6px;
+        padding: 8px;
+        border-radius: 12px;
+      }
+
+      .hero-mini-media {
+        height: 56px;
+        border-radius: 10px;
+      }
+
+      .hero-mini-copy strong { font-size: 0.72rem; }
+      .hero-mini-copy span { font-size: 0.58rem; }
 
       .topic-card {
         width: 28px;
@@ -689,45 +772,46 @@
       }
 
       .sticky-actions {
-        width: calc(100% - 10px);
+        width: calc(100% - 8px);
         grid-template-columns: 1fr;
-        gap: 6px;
-        bottom: 4px;
+        gap: 4px;
+        bottom: 2px;
       }
 
       .sticky-link {
-        padding: 8px 10px;
-        border-radius: 12px;
-      }
-
-      .ad-thumb {
-        width: 40px;
-        height: 40px;
+        padding: 6px 8px;
         border-radius: 10px;
       }
 
-      .sticky-link strong { font-size: 0.74rem; }
+      .ad-thumb {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+      }
+
+      .sticky-link strong { font-size: 0.66rem; }
 
       .sticky-link span,
-      .sticky-pill { font-size: 0.62rem; }
+      .sticky-pill { font-size: 0.54rem; }
 
       .footer-note { display: none; }
     }
 
     @media (max-width: 420px) {
       .top-actions { grid-template-columns: 1fr; }
-      .cinema { height: calc(100svh - 126px); }
+      .cinema { height: calc(100svh - 102px); }
       .topic-card { width: 24px; height: 72px; }
       .topic-card.active { width: 46px; height: 86px; }
       .subtopics-grid { grid-template-columns: 1fr; }
       .topic-label { font-size: 0.38rem; }
+      .sticky-link span { font-size: 0.5rem; }
     }
   </style>
 </head>
 <body>
   <div class="page-shell">
     <header class="topbar">
-      <a class="brand" href="Courses.html">LO<span>OO</span></a>
+      <a class="brand" href="Courses.html">Genius Ta<span>lly Academy</span></a>
       <div class="top-actions">
         <a class="btn" href="support.html">Support</a>
         <a class="btn" href="offers.html">Offers</a>
@@ -739,7 +823,7 @@
     <main class="cinema">
       <div class="video-wrap" aria-hidden="true">
         <video class="bg-video" autoplay muted loop playsinline poster="advanced-excel-hero.jpg">
-          <source src="advanced-excel-background.mp4" type="video/mp4">
+          <source src="advanced-excel-details-background.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
       </div>
@@ -763,6 +847,7 @@
             <a href="#hyperlink-named-ranges">Hyperlink</a>
             <a href="#advanced-math">Math</a>
             <a href="#macros-automation">Macros</a>
+            <a href="#Others-things">Other's</a>
           </nav>
         </aside>
 
@@ -770,6 +855,17 @@
           <div class="brand-banner">ADVANCED EXCEL</div>
           <div class="hero-copy">
             <p>Deep Excel training with text handling, security, logic, lookup, validation, charts, pivot tables, what-if analysis, printing tools, math functions, and macro automation.</p>
+          </div>
+
+          <div class="hero-mini">
+            <div class="hero-mini-media">
+              <img src="Advance-Excel-Logo.jpg" alt="Advanced Excel hero image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="hero-mini-fallback">ADD HERO IMAGE AS<br>ADVANCED-EXCEL-HERO.JPG</div>
+            </div>
+            <div class="hero-mini-copy">
+              <strong>Small Hero Preview</strong>
+              <span>Use `advanced-excel-hero.jpg` for a cleaner top visual and `advanced-excel-background.mp4` as the optional background video.</span>
+            </div>
           </div>
 
           <div class="poster-strip" id="posterStrip" aria-label="Advanced Excel modules"></div>
@@ -800,42 +896,46 @@
           </div>
           <div class="profile-stack">
             <div class="profile-chip">
-              <strong>15 Modules</strong>
+              <strong>30+ Modules</strong>
               <span>Detailed advanced course flow</span>
             </div>
             <div class="profile-chip">
-              <strong>Live Practice</strong>
+              <strong>Practise Task</strong>
               <span>Task + solution style coverage</span>
             </div>
             <div class="profile-chip">
               <strong>Office Ready</strong>
               <span>Reports, analysis, and automation skills</span>
             </div>
+            <div class="profile-chip highlight">
+              <strong>EMI Available</strong>
+              <span>Easy payment option is available for this course</span>
+            </div>
           </div>
         </aside>
       </div>
     </main>
 
-    <p class="footer-note">Use optional files `advanced-excel-hero.jpg` and `advanced-excel-background.mp4` for the full visual version of this page.</p>
+    <p class="footer-note">Built with ❤️ to simplify learning and accelerate your success. © 2026 All Rights Reserved.</p>
   </div>
 
   <div class="sticky-actions">
     <a class="sticky-link enroll-link" href="enroll-now.html?course=Advanced%20Excel%20Course&price=999&back=Advancd-excel.html">
       <div>
-        <strong>Enroll Now</strong>
-        <span>Continue registration for the Advanced Excel course</span>
+        <strong>Enroll Now at Just ₹999</strong>
+        <span>EMI Available Explore EMI CLick Enroll Now</span>
       </div>
       <div class="sticky-pill">Buy</div>
     </a>
 
     <a class="sticky-link ad-link" href="ad.html">
       <div class="ad-thumb">
-        <img src="ad-small.jpg" alt="Ad image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <img src="Advertisement-A.jpg" alt="Ad image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ad-thumb-fallback">AD IMAGE</div>
       </div>
       <div class="ad-copy">
         <strong>Special Ad</strong>
-        <span>Open current promotion and advertisement page</span>
+        <span>Explore New Offer's & Discounts</span>
       </div>
       <div class="sticky-pill">Open Ad</div>
     </a>
@@ -843,21 +943,21 @@
 
   <script>
     const topics = [
-      { key: "text-functions", short: "Text", title: "Text Functions", description: "Cleaning, transforming, searching, and structuring text data in Excel.", subtopics: ["Replace & Substitute", "Replace Function (Task & Solution)", "Substitute Function", "Text Handling Functions", "LEN, REPT, EXACT", "SEARCH Function", "Text to Columns", "Number Value Function"] },
-      { key: "protection-security", short: "Protect", title: "Protection & Security", description: "Workbook control, sheet safety, locked cells, and password-based protection.", subtopics: ["Workbook Security", "Protect Workbook", "Protect Sheet", "Hide Formulas", "Lock Cells", "Unlock Cells", "Password Protection", "Data Safety"] },
-      { key: "logical-functions", short: "IF Logic", title: "Logical Functions", description: "Decision-making formulas with IF, IFS, AND, OR, and advanced logical testing.", subtopics: ["IF Function", "Basic IF", "IF with Logical Test", "Nested IF", "Advanced IF", "Multiple Conditions", "IFS Function", "AND / OR Functions", "AND / OR with IF", "Advanced Logical Functions (XOR)"] },
-      { key: "lookup-reference", short: "Lookup", title: "Lookup & Reference Functions", description: "Finding values across tables with VLOOKUP, HLOOKUP, MATCH, and INDEX MATCH.", subtopics: ["VLOOKUP", "Basic VLOOKUP", "VLOOKUP with Error Handling", "TRUE / Approx Match", "Array & Column Trick", "Advanced VLOOKUP", "HLOOKUP", "MATCH Function", "INDEX Function", "INDEX + MATCH", "Nested INDEX MATCH"] },
-      { key: "date-time", short: "Date", title: "Date & Time Functions", description: "Working with date formats, durations, business days, and live date/time formulas.", subtopics: ["Date Basics", "Date & Time Settings", "Date Formatting", "TODAY / NOW", "DATEDIF", "NETWORKDAYS", "Duration Function"] },
-      { key: "validation", short: "Validate", title: "Data Validation", description: "Control entries with alerts, input messages, dropdowns, and custom validation rules.", subtopics: ["Basic Validation", "Input Message", "Error Alert", "Drop-down Lists", "Custom Rules", "Advanced Validation"] },
-      { key: "sorting-tools", short: "Sort", title: "Sorting, Filtering & Data Tools", description: "Organize and refine datasets with sorting, filters, grouping, and subtotals.", subtopics: ["Basic Sorting", "Custom Sorting", "Auto Filter", "Advanced Filter", "Date Filter", "Color Filter", "Group / Ungroup", "Subtotal"] },
-      { key: "conditional-formatting", short: "Format", title: "Conditional Formatting", description: "Highlight trends, values, and patterns automatically with rule-based formatting.", subtopics: ["Conditional Formatting Basics", "Types of Rules", "Apply Formatting", "Create New Rules", "Manage Rules"] },
-      { key: "charts-visualization", short: "Charts", title: "Charts & Visualization", description: "Build charts, refine presentation, and use smart tools for faster visual analysis.", subtopics: ["Chart Preparation", "Basic Charts", "Advanced Charts", "Customize Charts", "Quick Analysis", "Chart Recommendations"] },
-      { key: "pivot-power-tools", short: "Pivot", title: "Pivot Tables & Power Tools", description: "Summarize, group, slice, and extend data using pivot tools and Microsoft power features.", subtopics: ["Introduction", "Field Management", "Value Fields & Reports", "Grouping Data", "Calculated Fields", "Slicer & Duplicate Pivot", "Power Pivot", "Power Map"] },
-      { key: "what-if-analysis", short: "What-If", title: "What-If Analysis", description: "Run scenarios, goal seek, loan tables, and financial calculations for planning models.", subtopics: ["Goal Seek", "Scenario Manager", "Data Tables", "Loan Table Creation", "PMT (EMI Calculator)", "Financial Function"] },
-      { key: "page-setup", short: "Print", title: "Page Setup & Printing", description: "Prepare sheets for print, presentation, drawing support, and workbook sharing.", subtopics: ["Print Options", "Print Part 1", "Print Part 2", "Workbook Sharing", "Draw Tab"] },
-      { key: "hyperlink-named-ranges", short: "Links", title: "Hyperlink & Named Ranges", description: "Create connected sheets and reusable formulas with hyperlinks and defined names.", subtopics: ["Hyperlink in Excel", "Define Name Feature"] },
-      { key: "advanced-math", short: "Math", title: "Advanced Math Functions", description: "Apply advanced formula patterns and wildcard logic to solve practical spreadsheet tasks.", subtopics: ["Basic to Advanced Math", "Wildcard Usage in Functions"] },
-      { key: "macros-automation", short: "Macros", title: "Macros & Automation", description: "Record, manage, and run macros to automate repetitive Excel workflows.", subtopics: ["Macro Recording", "Part 1", "Part 2", "Part 3", "Running Macros", "Different Methods"] }
+      { key: "text-functions", short: "Text", title: "Text Functions", description: "Cleaning, transforming, searching, and structuring text data in Excel.", subtopics: ["Replace & Substitute", "Replace Function (Task & Solution)", "Substitute Function", "Text Handling Functions", "LEN, REPT, EXACT", "SEARCH Function", "Text to Columns", "Number Value Function", "Others"] },
+      { key: "protection-security", short: "Protect", title: "Protection & Security", description: "Workbook control, sheet safety, locked cells, and password-based protection.", subtopics: ["Workbook Security", "Protect Workbook", "Protect Sheet", "Hide Formulas", "Lock Cells", "Unlock Cells", "Password Protection", "Data Safety", "Others"] },
+      { key: "logical-functions", short: "IF Logic", title: "Logical Functions", description: "Decision-making formulas with IF, IFS, AND, OR, and advanced logical testing.", subtopics: ["IF Function", "Basic IF", "IF with Logical Test", "Nested IF", "Advanced IF", "Multiple Conditions", "IFS Function", "AND / OR Functions", "AND / OR with IF", "Advanced Logical Functions (XOR)", "Others"] },
+      { key: "lookup-reference", short: "Lookup", title: "Lookup & Reference Functions", description: "Finding values across tables with VLOOKUP, HLOOKUP, MATCH, and INDEX MATCH.", subtopics: ["VLOOKUP", "Basic VLOOKUP", "VLOOKUP with Error Handling", "TRUE / Approx Match", "Array & Column Trick", "Advanced VLOOKUP", "HLOOKUP", "MATCH Function", "INDEX Function", "INDEX + MATCH", "Nested INDEX MATCH", "Others"] },
+      { key: "date-time", short: "Date", title: "Date & Time Functions", description: "Working with date formats, durations, business days, and live date/time formulas.", subtopics: ["Date Basics", "Date & Time Settings", "Date Formatting", "TODAY / NOW", "DATEDIF", "NETWORKDAYS", "Duration Function", "Others"] },
+      { key: "validation", short: "Validate", title: "Data Validation", description: "Control entries with alerts, input messages, dropdowns, and custom validation rules.", subtopics: ["Basic Validation", "Input Message", "Error Alert", "Drop-down Lists", "Custom Rules", "Advanced Validation", "Others"] },
+      { key: "sorting-tools", short: "Sort", title: "Sorting, Filtering & Data Tools", description: "Organize and refine datasets with sorting, filters, grouping, and subtotals.", subtopics: ["Basic Sorting", "Custom Sorting", "Auto Filter", "Advanced Filter", "Date Filter", "Color Filter", "Group / Ungroup", "Subtotal", "Others"] },
+      { key: "conditional-formatting", short: "Format", title: "Conditional Formatting", description: "Highlight trends, values, and patterns automatically with rule-based formatting.", subtopics: ["Conditional Formatting Basics", "Types of Rules", "Apply Formatting", "Create New Rules", "Manage Rules", "Others"] },
+      { key: "charts-visualization", short: "Charts", title: "Charts & Visualization", description: "Build charts, refine presentation, and use smart tools for faster visual analysis.", subtopics: ["Chart Preparation", "Basic Charts", "Advanced Charts", "Customize Charts", "Quick Analysis", "Chart Recommendations", "Others"] },
+      { key: "pivot-power-tools", short: "Pivot", title: "Pivot Tables & Power Tools", description: "Summarize, group, slice, and extend data using pivot tools and Microsoft power features.", subtopics: ["Introduction", "Field Management", "Value Fields & Reports", "Grouping Data", "Calculated Fields", "Slicer & Duplicate Pivot", "Power Pivot", "Power Map", "Others"] },
+      { key: "what-if-analysis", short: "What-If", title: "What-If Analysis", description: "Run scenarios, goal seek, loan tables, and financial calculations for planning models.", subtopics: ["Goal Seek", "Scenario Manager", "Data Tables", "Loan Table Creation", "PMT (EMI Calculator)", "Financial Function", "Others"] },
+      { key: "page-setup", short: "Print", title: "Page Setup & Printing", description: "Prepare sheets for print, presentation, drawing support, and workbook sharing.", subtopics: ["Print Options", "Print Part 1", "Print Part 2", "Workbook Sharing", "Draw Tab", "Others"] },
+      { key: "hyperlink-named-ranges", short: "Links", title: "Hyperlink & Named Ranges", description: "Create connected sheets and reusable formulas with hyperlinks and defined names.", subtopics: ["Hyperlink in Excel", "Define Name Feature", "Others"] },
+      { key: "advanced-math", short: "Math", title: "Advanced Math Functions", description: "Apply advanced formula patterns and wildcard logic to solve practical spreadsheet tasks.", subtopics: ["Basic to Advanced Math", "Wildcard Usage in Functions", "Others"] },
+      { key: "macros-automation", short: "Macros", title: "Macros & Automation", description: "Record, manage, and run macros to automate repetitive Excel workflows.", subtopics: ["Macro Recording", "Part 1", "Part 2", "Part 3", "Running Macros", "Different Methods", "Others"] }
     ];
 
     const body = document.body;
