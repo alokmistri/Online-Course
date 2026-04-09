@@ -216,6 +216,29 @@
       font-weight: 800;
     }
 
+    .profile-note {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255, 149, 69, 0.24), rgba(155, 109, 255, 0.18));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      text-align: right;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .profile-note strong {
+      display: block;
+      font-size: 0.86rem;
+      margin-bottom: 4px;
+    }
+
+    .profile-note span {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
     .profile-avatar {
       width: 34px;
       height: 34px;
@@ -261,6 +284,65 @@
       transition: width 0.55s ease, height 0.55s ease, transform 0.55s ease, box-shadow 0.55s ease;
       flex: 0 0 auto;
       box-shadow: 0 18px 34px rgba(0, 0, 0, 0.16);
+    }
+
+    .hero-mini {
+      display: grid;
+      grid-template-columns: 148px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      margin: 0 auto 10px;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 760px;
+    }
+
+    body.bright .hero-mini {
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .hero-mini-media {
+      height: 92px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, rgba(255, 82, 82, 0.24), rgba(155, 109, 255, 0.24));
+    }
+
+    .hero-mini-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-mini-fallback {
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    .hero-mini-copy strong {
+      display: block;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-mini-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.45;
     }
 
     body.bright .topic-card {
@@ -456,7 +538,7 @@
       transform: translateX(-50%);
       width: min(1180px, calc(100% - 20px));
       display: grid;
-      grid-template-columns: 0.72fr 1.28fr;
+      grid-template-columns: 0.82fr 1.18fr;
       gap: 10px;
       z-index: 30;
     }
@@ -466,8 +548,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 16px;
-      border-radius: 18px;
+      padding: 10px 14px;
+      border-radius: 16px;
       color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.14);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
@@ -490,26 +572,26 @@
 
     .sticky-link strong {
       display: block;
-      font-size: 0.98rem;
+      font-size: 0.88rem;
       margin-bottom: 2px;
     }
 
     .sticky-link span {
       display: block;
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       opacity: 0.92;
     }
 
     .ad-link {
       background: linear-gradient(135deg, rgba(120, 86, 255, 0.94), rgba(72, 195, 255, 0.9));
       justify-content: flex-start;
-      padding: 10px 12px;
+      padding: 8px 10px;
     }
 
     .ad-thumb {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       overflow: hidden;
       flex: 0 0 auto;
       border: 1px solid rgba(255, 255, 255, 0.16);
@@ -569,7 +651,7 @@
       .page-shell {
         width: min(100% - 8px, 100%);
         margin: 4px auto;
-        padding: 6px 6px 96px;
+        padding: 4px 4px 76px;
         border-radius: 14px;
       }
 
@@ -601,7 +683,7 @@
       }
 
       .cinema {
-        height: calc(100svh - 112px);
+        height: calc(100svh - 92px);
         min-height: 0;
         border-radius: 14px;
       }
@@ -619,7 +701,7 @@
       .content-area {
         display: flex;
         flex-direction: column;
-        padding: 8px 8px 10px;
+        padding: 6px 6px 8px;
         min-height: 0;
       }
 
@@ -634,6 +716,27 @@
         padding: 2px 0 0;
         justify-content: center;
         flex: 0 0 auto;
+      }
+
+      .hero-mini {
+        grid-template-columns: 84px minmax(0, 1fr);
+        gap: 8px;
+        margin-bottom: 6px;
+        padding: 8px;
+        border-radius: 12px;
+      }
+
+      .hero-mini-media {
+        height: 56px;
+        border-radius: 10px;
+      }
+
+      .hero-mini-copy strong {
+        font-size: 0.72rem;
+      }
+
+      .hero-mini-copy span {
+        font-size: 0.58rem;
       }
 
       .topic-card {
@@ -705,30 +808,30 @@
       }
 
       .sticky-actions {
-        width: calc(100% - 10px);
+        width: calc(100% - 8px);
         grid-template-columns: 1fr;
-        gap: 6px;
-        bottom: 4px;
+        gap: 4px;
+        bottom: 2px;
       }
 
       .sticky-link {
-        padding: 8px 10px;
-        border-radius: 12px;
-      }
-
-      .ad-thumb {
-        width: 40px;
-        height: 40px;
+        padding: 6px 8px;
         border-radius: 10px;
       }
 
+      .ad-thumb {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+      }
+
       .sticky-link strong {
-        font-size: 0.74rem;
+        font-size: 0.66rem;
       }
 
       .sticky-link span,
       .sticky-pill {
-        font-size: 0.62rem;
+        font-size: 0.54rem;
       }
 
       .footer-note {
@@ -742,7 +845,7 @@
       }
 
       .cinema {
-        height: calc(100svh - 126px);
+        height: calc(100svh - 102px);
       }
 
       .poster-strip {
@@ -765,6 +868,10 @@
 
       .topic-label {
         font-size: 0.42rem;
+      }
+
+      .sticky-link span {
+        font-size: 0.5rem;
       }
     }
   </style>
@@ -802,6 +909,17 @@
 
         <section class="content-area">
           <div class="brand-banner">MS BASIC</div>
+
+          <div class="hero-mini">
+            <div class="hero-mini-media">
+              <img src="ms-basic-hero.jpg" alt="MS Basic hero image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="hero-mini-fallback">ADD HERO IMAGE AS<br>MS-BASIC-HERO.JPG</div>
+            </div>
+            <div class="hero-mini-copy">
+              <strong>Small Hero Preview</strong>
+              <span>Keep `ms-basic-hero.jpg` for a neat top image and `ms-basic-background.mp4` for the optional moving background look.</span>
+            </div>
+          </div>
 
           <div class="poster-strip" id="posterStrip" aria-label="Main topics">
             <article class="topic-card active" data-topic="word" id="word">
@@ -852,6 +970,10 @@
             <div class="profile-avatar"></div>
             <span>Android View</span>
           </div>
+          <div class="profile-note">
+            <strong>EMI Available</strong>
+            <span>Easy payment option is available for this course</span>
+          </div>
         </aside>
       </div>
     </main>
@@ -863,7 +985,7 @@
     <a class="sticky-link enroll-link" href="enroll-now.html?course=MS-Basic%20Course&price=499&back=Ms-BasicDetails.html">
       <div>
         <strong>Enroll Now</strong>
-        <span>Buy this course and continue your registration</span>
+        <span>Continue registration for the MS-Basic course at Rs. 499</span>
       </div>
       <div class="sticky-pill">Buy</div>
     </a>
