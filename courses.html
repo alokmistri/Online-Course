@@ -3,34 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enroll Now</title>
+  <title>Looo | Courses</title>
   <style>
     :root {
-      --bg: #f4edf8;
-      --panel: rgba(255, 255, 255, 0.84);
-      --panel-strong: rgba(255, 255, 255, 0.94);
-      --text: #241936;
-      --muted: #6f6481;
+      --bg: #f7eff7;
+      --panel: rgba(255, 255, 255, 0.78);
+      --panel-strong: rgba(255, 255, 255, 0.92);
+      --text: #1d1530;
+      --muted: #6f6480;
       --primary: #7b3ff2;
-      --primary-deep: #5726bf;
-      --secondary: #ff9d59;
-      --line: rgba(121, 91, 176, 0.14);
-      --shadow: 0 24px 55px rgba(70, 32, 131, 0.16);
+      --primary-deep: #5826bf;
+      --secondary: #ff9e56;
+      --line: rgba(117, 86, 174, 0.14);
+      --shadow: 0 24px 60px rgba(75, 35, 131, 0.18);
+      --hero-overlay: linear-gradient(120deg, rgba(255, 255, 255, 0.86), rgba(248, 241, 255, 0.7));
+      --chip: rgba(123, 63, 242, 0.08);
+    }
+
+    body.dark {
+      --bg: #110d1b;
+      --panel: rgba(31, 23, 45, 0.8);
+      --panel-strong: rgba(23, 17, 34, 0.94);
+      --text: #f7f0ff;
+      --muted: #c9bdd9;
+      --primary: #b086ff;
+      --primary-deep: #d4beff;
+      --secondary: #ffbc7b;
+      --line: rgba(220, 204, 255, 0.08);
+      --shadow: 0 24px 60px rgba(5, 2, 14, 0.46);
+      --hero-overlay: linear-gradient(120deg, rgba(17, 13, 27, 0.84), rgba(28, 21, 43, 0.76));
+      --chip: rgba(255, 255, 255, 0.05);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: "Trebuchet MS", "Segoe UI", sans-serif;
-      color: var(--text);
       background:
-        radial-gradient(circle at 15% 18%, rgba(255, 193, 222, 0.22), transparent 22%),
-        radial-gradient(circle at 85% 14%, rgba(122, 61, 242, 0.14), transparent 26%),
-        linear-gradient(160deg, var(--bg), #efe5f7 58%, #e8def3 100%);
+        radial-gradient(circle at 15% 20%, rgba(255, 190, 218, 0.28), transparent 24%),
+        radial-gradient(circle at 82% 12%, rgba(123, 63, 242, 0.18), transparent 28%),
+        linear-gradient(160deg, var(--bg), #efe6f7 58%, #e9dff7 100%);
+      color: var(--text);
       min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 168, 109, 0.08), transparent 24%),
+        radial-gradient(circle at 82% 12%, rgba(123, 63, 242, 0.18), transparent 28%),
+        linear-gradient(160deg, #110d1b, #171124 58%, #0c0914 100%);
     }
 
     a {
@@ -39,28 +68,29 @@
     }
 
     .page-shell {
-      width: min(1120px, calc(100% - 18px));
-      margin: 10px auto;
-      padding: 12px 12px 24px;
-      border-radius: 24px;
+      width: min(1240px, calc(100% - 28px));
+      margin: 14px auto;
+      padding: 18px 20px 34px;
+      border-radius: 30px;
       background: var(--panel);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+      overflow: hidden;
     }
 
     .topbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .brand {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -73,384 +103,609 @@
     .top-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
     .btn,
-    .back-btn {
+    .toggle-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 14px;
+      gap: 8px;
+      padding: 12px 18px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.16);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
       font-weight: 800;
-      font-size: 0.84rem;
       cursor: pointer;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12));
+      color: var(--text);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn:hover,
+    .toggle-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(84, 42, 151, 0.18);
+      border-color: rgba(123, 63, 242, 0.25);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
     }
 
     .hero {
+      position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 180px;
-      align-items: center;
-      gap: 18px;
-      padding: 22px 20px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.14));
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      margin-bottom: 14px;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+      gap: 28px;
+      padding: 34px;
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 460px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.08));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 20px;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        var(--hero-overlay),
+        radial-gradient(circle at 82% 20%, rgba(150, 101, 255, 0.22), transparent 20%);
+    }
+
+    .hero > *:not(.hero-video-wrap) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      max-width: 9ch;
+    }
+
+    .hero-copy p {
+      margin: 0 0 22px;
+      max-width: 56ch;
+      color: var(--muted);
+      line-height: 1.65;
     }
 
     .hero-chip {
       display: inline-flex;
-      padding: 7px 12px;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(123, 63, 242, 0.08);
+      background: var(--chip);
       color: var(--primary);
       font-weight: 800;
-      font-size: 0.8rem;
-      margin-bottom: 10px;
+      font-size: 0.9rem;
     }
 
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      line-height: 0.98;
-    }
-
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-      max-width: 58ch;
-      font-size: 0.94rem;
-    }
-
-    .hero-media {
-      width: 100%;
-      height: 160px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(123, 63, 242, 0.16), rgba(255, 157, 89, 0.16));
+    .hero-visual {
+      position: relative;
+      min-height: 360px;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
 
-    .hero-media img {
+    .hero-ring {
+      position: absolute;
+      inset: 10% 14%;
+      border-radius: 50%;
+      border: 1px dashed rgba(127, 63, 242, 0.26);
+      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 35%);
+      animation: floatBlob 7s ease-in-out infinite;
+    }
+
+    .hero-image {
+      width: min(84%, 390px);
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 10px solid rgba(255, 255, 255, 0.82);
+      box-shadow: 0 24px 60px rgba(44, 18, 88, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 20px 0 14px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .course-card {
+      position: relative;
+      padding: 16px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0.2));
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 45px rgba(63, 30, 124, 0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.65s ease, opacity 0.65s ease, border-color 0.25s ease;
+    }
+
+    body.dark .course-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+    }
+
+    .course-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .course-card:hover {
+      border-color: rgba(123, 63, 242, 0.3);
+    }
+
+    .course-media {
+      position: relative;
+      height: 190px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(123, 63, 242, 0.22), rgba(255, 158, 86, 0.22));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 16px;
+    }
+
+    .course-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .hero-media-fallback {
+    .media-placeholder {
+      position: absolute;
+      inset: 0;
       display: none;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 14px;
-      font-weight: 800;
+      padding: 20px;
       color: var(--text);
-      line-height: 1.4;
+      font-weight: 800;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.12));
     }
 
-    .summary-grid {
-      display: grid;
-      grid-template-columns: 1fr 220px;
-      gap: 14px;
-      margin-bottom: 16px;
+    .course-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
     }
 
-    .summary-card,
-    .price-card {
-      padding: 18px;
-      border-radius: 20px;
-      background: var(--panel-strong);
-      border: 1px solid var(--line);
-    }
-
-    .summary-card h2,
-    .price-card h2 {
-      margin: 0 0 8px;
-      font-size: 1.15rem;
-    }
-
-    .summary-card p,
-    .price-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 0.9rem;
-    }
-
-    .amount {
-      margin-top: 10px;
-      font-size: 2rem;
+    .price {
+      font-size: 1.25rem;
       font-weight: 900;
       color: var(--primary);
     }
 
-    .section-head {
-      margin: 14px 0 10px;
-    }
-
-    .section-head h2 {
-      margin: 0 0 4px;
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .payment-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .payment-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 10px;
-      padding: 16px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.26));
-      border: 1px solid var(--line);
-      box-shadow: 0 16px 34px rgba(61, 29, 117, 0.08);
-      min-height: 138px;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .payment-card:hover,
-    .payment-card.active {
-      transform: translateY(-2px);
-      border-color: rgba(91, 182, 221, 0.42);
-      box-shadow: 0 18px 36px rgba(50, 110, 166, 0.14);
-    }
-
-    .payment-card.color-1 { background: linear-gradient(135deg, rgba(255, 112, 112, 0.3), rgba(255, 174, 88, 0.18)); }
-    .payment-card.color-2 { background: linear-gradient(135deg, rgba(255, 196, 96, 0.28), rgba(255, 130, 176, 0.18)); }
-    .payment-card.color-3 { background: linear-gradient(135deg, rgba(99, 214, 255, 0.3), rgba(104, 132, 255, 0.18)); }
-    .payment-card.color-4 { background: linear-gradient(135deg, rgba(118, 255, 196, 0.26), rgba(65, 168, 255, 0.18)); }
-    .payment-card.color-5 { background: linear-gradient(135deg, rgba(190, 120, 255, 0.28), rgba(255, 120, 191, 0.18)); }
-
-    .payment-copy strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1rem;
-    }
-
-    .payment-copy span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.4;
-    }
-
-    .pay-pill {
-      padding: 9px 12px;
+    .emi-badge {
+      padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.42);
-      font-weight: 900;
-      font-size: 0.74rem;
-      white-space: nowrap;
+      background: rgba(255, 158, 86, 0.16);
+      color: #c56511;
+      font-weight: 800;
+      font-size: 0.82rem;
+      border: 1px solid rgba(255, 158, 86, 0.2);
     }
 
-    .payment-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 0.9rem;
-      color: #175b74;
-      background: rgba(255, 255, 255, 0.76);
-      border: 1px solid rgba(91, 182, 221, 0.22);
+    body.dark .emi-badge {
+      color: #ffd8b2;
     }
 
-    .pay-footer {
+    .course-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.28rem;
+    }
+
+    .course-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+      min-height: 72px;
+    }
+
+    .course-actions {
       display: flex;
-      justify-content: space-between;
       gap: 10px;
       flex-wrap: wrap;
-      margin-top: 14px;
+    }
+
+    .marquee-wrap {
+      margin: 10px 0 18px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(36, 24, 62, 0.96);
+      color: #f7efff;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      min-width: 100%;
+      animation: marquee 20s linear infinite;
+    }
+
+    .marquee-item {
+      padding: 14px 24px;
+      white-space: nowrap;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .footer-note {
       text-align: center;
       color: var(--muted);
-      padding-top: 16px;
-      font-size: 0.78rem;
+      padding-top: 20px;
+      font-size: 0.92rem;
+    }
+
+    .sticky-ad {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: min(1120px, calc(100% - 28px));
+      z-index: 20;
+    }
+
+    .sticky-ad-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(106, 53, 215, 0.96), rgba(255, 144, 91, 0.92));
+      box-shadow: 0 18px 40px rgba(53, 22, 107, 0.26);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .sticky-ad-text strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .sticky-ad-text span {
+      display: block;
+      font-size: 0.82rem;
+      opacity: 0.92;
+    }
+
+    .sticky-ad-pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes floatBlob {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.03); }
+    }
+
+    @media (max-width: 1024px) {
+      .hero,
+      .course-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 26px 22px;
+      }
+
+      .hero-copy h1 {
+        max-width: 10ch;
+      }
+
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        justify-content: center;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .hero-copy {
+        text-align: center;
+      }
+
+      .hero-copy h1,
+      .hero-copy p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-visual {
+        min-height: 300px;
+      }
     }
 
     @media (max-width: 760px) {
       .page-shell {
         width: min(100% - 8px, 100%);
         margin: 4px auto;
-        padding: 8px 6px 12px;
+        padding: 8px 7px 14px;
         border-radius: 14px;
       }
 
-      .topbar {
+      .topbar,
+      .top-actions,
+      .hero,
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar,
+      .top-actions {
         justify-content: center;
         gap: 6px;
-        margin-bottom: 8px;
       }
 
       .brand {
-        font-size: 0.92rem;
+        font-size: 1.08rem;
       }
 
       .top-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        display: flex;
+        flex-wrap: wrap;
         width: 100%;
-        gap: 6px;
       }
 
-      .btn,
-      .back-btn {
-        padding: 7px 8px;
-        font-size: 0.66rem;
+      .marquee-wrap {
+        display: none;
       }
 
       .hero {
-        grid-template-columns: 1fr 110px;
-        gap: 10px;
-        padding: 10px;
-        border-radius: 14px;
-        margin-bottom: 10px;
+        display: grid;
+        padding: 12px 8px 10px;
+        gap: 8px;
+        border-radius: 16px;
+        margin-bottom: 12px;
       }
 
-      .hero h1 {
-        font-size: clamp(1.15rem, 6vw, 1.55rem);
-        line-height: 1.05;
+      .hero-copy {
+        text-align: center;
       }
 
-      .hero-media {
-        height: 88px;
-        max-width: 110px;
-        border-radius: 14px;
+      .hero-copy h1,
+      .hero-copy p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(1.45rem, 7vw, 1.95rem);
+        max-width: 11ch;
+        margin-bottom: 8px;
+        line-height: 1.02;
+      }
+
+      .hero-copy p {
+        font-size: 0.8rem;
+        line-height: 1.38;
+        margin-bottom: 0;
+        max-width: 34ch;
       }
 
       .hero-chip {
-        padding: 6px 10px;
-        font-size: 0.68rem;
         margin-bottom: 8px;
+        padding: 6px 10px;
+        font-size: 0.72rem;
       }
 
-      .summary-grid,
-      .payment-grid {
-        gap: 8px;
+      .hero-visual {
+        min-height: 170px;
+        padding: 0;
       }
 
-      .summary-grid {
-        grid-template-columns: 1fr 132px;
-        gap: 8px;
-        margin-bottom: 10px;
+      .hero-image {
+        width: min(44vw, 132px);
+        border-width: 5px;
+        border-radius: 50%;
       }
 
-      .summary-card,
-      .price-card,
-      .payment-card {
+      .hero-ring {
+        display: none;
+      }
+
+      .section-head h2 {
+        font-size: 1.05rem;
+      }
+
+      .section-head p {
+        font-size: 0.78rem;
+      }
+
+      .course-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .course-card {
         padding: 10px;
         border-radius: 14px;
       }
 
-      .summary-card h2,
-      .price-card h2 {
-        font-size: 0.88rem;
+      .course-media {
+        height: 108px;
+        margin-bottom: 10px;
+      }
+
+      .course-meta {
+        align-items: stretch;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+
+      .course-card h3 {
+        font-size: 0.9rem;
         margin-bottom: 5px;
       }
 
-      .summary-card p,
-      .price-card p {
-        font-size: 0.72rem;
-        line-height: 1.35;
+      .course-card p {
+        min-height: auto;
+        font-size: 0.76rem;
+        margin-bottom: 10px;
+        line-height: 1.4;
       }
 
-      .amount {
-        margin-top: 6px;
-        font-size: 1.18rem;
-      }
-
-      .section-head {
-        margin: 10px 0 8px;
-      }
-
-      .section-head h2 {
-        font-size: 0.94rem;
-      }
-
-      .section-head p {
-        font-size: 0.72rem;
-      }
-
-      .payment-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .payment-copy strong {
-        font-size: 0.8rem;
-      }
-
-      .payment-copy span,
-      .pay-pill,
-      .footer-note {
-        font-size: 0.66rem;
-      }
-
-      .payment-card {
-        gap: 10px;
-        min-height: 120px;
-      }
-
-      .payment-icon {
-        width: 42px;
-        height: 42px;
-        border-radius: 12px;
+      .btn,
+      .toggle-btn {
+        padding: 8px 11px;
         font-size: 0.76rem;
       }
 
-      .pay-footer {
-        margin-top: 10px;
+      .price {
+        font-size: 1rem;
+      }
+
+      .emi-badge {
+        padding: 6px 9px;
+        font-size: 0.68rem;
+      }
+
+      .footer-note {
+        padding-top: 10px;
+        font-size: 0.72rem;
+      }
+
+      .sticky-ad {
+        width: calc(100% - 12px);
+        bottom: 6px;
+      }
+
+      .sticky-ad-link {
+        padding: 10px 12px;
+        border-radius: 14px;
+      }
+
+      .sticky-ad-text strong {
+        font-size: 0.82rem;
+      }
+
+      .sticky-ad-text span {
+        font-size: 0.66rem;
+      }
+
+      .sticky-ad-pill {
+        padding: 7px 10px;
+        font-size: 0.7rem;
       }
     }
 
     @media (max-width: 420px) {
       .top-actions {
-        grid-template-columns: 1fr 1fr 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
       }
 
-      .hero {
-        grid-template-columns: 1fr 92px;
+      .hero-copy h1 {
+        font-size: clamp(1.3rem, 7.4vw, 1.7rem);
       }
 
-      .hero-media {
-        height: 78px;
-        max-width: 92px;
-      }
-
-      .summary-grid {
+      .course-actions {
+        display: grid;
         grid-template-columns: 1fr;
       }
 
-      .payment-grid {
+      .course-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-visual {
+        min-height: 150px;
+      }
+
+      .hero-image {
+        width: min(48vw, 118px);
+      }
+
+      .course-grid {
         grid-template-columns: 1fr;
       }
 
-      .payment-card {
-        padding: 9px;
+      .top-actions .toggle-btn {
+        grid-column: 1 / -1;
+      }
+
+      .sticky-ad-link {
+        gap: 10px;
+      }
+
+      .sticky-ad-pill {
+        font-size: 0.64rem;
+        padding: 6px 8px;
       }
     }
   </style>
@@ -458,132 +713,244 @@
 <body>
   <div class="page-shell">
     <header class="topbar">
-      <a class="brand" href="Courses.html">LO<span>OO</span></a>
+      <a class="brand" href="index.html">LO<span>OO</span></a>
 
       <div class="top-actions">
-        <a class="btn" href="offers.html">Offers</a>
-        <a class="btn" href="support.html">Support</a>
-        <button class="back-btn" id="backButton" type="button">Back</button>
+        <a class="btn" href="Support.html">Support</a>
+        <a class="btn" href="index.html">Back To Home</a>
+        <button class="toggle-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">Dark Mode</button>
       </div>
     </header>
 
+    <div class="marquee-wrap" aria-label="Course highlights">
+      <div class="marquee-track">
+        <div class="marquee-item">EMI Available On Selected Courses</div>
+        <div class="marquee-item">View Details And Demo Buttons Ready</div>
+        <div class="marquee-item">Glass Style Premium Course Cards</div>
+        <div class="marquee-item">Video Background Hero Section</div>
+        <div class="marquee-item">EMI Available On Selected Courses</div>
+        <div class="marquee-item">View Details And Demo Buttons Ready</div>
+        <div class="marquee-item">Glass Style Premium Course Cards</div>
+        <div class="marquee-item">Video Background Hero Section</div>
+      </div>
+    </div>
+
     <main>
       <section class="hero">
-        <div>
-          <div class="hero-chip">Payment Options</div>
-          <h1>Choose How You Want To Pay</h1>
+        <div class="hero-video-wrap" aria-hidden="true">
+          <video class="hero-video" autoplay muted loop playsinline poster="courses-hero.jpg">
+            <source src="courses-background.mp4" type="video/mp4">
+          </video>
+          <div class="hero-video-overlay"></div>
         </div>
 
-        <div class="hero-media">
-          <img src="enroll-now-hero-image.jpg" alt="Payment hero image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <div class="hero-media-fallback">Add hero image as <strong>payment-hero.jpg</strong></div>
-        </div>
-      </section>
-
-      <section class="summary-grid">
-        <div class="summary-card">
-          <h2 id="courseName">Selected Course</h2>
-          <p id="courseInfo">Course and amount were received from the previous page.</p>
+        <div class="hero-copy">
+          <div class="hero-chip">Professional Courses Collection</div>
+          <h1>Choose The Course That Fits Your Next Goal.</h1>
+          <p>
+            Explore job-focused computer and accounting courses with glass UI cards, clear pricing, EMI badge,
+            and quick buttons for details and demos you can connect later.
+          </p>
         </div>
 
-        <div class="price-card">
-          <h2>Payable Amount</h2>
-          <div class="amount" id="coursePrice">&#8377;0</div>
+        <div class="hero-visual" aria-label="Courses hero image section">
+          <div class="hero-ring"></div>
+          <img class="hero-image" src="courses-hero.jpg" alt="Courses hero image">
         </div>
       </section>
 
       <section>
         <div class="section-head">
-          <h2>Payment Methods</h2>
-          <p>Choose payment method below</p>
+          <div>
+            <h2>All Courses</h2>
+            <p>Each card includes price, EMI badge, image area, details button, and demo button.</p>
+          </div>
         </div>
 
-        <div class="payment-grid" id="paymentGrid">
-          <a class="payment-card color-1 active" data-page="enroll-now-qr.html" href="enroll-now-qr.html">
-            <div class="payment-icon">QR</div>
-            <div class="payment-copy">
-              <strong>Pay Via QR Code</strong>
-              <span>Pay with QR payment page</span>
+        <div class="course-grid">
+          <article class="course-card reveal">
+            <div class="course-media">
+              <img src="ms-basic.jpg" alt="MS Basic Course image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="media-placeholder">Add course image as <strong>ms-basic.jpg</strong></div>
             </div>
-          </a>
-
-          <a class="payment-card color-2" data-page="enroll-now-netbanking.html" href="enroll-now-netbanking.html">
-            <div class="payment-icon">NB</div>
-            <div class="payment-copy">
-              <strong>Pay Via Net Banking</strong>
-              <span>Pay with net banking</span>
+            <div class="course-meta">
+              <span class="price">&#8377;499</span>
+              <span class="emi-badge">EMI Available</span>
             </div>
-          </a>
-
-          <a class="payment-card color-3" data-page="enroll-now-neft-rtgs.html" href="enroll-now-neft-rtgs.html">
-            <div class="payment-icon">NEFT</div>
-            <div class="payment-copy">
-              <strong>Pay Via NEFT / RTGS</strong>
-              <span>Pay with bank transfer</span>
+            <h3>MS-Basic Course</h3>
+            <p>Perfect starter course for everyday computer work, office productivity, and digital confidence.</p>
+            <div class="course-actions">
+              <a class="btn btn-primary" href="Ms-BasicDetails.html">View Details</a>
+              <a class="btn" href="viewdemoMs-basic.html">View Demo</a>
             </div>
-          </a>
+          </article>
 
-          <a class="payment-card color-4" data-page="enroll-now-upi.html" href="enroll-now-upi.html">
-            <div class="payment-icon">UPI</div>
-            <div class="payment-copy">
-              <strong>Pay Via UPI ID</strong>
-              <span>Pay with UPI</span>
+          <article class="course-card reveal">
+            <div class="course-media">
+              <img src="advanced-excel.jpg" alt="Advanced Excel image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="media-placeholder">Add course image as <strong>advanced-excel.jpg</strong></div>
             </div>
-          </a>
-
-          <a class="payment-card color-5" data-page="enroll-now-installments.html" href="enroll-now-installments.html">
-            <div class="payment-icon">EMI</div>
-            <div class="payment-copy">
-              <strong>Pay In Installments</strong>
-              <span>Pay in installments</span>
+            <div class="course-meta">
+              <span class="price">&#8377;499</span>
+              <span class="emi-badge">EMI Available</span>
             </div>
-          </a>
-        </div>
+            <h3>Advanced Excel</h3>
+            <p>Master formulas, dashboards, reports, and smart spreadsheet workflows for office and business use.</p>
+            <div class="course-actions">
+              <a class="btn btn-primary" href="AdvancedExcelDetails.html">View Details</a>
+              <a class="btn" href="viewdemoAdvancedExcel.html">View Demo</a>
+            </div>
+          </article>
 
-        <div class="pay-footer">
-          <a class="btn" href="Courses.html">Return To Store</a>
+          <article class="course-card reveal">
+            <div class="course-media">
+              <img src="tally-prime-gst.jpg" alt="Tally Prime GST image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="media-placeholder">Add course image as <strong>tally-prime-gst.jpg</strong></div>
+            </div>
+            <div class="course-meta">
+              <span class="price">&#8377;499</span>
+              <span class="emi-badge">EMI Available</span>
+            </div>
+            <h3>Tally Prime + GST</h3>
+            <p>Learn billing, accounting entries, GST handling, and day-to-day business accounting in Tally Prime.</p>
+            <div class="course-actions">
+              <a class="btn btn-primary" href="TallyPrimeGstDetails.html">View Details</a>
+              <a class="btn" href="viewdemoTallyPrimeGst.html">View Demo</a>
+            </div>
+          </article>
+
+          <article class="course-card reveal">
+            <div class="course-media">
+              <img src="tally-erp-gst.jpg" alt="Tally ERP GST image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="media-placeholder">Add course image as <strong>tally-erp-gst.jpg</strong></div>
+            </div>
+            <div class="course-meta">
+              <span class="price">&#8377;499</span>
+              <span class="emi-badge">EMI Available</span>
+            </div>
+            <h3>Tally ERP + GST</h3>
+            <p>Build strong accounting basics with Tally ERP, inventory, vouchers, reporting, and GST practice.</p>
+            <div class="course-actions">
+              <a class="btn btn-primary" href="TallyErpGstDetails.html">View Details</a>
+              <a class="btn" href="viewdemoTallyErpGst.html">View Demo</a>
+            </div>
+          </article>
+
+          <article class="course-card reveal">
+            <div class="course-media">
+              <img src="sap-4hana.jpg" alt="SAP 4 HANA image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="media-placeholder">Add course image as <strong>sap-4hana.jpg</strong></div>
+            </div>
+            <div class="course-meta">
+              <span class="price">&#8377;499</span>
+              <span class="emi-badge">EMI Available</span>
+            </div>
+            <h3>SAP 4 HANA</h3>
+            <p>Get introduced to modern SAP workflows, enterprise process flow, and real business software concepts.</p>
+            <div class="course-actions">
+              <a class="btn btn-primary" href="Sap4HanaDetails.html">View Details</a>
+              <a class="btn" href="viewdemoSap4Hana.html">View Demo</a>
+            </div>
+          </article>
+
+          <article class="course-card reveal">
+            <div class="course-media">
+              <img src="sap-fico.jpg" alt="SAP FICO image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="media-placeholder">Add course image as <strong>sap-fico.jpg</strong></div>
+            </div>
+            <div class="course-meta">
+              <span class="price">&#8377;499</span>
+              <span class="emi-badge">EMI Available</span>
+            </div>
+            <h3>SAP FICO</h3>
+            <p>Learn financial accounting and controlling modules for practical SAP finance-related operations.</p>
+            <div class="course-actions">
+              <a class="btn btn-primary" href="SapFicoDetails.html">View Details</a>
+              <a class="btn" href="viewdemoSapFico.html">View Demo</a>
+            </div>
+          </article>
+
+          <article class="course-card reveal">
+            <div class="course-media">
+              <img src="ms-access.jpg" alt="MS Access image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="media-placeholder">Add course image as <strong>ms-access.jpg</strong></div>
+            </div>
+            <div class="course-meta">
+              <span class="price">&#8377;499</span>
+              <span class="emi-badge">EMI Available</span>
+            </div>
+            <h3>MS-ACCESS</h3>
+            <p>Understand tables, forms, queries, reports, and small database management for office systems.</p>
+            <div class="course-actions">
+              <a class="btn btn-primary" href="Ms-AccessDetails.html">View Details</a>
+              <a class="btn" href="viewdemoMs-Access.html">View Demo</a>
+            </div>
+          </article>
+
+          <article class="course-card reveal">
+            <div class="course-media">
+              <img src="peachtree-sage.jpg" alt="Peachtree by Sage image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="media-placeholder">Add course image as <strong>peachtree-sage.jpg</strong></div>
+            </div>
+            <div class="course-meta">
+              <span class="price">&#8377;499</span>
+              <span class="emi-badge">EMI Available</span>
+            </div>
+            <h3>Peachtree By Sage</h3>
+            <p>Learn business accounting software usage, transaction records, and reporting in Peachtree by Sage.</p>
+            <div class="course-actions">
+              <a class="btn btn-primary" href="PeachtreeBySageDetails.html">View Details</a>
+              <a class="btn" href="viewdemoPeachtreeBySage.html">View Demo</a>
+            </div>
+          </article>
+
         </div>
       </section>
     </main>
 
-    <p class="footer-note">Future payment pages will receive the same course and amount through the page link automatically.</p>
+    <p class="footer-note">Course page ready with future detail/demo links, hero video option, glass UI, and Android-friendly layout.</p>
+  </div>
+
+  <div class="sticky-ad">
+    <a class="sticky-ad-link" href="Offers.html">
+      <div class="sticky-ad-text">
+        <strong>Special Offer</strong>
+        <span>Tap here to check latest discount and course deals</span>
+      </div>
+      <span class="sticky-ad-pill">Open Offers</span>
+    </a>
   </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const course = params.get("course") || "Selected Course";
-    const price = params.get("price") || "0";
-    const back = params.get("back") || "Courses.html";
-    const paymentCards = Array.from(document.querySelectorAll("[data-page]"));
+    const toggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme");
+    const reveals = document.querySelectorAll(".reveal");
 
-    document.getElementById("courseName").textContent = course;
-    document.getElementById("courseInfo").textContent = "Payment will continue for " + course + ".";
-    document.getElementById("coursePrice").innerHTML = "&#8377;" + price;
-
-    document.getElementById("backButton").addEventListener("click", function () {
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = back;
-      }
-    });
-
-    function buildNextUrl(page) {
-      return page + "?course=" + encodeURIComponent(course) + "&price=" + encodeURIComponent(price) + "&back=" + encodeURIComponent("enroll-now.html");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+      toggle.textContent = "Bright Mode";
     }
 
-    paymentCards.forEach(function (link) {
-      const page = link.getAttribute("data-page");
-      const nextUrl = buildNextUrl(page);
-      link.setAttribute("href", nextUrl);
+    toggle.addEventListener("click", function () {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      toggle.textContent = isDark ? "Bright Mode" : "Dark Mode";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
 
-      link.addEventListener("click", function () {
-        paymentCards.forEach(function (card) {
-          card.classList.remove("active");
-        });
-        link.classList.add("active");
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
       });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(function (card) {
+      observer.observe(card);
     });
   </script>
 </body>
 </html>
+
