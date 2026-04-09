@@ -269,13 +269,33 @@
       width: 52px;
       height: 52px;
       border-radius: 16px;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 0.9rem;
-      color: #175b74;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: rgba(255, 255, 255, 0.76);
       border: 1px solid rgba(91, 182, 221, 0.22);
+    }
+
+    .payment-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .payment-icon-fallback {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 4px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 0.72rem;
+      color: #175b74;
+      line-height: 1.1;
     }
 
     .pay-footer {
@@ -419,7 +439,6 @@
         width: 42px;
         height: 42px;
         border-radius: 12px;
-        font-size: 0.76rem;
       }
 
       .pay-footer {
@@ -500,7 +519,10 @@
 
         <div class="payment-grid" id="paymentGrid">
           <a class="payment-card color-1 active" data-page="enroll-now-qr.html" href="enroll-now-qr.html">
-            <div class="payment-icon">QR</div>
+            <div class="payment-icon">
+              <img src="pay-qr.jpg" alt="QR payment image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="payment-icon-fallback">QR</div>
+            </div>
             <div class="payment-copy">
               <strong>Pay Via QR Code</strong>
               <span>Pay with QR payment page</span>
@@ -508,7 +530,10 @@
           </a>
 
           <a class="payment-card color-2" data-page="enroll-now-netbanking.html" href="enroll-now-netbanking.html">
-            <div class="payment-icon">NB</div>
+            <div class="payment-icon">
+              <img src="pay-netbanking.jpg" alt="Net banking image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="payment-icon-fallback">NB</div>
+            </div>
             <div class="payment-copy">
               <strong>Pay Via Net Banking</strong>
               <span>Pay with net banking</span>
@@ -516,7 +541,10 @@
           </a>
 
           <a class="payment-card color-3" data-page="enroll-now-neft-rtgs.html" href="enroll-now-neft-rtgs.html">
-            <div class="payment-icon">NEFT</div>
+            <div class="payment-icon">
+              <img src="pay-neft.jpg" alt="NEFT RTGS image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="payment-icon-fallback">NEFT</div>
+            </div>
             <div class="payment-copy">
               <strong>Pay Via NEFT / RTGS</strong>
               <span>Pay with bank transfer</span>
@@ -524,7 +552,10 @@
           </a>
 
           <a class="payment-card color-4" data-page="enroll-now-upi.html" href="enroll-now-upi.html">
-            <div class="payment-icon">UPI</div>
+            <div class="payment-icon">
+              <img src="pay-upi.jpg" alt="UPI payment image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="payment-icon-fallback">UPI</div>
+            </div>
             <div class="payment-copy">
               <strong>Pay Via UPI ID</strong>
               <span>Pay with UPI</span>
@@ -532,7 +563,10 @@
           </a>
 
           <a class="payment-card color-5" data-page="enroll-now-installments.html" href="enroll-now-installments.html">
-            <div class="payment-icon">EMI</div>
+            <div class="payment-icon">
+              <img src="pay-installments.jpg" alt="Installments image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="payment-icon-fallback">EMI</div>
+            </div>
             <div class="payment-copy">
               <strong>Pay In Installments</strong>
               <span>Pay in installments</span>
@@ -541,8 +575,7 @@
         </div>
 
         <div class="pay-footer">
-          <a class="btn" href="Courses.html">Return To Courses</a>
-          <a class="btn btn-primary" id="proceedButton" href="enroll-now-qr.html">Proceed</a>
+          <a class="btn" href="Courses.html">Return To Store</a>
         </div>
       </section>
     </main>
@@ -555,7 +588,6 @@
     const course = params.get("course") || "Selected Course";
     const price = params.get("price") || "0";
     const back = params.get("back") || "Courses.html";
-    const proceedButton = document.getElementById("proceedButton");
     const paymentCards = Array.from(document.querySelectorAll("[data-page]"));
 
     document.getElementById("courseName").textContent = course;
@@ -584,13 +616,8 @@
           card.classList.remove("active");
         });
         link.classList.add("active");
-        proceedButton.href = nextUrl;
       });
     });
-
-    if (paymentCards.length > 0) {
-      proceedButton.href = paymentCards[0].getAttribute("href");
-    }
   </script>
 </body>
 </html>
