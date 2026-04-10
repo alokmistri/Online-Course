@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Looo | Contact Us</title>
+  <style>
+    :root {
+      --bg: #f7f4fb;
+      --panel: rgba(255, 255, 255, 0.9);
+      --text: #15121f;
+      --muted: #6c657d;
+      --line: rgba(134, 112, 187, 0.16);
+      --shadow: 0 22px 55px rgba(85, 53, 145, 0.14);
+      --grad-a: #8b47ff;
+      --grad-b: #ff8b2a;
+      --grad-c: #ef5aa8;
+      --icon: #ff9138;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(139, 71, 255, 0.08), transparent 26%),
+        radial-gradient(circle at 86% 18%, rgba(255, 139, 42, 0.08), transparent 24%),
+        linear-gradient(160deg, #faf8fd, #f1edf8 65%, #ece7f6 100%);
+      min-height: 100vh;
+      padding: 20px 10px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 14px 18px 8px;
+    }
+
+    .brand {
+      font-size: 1.22rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: var(--grad-a);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn,
+    .toggle-btn {
+      border: 1px solid rgba(134, 112, 187, 0.16);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: #fff;
+      color: var(--text);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .content-wrap {
+      padding: 14px 18px 18px;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 34px;
+      align-items: center;
+      padding: 24px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(139, 71, 255, 0.05), transparent 30%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 251, 245, 0.86));
+      border: 1px solid rgba(134, 112, 187, 0.1);
+    }
+
+    .contact-copy h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .contact-copy p {
+      margin: 0 0 26px;
+      max-width: 34ch;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.98rem;
+    }
+
+    .contact-points {
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-item {
+      display: grid;
+      grid-template-columns: 20px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--icon);
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.94rem;
+    }
+
+    .contact-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .form-wrap {
+      padding: 4px 0;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid #e6dff4;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      padding: 14px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(139, 71, 255, 0.42);
+      box-shadow: 0 0 0 4px rgba(139, 71, 255, 0.08);
+    }
+
+    .field select {
+      min-height: 52px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    .field textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      border: 0;
+      border-radius: 6px;
+      padding: 16px 18px;
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
+      background: linear-gradient(90deg, var(--grad-a), var(--grad-c) 48%, var(--grad-b));
+      box-shadow: 0 14px 28px rgba(139, 71, 255, 0.18);
+    }
+
+    .below-strip {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      margin-top: 14px;
+      align-items: center;
+    }
+
+    .emi-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+      box-shadow: 0 14px 28px rgba(139, 71, 255, 0.18);
+      text-align: center;
+    }
+
+    .tiny-ad {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(134, 112, 187, 0.12);
+      min-width: 220px;
+    }
+
+    .tiny-ad-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(139, 71, 255, 0.9), rgba(255, 139, 42, 0.9));
+      flex: 0 0 auto;
+    }
+
+    .tiny-ad-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tiny-ad-fallback {
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      font-size: 0.58rem;
+      font-weight: 900;
+      line-height: 1.1;
+      padding: 4px;
+    }
+
+    .tiny-ad-copy strong {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 2px;
+    }
+
+    .tiny-ad-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.68rem;
+      line-height: 1.3;
+    }
+
+    .helper-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 860px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-copy p {
+        max-width: 100%;
+      }
+
+      .below-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 6px;
+      }
+
+      .page-shell {
+        border-radius: 18px;
+      }
+
+      .topbar {
+        justify-content: center;
+        padding: 10px 10px 6px;
+      }
+
+      .top-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+
+      .toggle-btn {
+        grid-column: 1 / -1;
+      }
+
+      .btn,
+      .toggle-btn {
+        padding: 9px 10px;
+        font-size: 0.72rem;
+      }
+
+      .content-wrap {
+        padding: 8px;
+      }
+
+      .contact-layout {
+        gap: 16px;
+        padding: 16px;
+        border-radius: 16px;
+      }
+
+      .contact-copy h1 {
+        font-size: 1.95rem;
+      }
+
+      .contact-copy p {
+        font-size: 0.84rem;
+        margin-bottom: 18px;
+      }
+
+      .contact-item strong,
+      .contact-item span {
+        font-size: 0.82rem;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        font-size: 0.84rem;
+        padding: 12px;
+      }
+
+      .field textarea {
+        min-height: 116px;
+      }
+
+      .submit-btn {
+        padding: 14px 16px;
+        font-size: 0.86rem;
+      }
+
+      .emi-btn {
+        padding: 12px 14px;
+        font-size: 0.78rem;
+      }
+
+      .tiny-ad {
+        min-width: 0;
+      }
+
+      .helper-note {
+        font-size: 0.72rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">🎓 NextGen Ski<span>lls Academy</span></a>
+
+      <div class="top-actions">
+        <a class="btn" href="index.html">Back</a>
+        <a class="btn" href="Courses.html">Courses</a>
+        <button class="toggle-btn" id="themeToggle" type="button">Dark Mode</button>
+      </div>
+    </header>
+
+    <div class="content-wrap">
+      <section class="contact-layout">
+        <div class="contact-copy">
+          <h1>Contact Us</h1>
+          <p>We are committed to processing the information in order to contact you and talk about your project, course query, payment help, or support request.</p>
+
+          <div class="contact-points">
+            <div class="contact-item">
+              <div class="contact-icon">✉</div>
+              <div>
+                <strong>Email</strong>
+                <span><a href="mailto:a.mistri2004@gmail.com">a.mistri2004@gmail.com</a></span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">⌂</div>
+              <div>
+                <strong>Support Type</strong>
+                <span>Admissions, course details, fees, EMI, demo class, payment issues, and career guidance.</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">◫</div>
+              <div>
+                <strong>WhatsApp Support</strong>
+                <span>Submit the form and your details will be sent to support directly through WhatsApp.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-wrap">
+          <form class="contact-form" id="contactForm">
+            <div class="field">
+              <input id="name" name="name" type="text" placeholder="Name*" required>
+            </div>
+
+            <div class="field">
+              <input id="email" name="email" type="email" placeholder="Email*" required>
+            </div>
+
+            <div class="field">
+              <input id="contactNumber" name="contact_number" type="tel" inputmode="numeric" maxlength="10" placeholder="Contact Number*" required>
+            </div>
+
+            <div class="field">
+              <select id="questionType" name="question_type" required>
+                <option value="">Question*</option>
+                <option value="Admission Inquiry">Admission Inquiry</option>
+                <option value="Course Details">Course Details</option>
+                <option value="Course Price / Fees">Course Price / Fees</option>
+                <option value="EMI Availability">EMI Availability</option>
+                <option value="Demo Class Request">Demo Class Request</option>
+                <option value="Payment Issue">Payment Issue</option>
+                <option value="Certificate / Job Guidance">Certificate / Job Guidance</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field" id="otherQuestionField" style="display:none;">
+              <textarea id="otherQuestion" name="other_question" placeholder="Type your question"></textarea>
+            </div>
+
+            <button class="submit-btn" type="submit">Submit</button>
+          </form>
+
+          <p class="helper-note">The WhatsApp number is hidden inside the code and is not shown on the page.</p>
+        </div>
+      </section>
+
+      <div class="below-strip">
+        <a class="emi-btn" href="Courses.html">EMI Available All Courses</a>
+
+        <a class="tiny-ad" href="Offers.html">
+          <div class="tiny-ad-thumb">
+            <img src="Advertisement-A.jpg" alt="Offer image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="tiny-ad-fallback">AD<br>IMG</div>
+          </div>
+          <div class="tiny-ad-copy">
+            <strong>Special Offer</strong>
+            <span>Open current offers</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const toggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("supportTheme");
+    const contactForm = document.getElementById("contactForm");
+    const questionType = document.getElementById("questionType");
+    const otherQuestionField = document.getElementById("otherQuestionField");
+    const otherQuestion = document.getElementById("otherQuestion");
+    const whatsappNumber = "917439034248";
+
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+      toggle.textContent = "Bright Mode";
+    }
+
+    toggle.addEventListener("click", function () {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      toggle.textContent = isDark ? "Bright Mode" : "Dark Mode";
+      localStorage.setItem("supportTheme", isDark ? "dark" : "light");
+    });
+
+    questionType.addEventListener("change", function () {
+      const isOther = questionType.value === "Other";
+      otherQuestionField.style.display = isOther ? "block" : "none";
+      otherQuestion.required = isOther;
+      if (!isOther) {
+        otherQuestion.value = "";
+      }
+    });
+
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const contactNumber = document.getElementById("contactNumber").value.trim();
+      const selectedQuestion = questionType.value;
+      const finalQuestion = selectedQuestion === "Other" ? otherQuestion.value.trim() : selectedQuestion;
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phonePattern = /^\d{10}$/;
+
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      if (!phonePattern.test(contactNumber)) {
+        alert("Contact number must be exactly 10 digits.");
+        return;
+      }
+
+      if (!finalQuestion) {
+        alert("Please select or write your question.");
+        return;
+      }
+
+      const whatsappMessage = [
+        "Hello Support,",
+        "",
+        "New Contact Form Submission",
+        "Name: " + name,
+        "Email: " + email,
+        "Contact Number: " + contactNumber,
+        "Question: " + finalQuestion
+      ].join("\n");
+
+      const whatsappUrl = "whatsapp://send?phone=" + whatsappNumber + "&text=" + encodeURIComponent(whatsappMessage);
+      window.location.href = whatsappUrl;
+    });
+  </script>
+</body>
+</html>
