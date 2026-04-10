@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAP S/4HANA Course Details</title>
+  <style>
+    :root {
+      --bg: #08131a;
+      --panel: rgba(10, 24, 34, 0.84);
+      --text: #effbff;
+      --muted: #b8d0dc;
+      --primary: #2bb7f0;
+      --accent: #f59e0b;
+      --line: rgba(255, 255, 255, 0.1);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+      --overlay: linear-gradient(90deg, rgba(6, 14, 20, 0.97) 0%, rgba(7, 17, 25, 0.84) 34%, rgba(7, 17, 25, 0.4) 100%);
+      --chip: rgba(255, 255, 255, 0.08);
+    }
+
+    body.bright {
+      --bg: #eef7fb;
+      --panel: rgba(255, 255, 255, 0.88);
+      --text: #17313f;
+      --muted: #607786;
+      --primary: #1795ca;
+      --accent: #d88906;
+      --line: rgba(23, 87, 120, 0.12);
+      --shadow: 0 24px 60px rgba(25, 88, 120, 0.14);
+      --overlay: linear-gradient(90deg, rgba(238, 247, 251, 0.97) 0%, rgba(238, 247, 251, 0.86) 34%, rgba(238, 247, 251, 0.44) 100%);
+      --chip: rgba(23, 149, 202, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(43, 183, 240, 0.12), transparent 22%),
+        radial-gradient(circle at 80% 14%, rgba(245, 158, 11, 0.16), transparent 26%),
+        linear-gradient(160deg, var(--bg), #0d1b24 62%, #05090c 100%);
+      min-height: 100vh;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    body.bright {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(111, 212, 255, 0.22), transparent 22%),
+        radial-gradient(circle at 80% 14%, rgba(255, 200, 96, 0.16), transparent 26%),
+        linear-gradient(160deg, #eef7fb, #e2f0f7 62%, #d8e8f1 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page-shell {
+      width: min(1240px, calc(100% - 20px));
+      margin: 10px auto;
+      padding: 12px 12px 118px;
+      border-radius: 26px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 6px 4px 12px;
+    }
+
+    .brand {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand span { color: var(--primary); }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn,
+    .toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.84rem;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    body.bright .btn,
+    body.bright .toggle-btn { background: rgba(255, 255, 255, 0.66); }
+
+    .cinema {
+      position: relative;
+      min-height: 720px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #081018;
+    }
+
+    .video-wrap,
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .video-wrap { z-index: 0; }
+
+    .bg-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.95) contrast(1.02);
+    }
+
+    .video-overlay { background: var(--overlay); }
+
+    .cinema-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 122px minmax(0, 1fr) 180px;
+      min-height: 720px;
+    }
+
+    .side-menu,
+    .profile-bar {
+      padding: 22px 14px;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .profile-bar {
+      border-right: 0;
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .menu-search {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .menu-nav {
+      display: grid;
+      gap: 12px;
+    }
+
+    .menu-nav a {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .menu-nav a.active { color: var(--text); }
+
+    .profile-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .profile-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.24), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .profile-stack {
+      display: grid;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .profile-chip {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: right;
+    }
+
+    .profile-chip strong {
+      display: block;
+      font-size: 0.78rem;
+      margin-bottom: 2px;
+    }
+
+    .profile-chip span {
+      display: block;
+      font-size: 0.66rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .profile-chip.highlight {
+      background: linear-gradient(135deg, rgba(43, 183, 240, 0.28), rgba(245, 158, 11, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .profile-chip.highlight span {
+      color: var(--text);
+    }
+
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      padding: 18px 22px 22px;
+      overflow: hidden;
+    }
+
+    .brand-banner {
+      text-align: center;
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .hero-copy {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 14px;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .hero-mini {
+      display: grid;
+      grid-template-columns: 148px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      margin: 0 auto 10px;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 780px;
+    }
+
+    body.bright .hero-mini { background: rgba(255, 255, 255, 0.56); }
+
+    .hero-mini-media {
+      height: 92px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, rgba(43, 183, 240, 0.24), rgba(245, 158, 11, 0.24));
+    }
+
+    .hero-mini-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-mini-fallback {
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    .hero-mini-copy strong {
+      display: block;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-mini-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.45;
+    }
+
+    .poster-strip {
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      min-height: 250px;
+      padding: 12px 2px 6px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .topic-card {
+      position: relative;
+      width: 60px;
+      height: 180px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      transition: width 0.55s ease, height 0.55s ease, box-shadow 0.55s ease;
+      flex: 0 0 auto;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.16);
+    }
+
+    body.bright .topic-card { background: rgba(255, 255, 255, 0.46); }
+
+    .topic-card.active {
+      width: 142px;
+      height: 222px;
+      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.24);
+    }
+
+    .topic-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)),
+        linear-gradient(135deg, rgba(43, 183, 240, 0.44), rgba(245, 158, 11, 0.32));
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.86rem;
+      line-height: 1.2;
+    }
+
+    .topic-label {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 12px;
+      z-index: 2;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.74rem;
+      text-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
+    }
+
+    .topic-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.82));
+    }
+
+    .details-panel {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    body.bright .details-panel { background: rgba(255, 255, 255, 0.58); }
+
+    .details-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .details-head h2 {
+      margin: 0 0 4px;
+      font-size: 1.4rem;
+    }
+
+    .details-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .auto-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.76rem;
+      white-space: nowrap;
+    }
+
+    .topic-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 12px;
+    }
+
+    .topic-control-btn {
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    body.bright .topic-control-btn { background: rgba(255, 255, 255, 0.56); }
+
+    .topic-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
+    }
+
+    .topic-switch-btn {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.74rem;
+      cursor: pointer;
+    }
+
+    body.bright .topic-switch-btn { background: rgba(255, 255, 255, 0.56); }
+
+    .topic-switch-btn.active {
+      background: linear-gradient(135deg, rgba(43, 183, 240, 0.95), rgba(245, 158, 11, 0.84));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .subtopics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .subtopic {
+      padding: 12px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(43, 183, 240, 0.22), rgba(245, 158, 11, 0.14));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 800;
+      font-size: 0.84rem;
+      line-height: 1.35;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .subtopic.color-1 { background: linear-gradient(135deg, rgba(43, 183, 240, 0.3), rgba(82, 211, 255, 0.18)); }
+    .subtopic.color-2 { background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(99, 102, 241, 0.16)); }
+    .subtopic.color-3 { background: linear-gradient(135deg, rgba(245, 158, 11, 0.28), rgba(251, 191, 36, 0.18)); }
+    .subtopic.color-4 { background: linear-gradient(135deg, rgba(249, 115, 22, 0.26), rgba(244, 114, 182, 0.16)); }
+    .subtopic.color-5 { background: linear-gradient(135deg, rgba(16, 185, 129, 0.28), rgba(43, 183, 240, 0.16)); }
+    .subtopic.color-6 { background: linear-gradient(135deg, rgba(56, 189, 248, 0.28), rgba(245, 158, 11, 0.16)); }
+    .subtopic.color-7 { background: linear-gradient(135deg, rgba(99, 102, 241, 0.26), rgba(43, 183, 240, 0.16)); }
+    .subtopic.color-8 { background: linear-gradient(135deg, rgba(251, 146, 60, 0.26), rgba(245, 158, 11, 0.16)); }
+
+    .footer-note {
+      text-align: center;
+      color: var(--muted);
+      padding-top: 14px;
+      font-size: 0.78rem;
+    }
+
+    .sticky-actions {
+      position: fixed;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      width: min(1180px, calc(100% - 20px));
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 10px;
+      z-index: 30;
+    }
+
+    .sticky-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .enroll-link {
+      background: linear-gradient(135deg, rgba(23, 149, 202, 0.96), rgba(245, 158, 11, 0.92));
+      padding: 10px 14px;
+    }
+
+    .ad-link {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.92), rgba(43, 183, 240, 0.92));
+      justify-content: flex-start;
+      padding: 8px 10px;
+    }
+
+    .sticky-link strong {
+      display: block;
+      font-size: 0.88rem;
+      margin-bottom: 2px;
+    }
+
+    .sticky-link span {
+      display: block;
+      font-size: 0.72rem;
+      opacity: 0.92;
+    }
+
+    .ad-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .ad-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ad-thumb-fallback {
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6px;
+      font-size: 0.64rem;
+      font-weight: 900;
+      line-height: 1.2;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+    }
+
+    .ad-copy { min-width: 0; }
+
+    .sticky-pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      font-weight: 900;
+      white-space: nowrap;
+      font-size: 0.76rem;
+    }
+
+    @media (max-width: 980px) {
+      .cinema-grid { grid-template-columns: 92px minmax(0, 1fr); }
+      .profile-bar { display: none; }
+    }
+
+    @media (max-width: 760px) {
+      .page-shell {
+        width: min(100% - 8px, 100%);
+        margin: 4px auto;
+        padding: 4px 4px 76px;
+        border-radius: 14px;
+      }
+
+      .topbar {
+        justify-content: center;
+        gap: 6px;
+        padding-bottom: 6px;
+      }
+
+      .brand { font-size: 0.98rem; }
+
+      .top-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .top-actions .toggle-btn { grid-column: 1 / -1; }
+
+      .btn,
+      .toggle-btn {
+        padding: 7px 9px;
+        font-size: 0.68rem;
+      }
+
+      .cinema {
+        height: calc(100svh - 92px);
+        min-height: 0;
+        border-radius: 14px;
+      }
+
+      .cinema-grid {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        height: 100%;
+      }
+
+      .side-menu { display: none; }
+
+      .content-area {
+        display: flex;
+        flex-direction: column;
+        padding: 6px 6px 8px;
+        min-height: 0;
+      }
+
+      .brand-banner {
+        font-size: 1rem;
+        margin-bottom: 3px;
+      }
+
+      .hero-copy { margin-bottom: 8px; }
+      .hero-copy p { font-size: 0.66rem; }
+
+      .poster-strip {
+        min-height: 112px;
+        gap: 5px;
+        padding: 2px 0 0;
+        flex: 0 0 auto;
+      }
+
+      .hero-mini {
+        grid-template-columns: 84px minmax(0, 1fr);
+        gap: 8px;
+        margin-bottom: 6px;
+        padding: 8px;
+        border-radius: 12px;
+      }
+
+      .hero-mini-media {
+        height: 56px;
+        border-radius: 10px;
+      }
+
+      .hero-mini-copy strong { font-size: 0.72rem; }
+      .hero-mini-copy span { font-size: 0.58rem; }
+
+      .topic-card {
+        width: 28px;
+        height: 82px;
+        border-radius: 10px;
+      }
+
+      .topic-card.active {
+        width: 56px;
+        height: 98px;
+      }
+
+      .topic-label {
+        left: 4px;
+        right: 4px;
+        bottom: 6px;
+        font-size: 0.4rem;
+      }
+
+      .details-panel {
+        margin-top: 6px;
+        padding: 8px;
+        border-radius: 10px;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: auto;
+      }
+
+      .details-head h2 {
+        font-size: 0.92rem;
+        margin-bottom: 2px;
+      }
+
+      .details-head p,
+      .auto-badge { font-size: 0.62rem; }
+
+      .topic-controls {
+        margin-bottom: 6px;
+      }
+
+      .topic-control-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+      }
+
+      .topic-switcher { display: none; }
+
+      .subtopics-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      .subtopic {
+        padding: 8px;
+        font-size: 0.66rem;
+        border-radius: 10px;
+      }
+
+      .sticky-actions {
+        width: calc(100% - 8px);
+        grid-template-columns: 1fr;
+        gap: 4px;
+        bottom: 2px;
+      }
+
+      .sticky-link {
+        padding: 6px 8px;
+        border-radius: 10px;
+      }
+
+      .ad-thumb {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+      }
+
+      .sticky-link strong { font-size: 0.66rem; }
+
+      .sticky-link span,
+      .sticky-pill { font-size: 0.54rem; }
+
+      .footer-note { display: none; }
+    }
+
+    @media (max-width: 420px) {
+      .top-actions { grid-template-columns: 1fr; }
+      .cinema { height: calc(100svh - 102px); }
+      .topic-card { width: 24px; height: 72px; }
+      .topic-card.active { width: 46px; height: 86px; }
+      .subtopics-grid { grid-template-columns: 1fr; }
+      .topic-label { font-size: 0.36rem; }
+      .sticky-link span { font-size: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="Courses.html">LO<span>OO</span></a>
+      <div class="top-actions">
+        <a class="btn" href="support.html">Support</a>
+        <a class="btn" href="offers.html">Offers</a>
+        <a class="btn" href="Courses.html">Back To Home</a>
+        <button class="toggle-btn" id="themeToggle" type="button" aria-label="Toggle bright mode">Bright Mode</button>
+      </div>
+    </header>
+
+    <main class="cinema">
+      <div class="video-wrap" aria-hidden="true">
+        <video class="bg-video" autoplay muted loop playsinline poster="sap-4hana-hero.jpg">
+          <source src="sap-4hana-details-background.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+      </div>
+
+      <div class="cinema-grid">
+        <aside class="side-menu">
+          <div class="menu-search">Modules</div>
+          <nav class="menu-nav" aria-label="SAP S4 HANA sections">
+            <a class="active" href="#introduction">Intro</a>
+            <a href="#explore-s4hana">Explore</a>
+            <a href="#sap-gui">SAP GUI</a>
+            <a href="#user-experience">UX</a>
+            <a href="#system-concepts">Concepts</a>
+            <a href="#enterprise-management">Enterprise</a>
+            <a href="#finance">Finance</a>
+            <a href="#hr">HR</a>
+            <a href="#embedded-analytics">Analytics</a>
+            <a href="#sap-hana">HANA</a>
+            <a href="#implement-sap">Implement</a>
+            <a href="#next-steps">Next</a>
+          </nav>
+        </aside>
+
+        <section class="content-area">
+          <div class="brand-banner">SAP S/4HANA</div>
+          <div class="hero-copy">
+            <p>Android-friendly SAP S/4HANA course page with ERP basics, SAP GUI, finance, HR, analytics, HANA, implementation, and career guidance in clear manual sections.</p>
+          </div>
+
+          <div class="hero-mini">
+            <div class="hero-mini-media">
+              <img src="MS-Basic-Hero-Image-EMI.jpg" alt="SAP S4HANA hero image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="hero-mini-fallback">ADD HERO IMAGE AS<br>SAP-4HANA-HERO.JPG</div>
+            </div>
+            <div class="hero-mini-copy">
+              <strong>Small Hero Preview</strong>
+              <span>👉 💳 See EMI Options Enroll Now 🚀.</span>
+            </div>
+          </div>
+
+          <div class="poster-strip" id="posterStrip" aria-label="SAP S4HANA modules"></div>
+
+          <section class="details-panel">
+            <div class="details-head">
+              <div>
+                <h2 id="topicTitle">Introduction</h2>
+                <p id="topicDescription">Start with ERP basics, SAP history, SAP products, and the core idea behind SAP S/4HANA.</p>
+              </div>
+              <div class="auto-badge">Manual Slide View</div>
+            </div>
+
+            <div class="topic-controls" aria-label="Module navigation controls">
+              <button class="topic-control-btn" id="prevTopicBtn" type="button" aria-label="Previous topic">&#8249;</button>
+              <button class="topic-control-btn" id="nextTopicBtn" type="button" aria-label="Next topic">&#8250;</button>
+            </div>
+
+            <div class="topic-switcher" id="topicSwitcher" aria-label="Change module"></div>
+            <div class="subtopics-grid" id="subtopicsGrid"></div>
+          </section>
+        </section>
+
+        <aside class="profile-bar">
+          <div class="profile-box">
+            <div class="profile-avatar"></div>
+            <span>SAP Track</span>
+          </div>
+          <div class="profile-stack">
+            <div class="profile-chip">
+              <strong>12 Modules</strong>
+              <span>From ERP basics to career path</span>
+            </div>
+            <div class="profile-chip">
+              <strong>Fiori + HANA</strong>
+              <span>Modern SAP UX and in-memory platform basics</span>
+            </div>
+            <div class="profile-chip">
+              <strong>Android Ready</strong>
+              <span>Manual arrows and one-screen mobile flow</span>
+            </div>
+            <div class="profile-chip highlight">
+              <strong>EMI Available</strong>
+              <span>Easy payment option is available for this course</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <p class="footer-note">🎓 Start your career journey today — Learn smart, grow fast 🚀</p>
+  </div>
+
+  <div class="sticky-actions">
+    <a class="sticky-link enroll-link" id="enrollLink" href="enroll-now.html?course=SAP%20S%2F4HANA&price=499&back=Sap4HanaDetails.html">
+      <div>
+        <strong>Enroll Now</strong>
+        <span id="enrollPriceText">Continue registration for the SAP S/4HANA course at ₹1299</span>
+      </div>
+      <div class="sticky-pill">Buy</div>
+    </a>
+
+    <a class="sticky-link ad-link" href="ad.html">
+      <div class="ad-thumb">
+        <img src="Advertisement=A.jpg" alt="Ad image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="ad-thumb-fallback">AD IMAGE</div>
+      </div>
+      <div class="ad-copy">
+        <strong>Special Ad</strong>
+        <span>Explore New Offer's & Discounts</span>
+      </div>
+      <div class="sticky-pill">Open Ad</div>
+    </a>
+  </div>
+
+  <script>
+    const topics = [
+      { key: "introduction", short: "Intro", title: "Introduction", description: "Start with ERP basics, SAP history, SAP products, and the core idea behind SAP S/4HANA.", subtopics: ["Overview of ERP Systems", "What is ERP?", "Importance of ERP in Business", "Introduction to SAP", "History & Evolution", "SAP Products Overview", "Introduction to SAP S/4HANA", "What is S/4HANA", "Key Features & Benefits"] },
+      { key: "explore-s4hana", short: "Explore", title: "Explore SAP S/4HANA", description: "Understand the SAP S/4HANA landscape, architecture, Fiori overview, and key simplifications.", subtopics: ["S/4HANA System Landscape", "On-Premise vs Cloud", "System Architecture", "SAP Fiori Overview", "Fiori Apps Types", "Launchpad Navigation", "Business Suite vs S/4HANA", "Key Differences", "Simplification Concepts"] },
+      { key: "sap-gui", short: "SAP GUI", title: "SAP GUI and Navigation", description: "Work with SAP GUI basics, screen elements, navigation, and personalization options.", subtopics: ["SAP GUI Basics", "Login & Interface", "Screen Elements", "Navigation Techniques", "Transaction Codes", "Menu Paths", "Personalization", "Favorites", "Layout Settings"] },
+      { key: "user-experience", short: "UX", title: "User Experience", description: "Explore the SAP Fiori launchpad experience, roles, notifications, and task flow.", subtopics: ["SAP Fiori User Experience", "Fiori Launchpad", "Tiles & Groups", "Accessibility Features", "User Roles", "Personalization", "Notifications & Alerts", "Workflow Notifications", "Task Management"] },
+      { key: "system-concepts", short: "Concepts", title: "Basic System Wide Concepts", description: "Understand structure, master data, transaction data, and posting basics across the system.", subtopics: ["Organizational Structure", "Company Code", "Plant, Storage Location", "Master Data", "Customer Master", "Vendor Master", "Material Master", "Transaction Data", "Document Flow", "Posting Basics"] },
+      { key: "enterprise-management", short: "Enterprise", title: "Enterprise Management (Previously Logistics)", description: "Cover procurement, inventory, stock transfer, sales, and billing processes.", subtopics: ["Procurement Process", "Purchase Requisition", "Purchase Order", "Inventory Management", "Goods Receipt", "Stock Transfer", "Sales & Distribution", "Sales Order", "Billing Process"] },
+      { key: "finance", short: "Finance", title: "Finance (Previously FICO)", description: "Work through financial accounting, controlling, and closing/reporting concepts.", subtopics: ["Financial Accounting (FI)", "General Ledger", "Accounts Payable & Receivable", "Controlling (CO)", "Cost Centers", "Profit Centers", "Financial Closing", "Period-End Closing", "Reporting"] },
+      { key: "hr", short: "HR", title: "HR (Human Capital Management)", description: "Learn employee data, payroll, and time management concepts in SAP.", subtopics: ["Employee Management", "Employee Master Data", "Organizational Management", "Payroll Processing", "Salary Structure", "Payroll Execution", "Time Management", "Attendance", "Leave Management"] },
+      { key: "embedded-analytics", short: "Analytics", title: "Embedded Analytics", description: "Understand real-time reporting, CDS views, KPI tiles, dashboards, and BI integration.", subtopics: ["Real-Time Reporting", "CDS Views", "Analytical Apps", "SAP Fiori Analytics", "KPI Tiles", "Dashboards", "Business Intelligence Integration", "Data Visualization", "Reporting Tools"] },
+      { key: "sap-hana", short: "HANA", title: "SAP HANA", description: "Explore in-memory database basics, architecture, performance, and HANA Studio concepts.", subtopics: ["Introduction to HANA", "In-Memory Database", "Architecture", "HANA Features", "Speed & Performance", "Data Compression", "HANA Studio Basics", "Modeling", "Data Handling"] },
+      { key: "implement-sap", short: "Implement", title: "Implement SAP", description: "Learn methodology, project phases, configuration, and testing approaches.", subtopics: ["Implementation Methodology", "ASAP / Activate Methodology", "Project Phases", "Prepare -> Explore -> Realize -> Deploy", "System Configuration", "Customizing", "Testing"] },
+      { key: "next-steps", short: "Next", title: "Next Steps", description: "Finish with career roles, certifications, project practice, and case study exposure.", subtopics: ["Career Opportunities", "SAP Consultant Roles", "Functional vs Technical", "Certification Guide", "SAP Certification Paths", "Real-World Projects", "Case Studies", "Hands-on Practice"] }
+    ];
+
+    const body = document.body;
+    const params = new URLSearchParams(window.location.search);
+    const coursePrice = params.get("price") || "1299";
+    const toggle = document.getElementById("themeToggle");
+    const enrollLink = document.getElementById("enrollLink");
+    const enrollPriceText = document.getElementById("enrollPriceText");
+    const titleEl = document.getElementById("topicTitle");
+    const descEl = document.getElementById("topicDescription");
+    const gridEl = document.getElementById("subtopicsGrid");
+    const prevTopicBtn = document.getElementById("prevTopicBtn");
+    const nextTopicBtn = document.getElementById("nextTopicBtn");
+    const posterStrip = document.getElementById("posterStrip");
+    const switcher = document.getElementById("topicSwitcher");
+    let cards = [];
+    let switchButtons = [];
+    let menuLinks = [];
+    let activeIndex = 0;
+
+    enrollLink.setAttribute("href", "enroll-now.html?course=SAP%20S%2F4HANA&price=" + encodeURIComponent(coursePrice) + "&back=Sap4HanaDetails.html");
+    enrollPriceText.textContent = "Continue registration for the SAP S/4HANA course at Rs. " + coursePrice;
+
+    function buildTopicCards() {
+      posterStrip.innerHTML = topics.map(function (topic) {
+        return "<article class='topic-card' data-topic='" + topic.key + "' id='" + topic.key + "'><div class='topic-fallback'>" + topic.title + "</div><div class='topic-label'>" + topic.short + "</div></article>";
+      }).join("");
+
+      switcher.innerHTML = topics.map(function (topic, index) {
+        return "<button class='topic-switch-btn' type='button' data-topic-index='" + index + "'>" + topic.short + "</button>";
+      }).join("");
+
+      cards = Array.from(document.querySelectorAll(".topic-card"));
+      switchButtons = Array.from(document.querySelectorAll(".topic-switch-btn"));
+      menuLinks = Array.from(document.querySelectorAll(".menu-nav a[href^='#']"));
+
+      cards.forEach(function (card, index) {
+        card.addEventListener("click", function () {
+          renderTopic(index);
+        });
+      });
+
+      switchButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          renderTopic(Number(button.getAttribute("data-topic-index")));
+        });
+      });
+    }
+
+    function renderTopic(index) {
+      const topic = topics[index];
+      activeIndex = index;
+
+      cards.forEach(function (card, cardIndex) {
+        card.classList.toggle("active", cardIndex === index);
+      });
+
+      switchButtons.forEach(function (button, buttonIndex) {
+        button.classList.toggle("active", buttonIndex === index);
+      });
+
+      menuLinks.forEach(function (link) {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + topic.key);
+      });
+
+      titleEl.textContent = topic.title;
+      descEl.textContent = topic.description;
+      gridEl.innerHTML = topic.subtopics.map(function (item, itemIndex) {
+        return "<div class='subtopic color-" + ((itemIndex % 8) + 1) + "'>" + item + "</div>";
+      }).join("");
+
+      if (cards[index]) {
+        cards[index].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    }
+
+    function goToNextTopic() {
+      renderTopic((activeIndex + 1) % topics.length);
+    }
+
+    function goToPreviousTopic() {
+      renderTopic((activeIndex - 1 + topics.length) % topics.length);
+    }
+
+    const savedTheme = localStorage.getItem("sap4HanaTheme");
+    if (savedTheme === "bright") {
+      body.classList.add("bright");
+      toggle.textContent = "Dark Mode";
+    }
+
+    toggle.addEventListener("click", function () {
+      body.classList.toggle("bright");
+      const isBright = body.classList.contains("bright");
+      toggle.textContent = isBright ? "Dark Mode" : "Bright Mode";
+      localStorage.setItem("sap4HanaTheme", isBright ? "bright" : "dark");
+    });
+
+    document.querySelectorAll(".menu-nav a[href^='#']").forEach(function (link, index) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        renderTopic(index);
+      });
+    });
+
+    prevTopicBtn.addEventListener("click", goToPreviousTopic);
+    nextTopicBtn.addEventListener("click", goToNextTopic);
+
+    buildTopicCards();
+    renderTopic(0);
+  </script>
+</body>
+</html>
