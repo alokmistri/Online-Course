@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Looo | Why Choose Us</title>
+  <style>
+    :root {
+      --bg: #eef2f5;
+      --panel: rgba(255, 255, 255, 0.78);
+      --text: #263640;
+      --muted: #667985;
+      --primary: #6f8793;
+      --accent: #f29b5d;
+      --line: rgba(111, 135, 147, 0.16);
+      --shadow: 0 24px 60px rgba(83, 102, 117, 0.18);
+      --step: #dfe4e8;
+      --step-shadow: rgba(116, 131, 141, 0.22);
+      --card: rgba(255, 255, 255, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.95), transparent 24%),
+        radial-gradient(circle at 82% 16%, rgba(195, 207, 214, 0.5), transparent 26%),
+        linear-gradient(160deg, #f6f8fa, var(--bg) 58%, #e7edf1 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      width: min(1240px, calc(100% - 28px));
+      margin: 14px auto;
+      padding: 22px;
+      border-radius: 34px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+
+    .top-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(111, 135, 147, 0.18);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(242, 246, 248, 0.88));
+      color: var(--text);
+      font-weight: 800;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(83, 102, 117, 0.16);
+      border-color: rgba(111, 135, 147, 0.32);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(270px, 0.95fr) minmax(0, 1.05fr);
+      gap: 28px;
+      align-items: center;
+      min-height: 690px;
+      padding: 34px;
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(246, 248, 250, 0.8)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(230, 236, 240, 0.24));
+      border: 1px solid rgba(111, 135, 147, 0.12);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -8%;
+      right: -8%;
+      bottom: 13%;
+      height: 180px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(241, 245, 247, 0.1));
+      transform: rotate(-18deg);
+      transform-origin: center;
+      pointer-events: none;
+    }
+
+    .hero-copy,
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-self: stretch;
+      padding-top: 22px;
+    }
+
+    .student-wrap {
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      min-height: 500px;
+    }
+
+    .student-image {
+      width: min(100%, 360px);
+      object-fit: contain;
+      filter: drop-shadow(0 22px 34px rgba(87, 99, 110, 0.18));
+    }
+
+    .student-fallback {
+      width: min(100%, 320px);
+      min-height: 460px;
+      border-radius: 28px;
+      padding: 26px;
+      display: none;
+      align-items: end;
+      justify-content: center;
+      text-align: center;
+      background:
+        linear-gradient(180deg, rgba(228, 235, 239, 0.38), rgba(255, 255, 255, 0.92)),
+        linear-gradient(135deg, rgba(111, 135, 147, 0.18), rgba(255, 255, 255, 0.4));
+      border: 1px solid rgba(111, 135, 147, 0.16);
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .headline {
+      margin: 0 0 24px;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .headline span {
+      display: block;
+    }
+
+    .intro {
+      max-width: 34ch;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 520px;
+    }
+
+    .steps-layout {
+      position: relative;
+      width: min(100%, 640px);
+      min-height: 520px;
+    }
+
+    .step-track {
+      position: absolute;
+      inset: 0;
+    }
+
+    .step {
+      position: absolute;
+      width: 120px;
+      height: 28px;
+      border-radius: 5px;
+      background: linear-gradient(180deg, #eff3f5, #d9e0e4);
+      box-shadow: 14px 16px 20px -18px var(--step-shadow);
+    }
+
+    .step::after {
+      content: "";
+      position: absolute;
+      inset: auto 10px -9px 10px;
+      height: 11px;
+      background: rgba(128, 143, 151, 0.16);
+      filter: blur(7px);
+      border-radius: 50%;
+    }
+
+    .step-1 { left: 30px; bottom: 70px; transform: skewX(-30deg); }
+    .step-2 { left: 115px; bottom: 146px; transform: skewX(-30deg); }
+    .step-3 { left: 202px; bottom: 219px; transform: skewX(-30deg); }
+    .step-4 { left: 296px; bottom: 293px; transform: skewX(-30deg); }
+    .step-5 { left: 392px; bottom: 368px; transform: skewX(-30deg); }
+
+    .reason {
+      position: absolute;
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      width: 240px;
+    }
+
+    .reason-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card);
+      border: 1px solid rgba(111, 135, 147, 0.16);
+      box-shadow: 0 10px 20px rgba(83, 102, 117, 0.08);
+      font-size: 1.3rem;
+    }
+
+    .reason-copy h3 {
+      margin: 0 0 4px;
+      font-size: 1.15rem;
+      line-height: 1.15;
+      color: #26343d;
+    }
+
+    .reason-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .reason-1 { left: 0; bottom: 0; }
+    .reason-2 { left: 100px; bottom: 72px; }
+    .reason-3 { left: 194px; bottom: 146px; }
+    .reason-4 { left: 300px; bottom: 220px; }
+    .reason-5 { left: 404px; bottom: 294px; }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .highlight-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(111, 135, 147, 0.12);
+      box-shadow: 0 16px 34px rgba(83, 102, 117, 0.08);
+    }
+
+    .highlight-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .highlight-card span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .footer-note {
+      margin: 18px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-copy {
+        align-items: center;
+        text-align: center;
+        padding-top: 0;
+      }
+
+      .student-wrap {
+        min-height: auto;
+      }
+
+      .intro {
+        max-width: 54ch;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page-shell {
+        width: min(100% - 8px, 100%);
+        margin: 4px auto;
+        padding: 8px;
+        border-radius: 16px;
+      }
+
+      .top-actions {
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .btn {
+        flex: 1 1 100%;
+        padding: 10px 12px;
+        font-size: 0.82rem;
+      }
+
+      .hero {
+        padding: 16px 10px;
+        border-radius: 18px;
+        gap: 14px;
+      }
+
+      .hero::before {
+        display: none;
+      }
+
+      .student-image,
+      .student-fallback {
+        width: min(100%, 180px);
+        min-height: 240px;
+      }
+
+      .headline {
+        margin-bottom: 12px;
+        font-size: clamp(2rem, 11vw, 2.9rem);
+      }
+
+      .intro {
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
+
+      .steps-layout {
+        min-height: auto;
+        display: grid;
+        gap: 10px;
+      }
+
+      .step-track {
+        display: none;
+      }
+
+      .reason {
+        position: static;
+        width: 100%;
+        padding: 12px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.76);
+        border: 1px solid rgba(111, 135, 147, 0.12);
+      }
+
+      .reason-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.05rem;
+      }
+
+      .reason-copy h3 {
+        font-size: 0.94rem;
+      }
+
+      .reason-copy p {
+        font-size: 0.76rem;
+      }
+
+      .highlights {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .highlight-card {
+        padding: 14px;
+        border-radius: 14px;
+      }
+
+      .highlight-card strong {
+        font-size: 0.88rem;
+      }
+
+      .highlight-card span,
+      .footer-note {
+        font-size: 0.74rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="top-actions">
+      <a class="btn" href="index.html">Back</a>
+      <a class="btn" href="Courses.html">Courses</a>
+      <a class="btn" href="support.html">Support</a>
+    </div>
+
+    <main class="hero">
+      <section class="hero-copy">
+        <div class="student-wrap">
+          <img class="student-image" src="Index-Hero-Image.jpg" alt="Student walking with laptop" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="student-fallback">Add a cutout student image as<br><strong>why-choose-us-student.png</strong></div>
+        </div>
+      </section>
+
+      <section class="hero-visual" aria-label="Why choose us reasons">
+        <div class="steps-layout">
+          <h1 class="headline"><span>Why</span><span>Choose</span><span>Us?</span></h1>
+          <p class="intro">We designed this section based on your sample image and matched it to your current course website style with job-focused learning benefits.</p>
+
+          <div class="step-track" aria-hidden="true">
+            <div class="step step-1"></div>
+            <div class="step step-2"></div>
+            <div class="step step-3"></div>
+            <div class="step step-4"></div>
+            <div class="step step-5"></div>
+          </div>
+
+          <article class="reason reason-1">
+            <div class="reason-icon">01</div>
+            <div class="reason-copy">
+              <h3>Hands-on Practical Learning</h3>
+              <p>Practice on real software and daily office tasks instead of only reading theory.</p>
+            </div>
+          </article>
+
+          <article class="reason reason-2">
+            <div class="reason-icon">02</div>
+            <div class="reason-copy">
+              <h3>EMI Facilities For All Courses</h3>
+              <p>Affordable payment support helps students join career courses without heavy one-time fees.</p>
+            </div>
+          </article>
+
+          <article class="reason reason-3">
+            <div class="reason-icon">03</div>
+            <div class="reason-copy">
+              <h3>Professional Courses For Getting Jobs</h3>
+              <p>Our computer and accounting courses are designed to build skills employers actually need.</p>
+            </div>
+          </article>
+
+          <article class="reason reason-4">
+            <div class="reason-icon">04</div>
+            <div class="reason-copy">
+              <h3>Placement & Career Guidance</h3>
+              <p>Students get support for direction, confidence, and preparation for job opportunities.</p>
+            </div>
+          </article>
+
+          <article class="reason reason-5">
+            <div class="reason-icon">05</div>
+            <div class="reason-copy">
+              <h3>Industry Ready Skill Growth</h3>
+              <p>From MS Office to Tally, SAP, Excel, and Power BI, courses are aligned with practical career growth.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <section class="highlights" aria-label="Extra benefits">
+      <div class="highlight-card">
+        <strong>Beginner To Advanced Path</strong>
+        <span>Students can start with basic computer knowledge and move toward professional software training.</span>
+      </div>
+      <div class="highlight-card">
+        <strong>Useful For Office And Business Work</strong>
+        <span>Course topics support everyday office jobs, accounting work, reporting, and digital productivity.</span>
+      </div>
+      <div class="highlight-card">
+        <strong>Simple Navigation Across Pages</strong>
+        <span>The section includes direct buttons for back, courses, and support to match your website flow.</span>
+      </div>
+    </section>
+
+    <p class="footer-note">Why Choose Us section created as a separate page to match the current website structure.</p>
+  </div>
+</body>
+</html>
