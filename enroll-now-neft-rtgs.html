@@ -50,27 +50,47 @@
       -webkit-backdrop-filter: blur(14px);
     }
 
-    .top-actions {
+    .topbar {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+    }
+
+    .brand {
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .btn,
+    .back-btn,
     .primary-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 11px 16px;
+      padding: 10px 14px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.16);
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
       color: var(--text);
       font-weight: 800;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       cursor: pointer;
       transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }
@@ -341,16 +361,28 @@
         border-radius: 16px;
       }
 
-      .top-actions {
+      .topbar {
+        justify-content: center;
         gap: 6px;
         margin-bottom: 8px;
       }
 
+      .brand {
+        font-size: 0.92rem;
+      }
+
+      .top-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+        gap: 6px;
+      }
+
       .btn,
+      .back-btn,
       .primary-btn {
-        flex: 1 1 100%;
-        padding: 9px 10px;
-        font-size: 0.72rem;
+        padding: 7px 8px;
+        font-size: 0.66rem;
       }
 
       .hero,
@@ -411,11 +443,15 @@
 </head>
 <body>
   <div class="page-shell">
-    <div class="top-actions">
-      <button class="btn" id="backButton" type="button">Back</button>
-      <a class="btn" href="support.html">Support</a>
-      <a class="btn" href="Courses.html">Courses</a>
-    </div>
+    <header class="topbar">
+      <a class="brand" href="Courses.html">NextGen Ski<span>lls Academy</span></a>
+
+      <div class="top-actions">
+        <a class="btn" href="offers.html">Offers</a>
+        <a class="btn" href="support.html">Support</a>
+        <button class="back-btn" id="backButton" type="button">Back</button>
+      </div>
+    </header>
 
     <section class="hero">
       <div>
